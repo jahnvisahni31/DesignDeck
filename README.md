@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DesignDeck
 
-## Getting Started
+DesignDeck is a web-based design tool inspired by Figma, built using Next.js. It aims to provide a collaborative design environment where users can create, edit, and share their designs in real-time.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Introduction](#introduction)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Introduction
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+DesignDeck is a clone of Figma, a popular web-based design tool used for UI/UX design. The application allows multiple users to collaborate on design projects in real-time, leveraging the power of Next.js for server-side rendering and performance optimization.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- Real-time collaboration
+- User authentication and authorization
+- Create and manage design projects
+- Vector drawing tools
+- Layer management
+- Commenting and feedback system
+- Responsive design
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend:** Next.js, React
+- **Backend:** Node.js, Express
+- **Database:** MongoDB
+- **Real-time Communication:** WebSockets
+- **Authentication:** JWT, OAuth
+- **Styling:** Tailwind CSS
+- **Version Control:** Git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Installation
 
-## Deploy on Vercel
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/jahnvisahni31/designdeck.git
+    cd designdeck
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Create a `.env.local` file in the root directory and add your environment variables:
+    ```env
+    MONGODB_URI=your_mongodb_uri
+    JWT_SECRET=your_jwt_secret
+    ```
+
+4. Start the development server:
+    ```bash
+    npm run dev
+    ```
+
+## Usage
+
+1. Open your browser and go to `http://localhost:3000` to access the application.
+2. Register or log in to start creating and collaborating on design projects.
+
+## Contributing
+
+Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
