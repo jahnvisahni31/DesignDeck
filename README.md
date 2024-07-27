@@ -18,7 +18,7 @@ DesignDeck is a web-based collaborative design tool similar to Figma, built usin
 
 ## Demo
 
-You can see a live demo of the portfolio website at 
+You can see a live demo of the portfolio website at [https://design-deck.vercel.app/]
 
 ## Features
 
