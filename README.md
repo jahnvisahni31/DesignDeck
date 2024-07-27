@@ -1,8 +1,8 @@
-# FigPro
+# DesignDeck
 
-![FigPro Screenshot](public/assets/readme_assets/screenshot.png)
+![DesignDeck Screenshot](designdeckui.png)
 
-FigPro is a web-based collaborative design tool similar to Figma, built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API, Fabric.js. With FigPro, teams can seamlessly collaborate on designing interfaces in real-time with a plethora of features.
+DesignDeck is a web-based collaborative design tool similar to Figma, built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API, Fabric.js. With Designdeck, teams can seamlessly collaborate on designing interfaces in real-time with a plethora of features.
 
 ## Table of Contents
 
@@ -14,12 +14,11 @@ FigPro is a web-based collaborative design tool similar to Figma, built using Ne
 - [Getting Started](#getting-started)
 - [Folder Structure](#folder-structure)
 - [Running the Application](#running-the-application)
-- [Author](#author)
 - [Documentation](#documentation)
 
 ## Demo
 
-You can see a live demo of the portfolio website at https://fig-pro-github.vercel.app/.
+You can see a live demo of the portfolio website at 
 
 ## Features
 
@@ -64,7 +63,7 @@ You can see a live demo of the portfolio website at https://fig-pro-github.verce
 
 ## Environment Variables
 
-The project relies on environment variables stored in a `.env.local` file located at the root of the `figpro` directory to manage configurations. Ensure that essential variables such as database connection strings, API keys, or any other sensitive information are properly set up.
+The project relies on environment variables stored in a `.env.local` file located at the root of the `Designdeck` directory to manage configurations. Ensure that essential variables such as database connection strings, API keys, or any other sensitive information are properly set up.
 
 ```bash
 NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY = "*YOUR LIVEBLOCKS API PUBLIC KEY*"
@@ -79,13 +78,13 @@ Be sure to replace `*YOUR LIVEBLOCKS API PUBLIC KEY*` with your actual LiveBlock
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/Shivam-Sharma-1/FigPro.git
+git clone https://github.com/jahnvisahni31/Designdeck.git
 ```
 
 2. Change to the project directory:
 
 ```bash
-cd figpro
+cd Designdeck
 ```
 
 3. Install and run client dependencies:
@@ -100,7 +99,7 @@ Open your web browser and visit http://localhost:3000 to see the website in acti
 ## Folder Structure
 
 ```
-figpro/
+Designdeck/
 ├── app/                # Next.js pages
 ├── components/         # React components
 ├── constants/          # Constants or configurations
@@ -113,10 +112,6 @@ figpro/
 
 1. Start the development server: `npm run dev`
 2. Open your browser and navigate to `http://localhost:3000`
-
-## Author
-
-- [@Shivam-Sharma-1](https://github.com/Shivam-Sharma-1)
 
 ## Documentation
 
