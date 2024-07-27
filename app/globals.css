@@ -5,9 +5,11 @@
 @import "@liveblocks/react-comments/styles.css";
 
 * {
-  font-family:
-    work sans,
-    sans-serif;
+  font-family: work sans, sans-serif;
+}
+
+body {
+  overflow: hidden;
 }
 
 @layer utilities {
@@ -26,4 +28,21 @@
   .right-menu-item {
     @apply flex justify-between px-3 py-2 hover:bg-primary-grey-200 !important;
   }
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 30px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 1px;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
 }

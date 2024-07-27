@@ -149,11 +149,7 @@ export const fontWeightOptions = [
     label: "Normal",
   },
   {
-    value: "500",
-    label: "Semibold",
-  },
-  {
-    value: "600",
+    value: "700",
     label: "Bold",
   },
 ];

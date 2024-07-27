@@ -1,26 +1,21 @@
 "use client";
 
 import { ReactNode } from "react";
-import {
-  LiveblocksProvider,
-  RoomProvider,
-  ClientSideSuspense,
-} from "@liveblocks/react/suspense";
-
-const liveblocksPublicKey = process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY;
+import { RoomProvider } from "../liveblocks.config";
+import { ClientSideSuspense } from "@liveblocks/react";
+import { LiveMap } from "@liveblocks/client";
+import Loader from "@/components/Loader";
 
 export function Room({ children }: { children: ReactNode }) {
-  if (!liveblocksPublicKey) {
-    // Handle the case where the environment variable is not set
-    return <div>Error: Liveblocks public key is not set.</div>;
-  }
   return (
-    <LiveblocksProvider publicApiKey={liveblocksPublicKey}>
-      <RoomProvider id="my-room">
-        <ClientSideSuspense fallback={<div>Loading…</div>}>
-          {children}
-        </ClientSideSuspense>
-      </RoomProvider>
-    </LiveblocksProvider>
+    <RoomProvider
+      id="my-room"
+      initialPresence={{ cursor: null, message: null }}
+      initialStorage={{ canvasObjects: new LiveMap() }}
+    >
+      <ClientSideSuspense fallback={<Loader />}>
+        {() => children}
+      </ClientSideSuspense>
+    </RoomProvider>
   );
 }

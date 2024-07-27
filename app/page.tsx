@@ -1,10 +1,5 @@
-import { Room } from "./Room";
+import dynamic from "next/dynamic";
 
-export default function Page() {
-  return (
-    <div className="h-[100vh] w-full flex justify-center items-center text-center">
-      <h1 className="text-3xl text-slate-200">DesignDeck</h1>
-    </div>
-    
-  );
-}
+const App = dynamic(() => import("./App"), { ssr: false });
+
+export default App;
