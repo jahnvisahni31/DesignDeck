@@ -24,7 +24,7 @@ function Navbar({
 
   return (
     <nav className="flex select-none items-center justify-between gap-4 bg-primary-black px-5 text-white">
-      <Image src="/assets/logo.svg" alt="FigPro Logo" width={66} height={26} />
+      <Image src="/assets/logo.png" alt="Logo" width={66} height={26} />
 
       <ul className="flex">
         {/* Renders nav elements */}

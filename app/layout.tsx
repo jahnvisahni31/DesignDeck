@@ -10,8 +10,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "FigPro",
-  description: "A FigPro built with Liveblocks and Next.js",
+  title: "DesignDeck",
+  description: "A DesignDeck built with Liveblocks and Next.js",
 };
 
 export default function RootLayout({
