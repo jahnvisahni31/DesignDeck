@@ -38,13 +38,14 @@ You can see a live demo of the portfolio website at [https://design-deck.vercel.
 
 ## Technologies Used
 
-- **Next.js**: For server-side rendering and routing.
-- **TypeScript**: To add static types to JavaScript.
-- **Tailwind CSS**: Utility-first CSS framework for styling.
-- **LiveBlocks API**: Real-time collaboration API for syncing data across clients.
-- **Fabric.js**: HTML5 canvas library for manipulating graphics and interactive content.
-- **Shadcn**: Component library for UI elements.
-
+| Technology        | Description                                                        |
+|-------------------|--------------------------------------------------------------------|
+| **Next.js**       | Server-side rendering and routing.                                 |
+| **TypeScript**    | Adds static types to JavaScript.                                  |
+| **Tailwind CSS**  | Utility-first CSS framework for styling.                          |
+| **LiveBlocks API**| Real-time collaboration API for syncing data across clients.      |
+| **Fabric.js**     | HTML5 canvas library for manipulating graphics and interactive content. |
+| **Shadcn**        | Component library for UI elements.        
 
 ## Environment Variables
 
