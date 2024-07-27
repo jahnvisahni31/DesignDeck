@@ -109,6 +109,3 @@ Designdeck/
 
 This section provides links to the documentation pages of the technologies used in the project for further exploration and learning.
 
----
-
-Feel free to adjust any sections or details according to your preferences!
