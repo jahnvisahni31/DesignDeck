@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { memo } from "react";
+import React ,{ memo, useState , useEffect } from "react";
 import Link from "next/link";
+
 import { ActiveElement, NavbarProps } from "@/types/type";
 
 import ActiveUsers from "./users/ActiveUsers";
@@ -10,21 +11,40 @@ import { navElements } from "@/constants";
 import NewThread from "./comments/NewThread";
 import { Button } from "./ui/button";
 import ShapesMenu from "./ShapesMenu";
+import ThemeSwitcher from "./ui/ThemeSwitcher";
+import { useTheme } from "next-themes";
 
 function Navbar({
   activeElement,
   imageInputRef,
   handleImageUpload,
-  handleActiveElement,
+  handleActiveElement
 }: NavbarProps) {
   const isActive = (value: string | Array<ActiveElement>) =>
     (activeElement && activeElement.value === value) ||
     (Array.isArray(value) &&
       value.some((val) => val?.value === activeElement?.value));
 
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
+
+  // console.log(themeCheck)
+  console.log(darkMode)
+ 
   return (
-    <nav className="flex select-none items-center justify-between gap-4 bg-primary-black px-5 text-white">
-      <Link href="/">
+    <div className={`${darkMode ? "bg-primary-black text-white" : "bg-white text-black border-b-0 border-black"}`}>
+
+    <nav className={`flex select-none items-center justify-between gap-4  px-5`}>
+    <Link href="/">
         <Image
           src="/assets/logo.png"
           alt="Logo"
@@ -50,8 +70,8 @@ function Navbar({
               : "hover:bg-primary-grey-200"
           }
           `}
-            >
-              {Array.isArray(item.value) ? ( // Renders shapes menu
+          >
+             {Array.isArray(item.value) ? ( // Renders shapes menu
                 <ShapesMenu
                   item={item}
                   activeElement={activeElement}
@@ -73,7 +93,7 @@ function Navbar({
                 </NewThread>
               ) : (
                 // Renders other nav elements
-                <Button className="relative w-5 h-5 object-contain">
+                <Button className={`relative w-5 h-5 object-contain p-2 items-center justify-center  focus:outline-none focus:ring-0 ${darkMode ? "border-gray-300 text-white  " : " text-black  "}`}>
                   <Image
                     src={item.icon}
                     alt={item.name}
@@ -82,29 +102,34 @@ function Navbar({
                     className={isActive(item.value) ? "invert" : ""}
                   />
                 </Button>
-              )}
-            </li>
-          ))}
-        </ul>
+                )}
+                </li>
+              ))}
+            </ul>
+          </div>
+    
+          <div className="flex space-x-4 text-white">
+            <Link
+              href="/"
+              className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
+            >
+              Home
+            </Link>
+            <Link
+              href="/faq"
+              className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
+            >
+              FAQ
+            </Link>
+          </div>
+      <div className="flex items-center" >
+        <ThemeSwitcher/>
       </div>
-
-      <div className="flex space-x-4 text-white">
-        <Link
-          href="/"
-          className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
-        >
-          Home
-        </Link>
-        <Link
-          href="/faq"
-          className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
-        >
-          FAQ
-        </Link>
-      </div>
-
+      
       <ActiveUsers />
     </nav>
+    </div>
+    
   );
 }
 

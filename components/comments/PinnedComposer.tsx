@@ -2,15 +2,30 @@
 
 import Image from "next/image";
 import { Composer, ComposerProps } from "@liveblocks/react-comments";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 type Props = {
   onComposerSubmit: ComposerProps["onComposerSubmit"];
 };
 
 function PinnedComposer({ onComposerSubmit, ...props }: Props) {
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
+  // console.log(themeCheck)
+  // console.log(darkMode)
   return (
     <div className="absolute flex gap-4" {...props}>
-      <div className="select-none relative w-9 h-9 shadow rounded-tl-md rounded-tr-full rounded-br-full rounded-bl-full bg-white flex justify-center items-center">
+      <div className={`select-none relative w-9 h-9 shadow rounded-tl-md rounded-tr-full rounded-br-full rounded-bl-full ${darkMode ? "bg-white" : "bg-primary-grey-200"} flex justify-center items-center`}>
         <Image
           src={`https://liveblocks.io/avatars/avatar-${Math.floor(
             Math.random() * 30

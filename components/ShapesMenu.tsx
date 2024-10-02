@@ -10,6 +10,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const ShapesMenu = ({
   item,
@@ -21,6 +23,20 @@ const ShapesMenu = ({
   const isDropdownElem = item.value.some(
     (elem) => elem?.value === activeElement.value
   );
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
+
+  // console.log(themeCheck)
+  console.log(darkMode)
 
   return (
     <>
@@ -40,14 +56,14 @@ const ShapesMenu = ({
           </Button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="mt-5 flex flex-col gap-y-1 border-none bg-primary-black py-4 text-white">
+        <DropdownMenuContent className={`mt-5 flex flex-col gap-y-1 border-none ${darkMode ? "bg-primary-black text-white " : " bg-primary-grey-200 text-white"}  py-4 `}>
           {item.value.map((elem) => (
             <Button
               key={elem?.name}
               onClick={() => {
                 handleActiveElement(elem);
               }}
-              className={`flex h-fit justify-between gap-10 rounded-none px-5 py-3 focus:border-none ${
+              className={`flex h-fit justify-between gap-10 rounded-none px-5 py-3 focus:border-none ${darkMode ? "": "bg-primary-grey-200 text-white"} ${
                 activeElement.value === elem?.value
                   ? "bg-primary-green"
                   : "hover:bg-primary-grey-200"
