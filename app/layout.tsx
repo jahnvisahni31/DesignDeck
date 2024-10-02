@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Room } from "./Room";
+import NavBar from "../components/navbar/navbar"; 
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -22,6 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${workSans.className} bg-primary-grey-200`}>
+        {/* Add the NavBar here */}
+        <NavBar />
         <Room>{children}</Room>
       </body>
     </html>
