@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { memo } from "react";
-
+import Link from "next/link";
 import { ActiveElement, NavbarProps } from "@/types/type";
 
 import ActiveUsers from "./users/ActiveUsers";
@@ -24,6 +24,15 @@ function Navbar({
 
   return (
     <nav className="flex select-none items-center justify-between gap-4 bg-primary-black px-5 text-white">
+      <Link href="/">
+        <Image
+          src="/assets/logo.png"
+          alt="Logo"
+          width={100}
+          height={40}
+          className="cursor-pointer"
+        />
+      </Link>
       <div className="flex-grow flex justify-center">
         <ul className="flex">
           {/* Renders nav elements */}
@@ -77,6 +86,21 @@ function Navbar({
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="flex space-x-4 text-white">
+        <Link
+          href="/"
+          className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
+        >
+          Home
+        </Link>
+        <Link
+          href="/faq"
+          className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
+        >
+          FAQ
+        </Link>
       </div>
 
       <ActiveUsers />

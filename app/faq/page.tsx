@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 
 const faqs = [
   {
@@ -58,6 +59,14 @@ const FAQ = () => {
 
   return (
     <div className="container mx-auto p-6 min-h-screen h-screen overflow-y-auto">
+      {/* Home Button */}
+      <div className="text-left mb-4">
+        <Link href="/">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
+            Home
+          </button>
+        </Link>
+      </div>
       <h1 className="text-4xl font-bold mb-6 text-center text-white">
         Frequently Asked Questions
       </h1>
