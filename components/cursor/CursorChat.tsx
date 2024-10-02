@@ -1,5 +1,7 @@
 import CursorSVG from "@/public/assets/CursorSVG";
 import { CursorChatProps, CursorMode } from "@/types/type";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 function CursorChat({
   cursor,
@@ -15,6 +17,17 @@ function CursorChat({
       message: e.target.value,
     });
   };
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -42,7 +55,7 @@ function CursorChat({
           <CursorSVG color="#000" />
 
           <div
-            className="absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white"
+            className={`absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed ${darkMode ? "text-white" : "text-black"} `}
             onKeyUp={(e) => e.stopPropagation()}
             style={{
               borderRadius: 20,
@@ -52,7 +65,7 @@ function CursorChat({
               <div>{cursorState.previousMessage}</div>
             )}
             <input
-              className="z-10 w-60 border-none	bg-transparent text-white placeholder-blue-300 outline-none"
+              className={`z-10 w-60 border-none	bg-transparent ${darkMode ? "text-white" : "text-black"} outline-none`}
               autoFocus={true}
               onChange={handleChange}
               onKeyDown={handleKeyDown}

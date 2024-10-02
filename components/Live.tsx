@@ -22,6 +22,7 @@ import FlyingReaction from "./reaction/FlyingReaction";
 import useInterval from "@/hooks/useInterval";
 import Comments from "./comments/Comments";
 import { shortcuts } from "@/constants";
+import { useTheme } from "next-themes";
 
 type Props = {
   canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;
@@ -30,6 +31,21 @@ type Props = {
 };
 
 function Live({ canvasRef, undo, redo }: Props) {
+
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
+  // console.log(themeCheck)
+  // console.log(darkMode)
+
   const [cursorState, setCursorState] = useState<CursorState>({
     mode: CursorMode.Hidden,
   });
@@ -234,12 +250,12 @@ function Live({ canvasRef, undo, redo }: Props) {
 
         <Comments />
       </ContextMenuTrigger>
-      <ContextMenuContent id="canvas" className="right-menu-content">
+      <ContextMenuContent id="canvas" className={`${darkMode ? "bg-primary-grey-200 text-white " : "bg-white text-black  "}`}>
         {shortcuts.map((shortcut) => (
           <ContextMenuItem
             key={shortcut.key}
             onClick={() => handleContextMenuClick(shortcut.name)}
-            className="right-menu-item"
+            className={`${darkMode ? "bg-primary-grey-200 text-white " : "bg-white text-black  "}`}
           >
             <p>{shortcut.name}</p>
             <p className="text-xs text-primary-grey-300">{shortcut.shortcut}</p>
