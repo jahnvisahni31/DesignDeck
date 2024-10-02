@@ -99,14 +99,16 @@ Designdeck/
 1. Start the development server: `npm run dev`
 2. Open your browser and navigate to `http://localhost:3000`
 
-## Documentation
+## CONTRIBUTING 
 
-- **[Next.js Documentation](https://nextjs.org/docs/getting-started)**: Learn more about Next.js for server-side rendering and routing.
-- **[TypeScript Documentation](https://www.typescriptlang.org/docs/)**: Explore TypeScript documentation for adding static types to JavaScript.
-- **[Tailwind CSS Documentation](https://tailwindcss.com/docs)**: Dive into Tailwind CSS documentation for utility-first CSS styling.
-- **[LiveBlocks API Documentation](https://liveblocks.io/docs/)**: Refer to LiveBlocks API documentation for real-time collaboration.
-- **[Fabric.js Documentation](http://fabricjs.com/docs/)**: Discover Fabric.js documentation for HTML5 canvas manipulation.
-- **[Shadcn Documentation](https://ui.shadcn.com/docs)**: Comprehensive documentation for the Shadcn component library, offering a wide range of customizable UI components to enhance your web application's user interface.
+We welcome contributions to DesignDeck! To contribute:
 
-This section provides links to the documentation pages of the technologies used in the project for further exploration and learning.
+1. Fork the repository 🍴
+2. Create a new branch (`git checkout -b feature/your-feature`) 🌱
+3. Make your changes ✨
+4. Commit and push your changes 🚀
+5. Create a pull request 🔄
 
+### Contact 📬
+
+For any questions or support, please reach out to [Jahnvisahni98@gmail.com](mailto:jahnvisahni98@gmail.com).
