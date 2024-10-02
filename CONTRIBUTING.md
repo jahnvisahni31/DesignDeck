@@ -43,13 +43,13 @@ We use a [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-
 
 ## Coding Guidelines 📜
 
-- Follow our [Coding Standards](CODING_STANDARDS.md).
+- Follow our [Coding Standards](https://github.com/jahnvisahni31/DesignDeck/blob/main/CODING_STANDARDS.md).
 - Write clear, concise commit messages.
 - Include tests for your changes where applicable.
 - Ensure your changes are covered by existing or new tests.
 
 ## Code of Conduct 🌟
 
-Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md). We strive to create a welcoming and respectful community, and we expect all contributors to adhere to our guidelines.
+Please read and follow our [Code of Conduct](https://github.com/jahnvisahni31/DesignDeck/blob/main/CODE_OF_CONDUCT.md). We strive to create a welcoming and respectful community, and we expect all contributors to adhere to our guidelines.
 
 Thank you for contributing to **Designdeck**! We look forward to your contributions. 🚀
