@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.hero {
+    background-color: #f0e1ff;
+    padding: 50px;
+    text-align: center;
+}
+
+.features {
+    padding: 50px;
+    text-align: center;
+}
+
+.feature-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.feature {
+    width: 30%;
+}
+
+.testimonials {
+    background-color: #f9f9f9;
+    padding: 50px;
+    text-align: center;
+}
+
+.pricing {
+    padding: 50px;
+    text-align: center;
+}
+
+.pricing-table {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pricing-plan {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 30%;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
