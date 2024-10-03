@@ -7,7 +7,10 @@
 * {
   font-family: work sans, sans-serif;
 }
-
+html {
+  overflow: auto;
+  height: auto;
+}
 body {
   overflow: hidden;
 }
