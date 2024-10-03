@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 const faqs = [
   {
@@ -56,18 +57,31 @@ const FAQ = () => {
   const toggleFAQ = (index: number) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
+  // console.log(themeCheck)
+  // console.log(darkMode)
 
   return (
     <div className="container mx-auto p-6 min-h-screen h-screen overflow-y-auto">
       {/* Home Button */}
       <div className="text-left mb-4">
         <Link href="/">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
+          <button className={`px-4 py-2 rounded ${darkMode ? "bg-blue-500 text-white  hover:bg-blue-600 " : "bg-blue-500 text-black  hover:bg-blue-600" }transition duration-300`}>
             Home
           </button>
         </Link>
       </div>
-      <h1 className="text-4xl font-bold mb-6 text-center text-white">
+      <h1 className={`text-4xl font-bold mb-6 text-center ${darkMode ? "text-white " : "text-black"}`}>
         Frequently Asked Questions
       </h1>
       <div className="space-y-4 max-w-2xl mx-auto">
@@ -80,17 +94,17 @@ const FAQ = () => {
             <div className="flex justify-between items-center">
               <h2
                 className={`font-semibold text-lg ${
-                  activeIndex === index ? "text-white" : "text-gray-300"
+                  activeIndex === index ? darkMode ? "text-white" : "text-black" :"text-white"
                 }`}
               >
                 {faq.question}
               </h2>
-              <span className="text-gray-400">
+              <span className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
                 {activeIndex === index ? "-" : "+"}
               </span>
             </div>
             {activeIndex === index && (
-              <p className="mt-2 text-gray-300">{faq.answer}</p>
+              <p className={`mt-2  ${darkMode ? "text-gray-400" : "text-black"}`}>{faq.answer}</p>
             )}
           </div>
         ))}
