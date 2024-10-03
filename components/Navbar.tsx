@@ -108,16 +108,16 @@ function Navbar({
             </ul>
           </div>
     
-          <div className="flex space-x-4 text-white">
+          <div className={`flex space-x-4 ${darkMode ? "text-white" : "text-black"}`}>
             <Link
               href="/"
-              className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
+              className="hover:underline  transition duration-300 ease-in-out"
             >
               Home
             </Link>
             <Link
               href="/faq"
-              className="hover:underline hover:text-gray-300 transition duration-300 ease-in-out"
+              className="hover:underline  transition duration-300 ease-in-out"
             >
               FAQ
             </Link>
