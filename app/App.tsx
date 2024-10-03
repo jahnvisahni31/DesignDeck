@@ -24,6 +24,7 @@ import { useMutation, useRedo, useStorage, useUndo } from "@/liveblocks.config";
 import { defaultNavElement } from "@/constants";
 import { handleDelete, handleKeyDown } from "@/lib/key-events";
 import { handleImageUpload } from "@/lib/shapes";
+import { useTheme } from "next-themes";
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -53,6 +54,22 @@ function App() {
     fill: "#aabbcc",
     stroke: "#000000",
   });
+  
+
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
+
+  // console.log(themeCheck)
+  console.log(darkMode)
 
   const syncShapeInStorage = useMutation(({ storage }, object) => {
     if (!object) return;
@@ -229,6 +246,8 @@ function App() {
   }, [canvasObjects]);
 
   return (
+    <div className={`${darkMode ? "bg-primary-grey-200 text-white " : " bg-slate-200 text-black" }`}>
+    
     <main className="h-[100dvh] overflow-hidden">
       <Navbar
         activeElement={activeElement}
@@ -258,6 +277,7 @@ function App() {
         />
       </section>
     </main>
+    </div>
   );
 }
 

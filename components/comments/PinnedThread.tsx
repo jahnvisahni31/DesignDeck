@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ThreadData } from "@liveblocks/client";
 import { Thread } from "@liveblocks/react-comments";
 
 import { ThreadMetadata } from "@/liveblocks.config";
+import { useTheme } from "next-themes";
 
 type Props = {
   thread: ThreadData<ThreadMetadata>;
@@ -20,6 +21,20 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
   );
 
   const [minimized, setMinimized] = useState(startMinimized);
+
+  const {systemTheme, theme, setTheme} = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if(currentTheme==='dark'){
+      setDarkMode(true);
+    }
+    else{
+      setDarkMode(false);
+    }
+  },[currentTheme])
+  // console.log(themeCheck)
+  // console.log(darkMode)
 
   /**
    * memoize the result of this function so that it doesn't change on every render but only when the thread changes
@@ -57,7 +72,7 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
         }}
       >
         <div
-          className="relative flex h-9 w-9 select-none items-center justify-center rounded-bl-full rounded-br-full rounded-tl-md rounded-tr-full bg-white shadow"
+          className={`relative flex h-9 w-9 select-none items-center justify-center rounded-bl-full rounded-br-full rounded-tl-md rounded-tr-full ${darkMode ? "bg-white" : "bg-primary-grey-200"} shadow`}
           data-draggable={true}
         >
           <Image
@@ -70,7 +85,7 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
           />
         </div>
         {!minimized ? (
-          <div className="flex min-w-60 flex-col overflow-hidden rounded-lg bg-white text-sm shadow">
+          <div className={`flex min-w-60 flex-col overflow-hidden rounded-lg ${darkMode ? "bg-white":"bg-primary-grey-200"}text-sm shadow`}>
             <Thread
               thread={thread}
               indentCommentContent={false}
@@ -85,7 +100,7 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
     [thread.comments.length, minimized]
   );
 
-  return <>{memoizedContent}</>;
+  return <div>{memoizedContent}</div>;
 }
 
 export default PinnedThread;
