@@ -45,7 +45,8 @@ export default function App() {
   // console.log(darkMode)
 
   return (
-    <><div >
+    <><div>
+      <div className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg">
       <Navbar
         isBordered
         isMenuOpen={isMenuOpen}
@@ -138,7 +139,7 @@ export default function App() {
           ))}
         </NavbarMenu>
       </Navbar>
-
+      </div>
       
     </div>
     <div className={`min-h-screen ${darkMode ? "bg-black text-white " : "bg-white text-black"} `}  >
