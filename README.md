@@ -8,8 +8,6 @@ DesignDeck is a web-based collaborative design tool similar to Figma, built usin
 - [Technologies Used](#technologies-used)
 - [Environment Variables](#environment-variables)
 - [Getting Started](#getting-started)
-- [Folder Structure](#folder-structure)
-- [Running the Application](#running-the-application)
 - [Contribution](#contributing)
 
 ## Demo
@@ -79,23 +77,6 @@ npm run dev
 
 Open your web browser and visit http://localhost:3000 to see the website in action during development.
 
-## Folder Structure
-
-```
-Designdeck/
-├── app/                # Next.js pages
-├── components/         # React components
-├── constants/          # Constants or configurations
-├── hooks/              # Custom hooks
-├── lib/                # Utility functions or external libraries
-└── public/             # Public assets
-```
-
-## Running the Application
-
-1. Start the development server: `npm run dev`
-2. Open your browser and navigate to `http://localhost:3000`
-
 ## CONTRIBUTING 
 
 We welcome contributions to DesignDeck! To contribute:
@@ -106,6 +87,16 @@ We welcome contributions to DesignDeck! To contribute:
 4. Commit and push your changes 🚀
 5. Create a pull request 🔄
 
-### Contact 📬
+## CONTRIBUTORS
+> Contributions are welcome!
+
+Specially thanks ❤️ for contributors bellow:
+
+<a href="https://github.com/jahnvisahni31/github-readme-profile/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jahnvisahni31/DesignDeck" />
+</a>
+
+
+## Contact 📬
 
 For any questions or support, please reach out to [Jahnvisahni98@gmail.com](mailto:jahnvisahni98@gmail.com).
