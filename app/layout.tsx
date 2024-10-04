@@ -53,13 +53,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <body className={`${workSans.className} bg-primary-grey-200`}>
         <ThemeProvider
+
+
+
           attribute="class"
           defaultTheme="system"
           enableSystem
         >
+
           <Room>{children}</Room>
+
+
         </ThemeProvider>
       </body>
     </html>
