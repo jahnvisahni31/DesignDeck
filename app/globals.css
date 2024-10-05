@@ -49,3 +49,46 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
   border: none;
 }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px; /* Adjust width for your design */
+  height: 30px; /* Adjust height for your design */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: blue; 
+  transition: background-color 0.4s; 
+  border-radius: 34px; 
+}
+
+.round {
+  border-radius: 34px;
+}
+
+.slider i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px; 
+  transition: opacity 0.4s ease-in-out; 
+}
+
+
+input:checked + .slider {
+  background-color: skyblue; /* Change background for dark mode */
+}
