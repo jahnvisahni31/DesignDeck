@@ -177,7 +177,7 @@ export default function App() {
             >
               <Image
                 alt="Woman listing to music"
-                className=" object-cover w-full h-full"
+                className=" object-fill w-full h-full"
                 height={370}
                 src="five.webp"
                 width={500}
