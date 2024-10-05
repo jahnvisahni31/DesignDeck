@@ -1,51 +1,81 @@
 "use client";
-import {useTheme} from "next-themes";
-import {useEffect, useState} from "react";
-const ThemeSwitcher = () => {
-  const [mount, setMount] = useState(false);
-  const {systemTheme, theme, setTheme} = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    if(currentTheme==='dark'){
-      setDarkMode(true);
-    }
-    else{
-      setDarkMode(false);
-    }
-  },[currentTheme])
+import { useTheme } from "next-themes";
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
+import { useEffect } from "react";
 
-  // console.log(themeCheck)
-  console.log(darkMode)
-  return  (
+const ThemeSwitcher = ({ darkMode, setDarkMode }) => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  
+  // Update dark mode state based on current theme
+  useEffect(() => {
+    setDarkMode(theme === 'dark');
+  }, [theme, setDarkMode]);
+
+  const toggleTheme = () => {
+    const newTheme = darkMode ? "light" : "dark";
+    setDarkMode(!darkMode);
+    setTheme(newTheme);
+  };
+
+  return (
     <div className="z-50">
-      <button
-        onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-        type="button"
-        className={`flex h-10 w-10 p-2 items-center justify-center rounded-md border-2 focus:outline-none focus:ring-0 ${darkMode ? "border-gray-800 text-white  focus:ring-gray-200 dark:border-slate-300 dark:text-white" : "border-gray-800 text-black  focus:ring-gray-200 dark:border-slate-300 dark:text-white"} `}
-      >
-        <svg
-          className="dark:hidden"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-        </svg>
-        <svg
-          className="hidden dark:block"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-            fillRule="evenodd"
-            clipRule="evenodd"
-          ></path>
-        </svg>
-      </button>
+      <label className="switch">
+        <input
+          type="checkbox"
+          checked={darkMode}
+          onChange={toggleTheme}
+          aria-label="Toggle dark mode"
+        />
+        <span className="slider round">
+          {darkMode ? (
+            <i className="fas fa-sun icon" /> // Sun icon for dark mode
+          ) : (
+            <i className="fas fa-moon icon" /> // Moon icon for light mode
+          )}
+        </span>
+      </label>
+
+      <style jsx>{`
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px; /* Width of the toggle */
+          height: 34px; /* Height of the toggle */
+        }
+
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: -2px; /* Adjusted to center the icon vertically */
+          left: -2px; /* Adjusted to center the icon horizontally */
+          right: -2px; /* Adjusted to center the icon horizontally */
+          bottom: -2px; /* Adjusted to center the icon vertically */
+          background-color: #ccc; /* Background color when off */
+          transition: .4s; /* Transition effect for smoothness */
+          border-radius: 34px; /* Rounded corners */
+          display: flex; /* Flexbox for centering */
+          align-items: center; /* Centering vertically */
+          justify-content: ${darkMode ? 'flex-end' : 'flex-start'}; /* Position icon based on mode */
+          padding: 0 10px;
+        }
+
+        .slider .icon {
+          font-size: 20px; /* Set a size for the icons */
+          transition: .4s; /* Transition effect for smoothness */
+        }
+
+        input:checked + .slider {
+          background-color: #2196F3; /* Background color when on */
+        }
+      `}</style>
     </div>
   );
 };
+
 export default ThemeSwitcher;
