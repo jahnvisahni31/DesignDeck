@@ -1,27 +1,31 @@
 "use client";
-import {useTheme} from "next-themes";
+import { useTheme } from "next-themes";
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
-import {useEffect, useState} from "react";
-const ThemeSwitcher = () => {
-  const [mount, setMount] = useState(false);
-  const {systemTheme, theme, setTheme} = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    if(currentTheme==='dark'){
-      setDarkMode(true);
-    }
-    else{
-      setDarkMode(false);
-    }
-  },[currentTheme])
+import { useEffect } from "react";
 
-  // console.log(themeCheck)
-  console.log(darkMode)
-  return  (
+const ThemeSwitcher = ({ darkMode, setDarkMode }) => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  
+  // Update dark mode state based on current theme
+  useEffect(() => {
+    setDarkMode(theme === 'dark');
+  }, [theme, setDarkMode]);
+
+  const toggleTheme = () => {
+    const newTheme = darkMode ? "light" : "dark";
+    setDarkMode(!darkMode);
+    setTheme(newTheme);
+  };
+
+  return (
     <div className="z-50">
       <label className="switch">
-        <input type="checkbox" checked={darkMode} onChange={() => setTheme(currentTheme === "dark" ? "light" : "dark")}n />
+        <input
+          type="checkbox"
+          checked={darkMode}
+          onChange={toggleTheme}
+          aria-label="Toggle dark mode"
+        />
         <span className="slider round">
           {darkMode ? (
             <i className="fas fa-sun icon" /> // Sun icon for dark mode
@@ -73,4 +77,5 @@ const ThemeSwitcher = () => {
     </div>
   );
 };
+
 export default ThemeSwitcher;
