@@ -1,5 +1,4 @@
-import { Label } from "../ui/label";
-
+import { TwitterPicker } from "react-color";
 type Props = {
   inputRef: any;
   attribute: string;
@@ -17,17 +16,12 @@ const Color = ({
 }: Props) => (
   <div className="flex flex-col gap-3 border-b border-primary-grey-200 p-5">
     <h3 className="text-[10px] uppercase">{placeholder}</h3>
-    <div
-      className="flex items-center gap-2 border border-primary-grey-200"
-      onClick={() => inputRef.current.click()}
-    >
-      <input
-        type="color"
-        value={attribute}
+    <div className="flex items-center gap-2 border border-primary-grey-200">
+      <TwitterPicker
+        color={attribute}
         ref={inputRef}
-        onChange={(e) => handleInputChange(attributeType, e.target.value)}
+        onChange={(e) => handleInputChange(attributeType, e.hex)}
       />
-      <Label className="flex-1">{attribute}</Label>
     </div>
   </div>
 );
