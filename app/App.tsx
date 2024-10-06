@@ -7,6 +7,11 @@ import Image from "next/image";
 import Footer from "@/components/ui/footer";
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import Spline3DComponent from "@/components/ui/Spline";
+
+import VoxelPainter from "@/components/ui/PaintingBoard";
+import { PaintbrushIcon } from "lucide-react";
+
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,98 +51,87 @@ export default function App() {
 
   return (
     <><div >
-      <Navbar
-        isBordered
-        isMenuOpen={isMenuOpen}
-        onMenuOpenChange={setIsMenuOpen}
-      >
-        <NavbarContent className="sm:hidden" justify="start">
-          <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-        </NavbarContent>
+     <Navbar
+  isBordered
+  isMenuOpen={isMenuOpen}
+  onMenuOpenChange={setIsMenuOpen}
+  className="fixed top-0 left-1/2 rounded-full transform -translate-x-1/2 z-50 bg-opacity-70 backdrop-blur-sm"
+>
+  <NavbarContent className="sm:hidden" justify="start">
+    <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+  </NavbarContent>
 
-        <NavbarContent className="sm:hidden pr-3" justify="center">
-          <NavbarBrand>
-            <p className="font-bold text-inherit">DesignDesk</p>
-          </NavbarBrand>
-        </NavbarContent>
+  <NavbarContent className="sm:hidden pr-3" justify="center">
+    <NavbarBrand>
+      <p className="font-bold text-inherit">DesignDesk</p>
+    </NavbarBrand>
+  </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarBrand>
-            <p className="font-bold text-inherit">DesignDesk</p>
-          </NavbarBrand>
-          <NavbarItem>
-            <Link color="foreground" href="/">
-              Home
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Dropdown backdrop="blur">
-              <DropdownTrigger>
-                <Button
-                  disableRipple
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                  endContent={icons.chevron}
-                  radius="sm"
-                  variant="light"
-                >
-                  Open Menu
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="new" startContent={icons.hammer}>DesignDesk Jam</DropdownItem>
-                <DropdownItem key="copy" startContent={icons.dev}>Dev Mode</DropdownItem>
-                <DropdownItem key="edit" startContent={icons.slide}>DesignDesk Slides</DropdownItem>
-                <DropdownItem key="delete" className=" text-warning" startContent={icons.download}>
-                  Download
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+  <NavbarContent className="hidden sm:flex gap-4" justify="center">
+    <NavbarBrand>
+      <p className="font-bold text-inherit">DesignDesk</p>
+    </NavbarBrand>
+    <NavbarItem>
+      <Link color="foreground" href="/">Home</Link>
+    </NavbarItem>
+    <NavbarItem isActive>
+      <Dropdown backdrop="blur">
+        <DropdownTrigger>
+          <Button
+            disableRipple
+            className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+            endContent={icons.chevron}
+            radius="sm"
+            variant="light"
+          >
+            Open Menu
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu variant="faded" aria-label="Static Actions">
+          <DropdownItem key="new" startContent={icons.hammer}>DesignDesk Jam</DropdownItem>
+          <DropdownItem key="copy" startContent={icons.dev}>Dev Mode</DropdownItem>
+          <DropdownItem key="edit" startContent={icons.slide}>DesignDesk Slides</DropdownItem>
+          <DropdownItem key="delete" className="text-warning" startContent={icons.download}>
+            Download
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </NavbarItem>
+    <NavbarItem>
+      <Link color="foreground" href="/">Contact</Link>
+    </NavbarItem>
+    <NavbarItem>
+      <Link color="foreground" href="/faq">FAQ</Link>
+    </NavbarItem>
+  </NavbarContent>
 
-          </NavbarItem>
+  <NavbarContent justify="end">
+    <NavbarItem className="hidden lg:flex">
+      <Link href="#">Login</Link>
+    </NavbarItem>
+    <NavbarItem>
+      <Button as={Link} color="warning" href="#" variant="flat">Sign Up</Button>
+    </NavbarItem>
+    <NavbarItem>
+      <ThemeSwitcher />
+    </NavbarItem>
+  </NavbarContent>
 
-          <NavbarItem>
-            <Link color="foreground" href="/">
-              Contact
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="/faq">
-              FAQ
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-
-        
-
-        <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link href="#">Login</Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Button as={Link} color="warning" href="#" variant="flat">
-              Sign Up
-            </Button>
-          </NavbarItem>
-          <NavbarItem>
-            <ThemeSwitcher/>
-          </NavbarItem>
-        </NavbarContent>
-
-        <NavbarMenu>
-          {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                className="w-full"
-                color={index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"}
-                href="#"
-                size="lg"
-              >
-                {item}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </NavbarMenu>
-      </Navbar>
+  <NavbarMenu>
+    {menuItems.map((item, index) => (
+      <NavbarMenuItem key={`${item}-${index}`}>
+        <Link
+          className="w-full"
+          color={index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"}
+          href="#"
+          size="lg"
+        >
+          {item}
+        </Link>
+      </NavbarMenuItem>
+    ))}
+  </NavbarMenu>
+</Navbar>
 
       
     </div>
@@ -155,6 +149,11 @@ export default function App() {
           </Button>
         </div>
 
+<Spline3DComponent/>
+<PaintbrushIcon/>
+
+
+
         <div className="relative h-64 lg:h-auto w-full lg:w-1/2">
           <div className="absolute inset-0 flex justify-center items-center">
             <div className="bg-yellow-300 w-72 h-48 transform rotate-6"></div>
@@ -164,7 +163,7 @@ export default function App() {
           </div>
         </div>
       </div>
-
+      
       <div className={` ${darkMode ? "bg-black text-white " : "bg-white text-black"} py-20  `}>
       <div className="flex justify-center text-2xl m-4 pb-14">
             Contributions
@@ -185,6 +184,7 @@ export default function App() {
             />
             </div>
             
+
             <div>Your friends are cooking</div>
           </div>
           <div className={` ${darkMode ? "bg-neutral-900 text-white " : "bg-white text-neutral-900"}   shadow-2xl rounded-lg p-6 text-center`}>
