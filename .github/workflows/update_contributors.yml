@@ -40,7 +40,7 @@ jobs:
           def get_contributors():
               try:
                   git_log = subprocess.check_output(
-                      ['git', 'log', '--format="%aN|%aE"'],
+                      ['git', 'log', '--format="%aN"'],
                       universal_newlines=True,
                       stderr=subprocess.STDOUT
                   )
@@ -53,32 +53,23 @@ jobs:
                   if not line:
                       continue
 
-                  try:
-                      name, email = line.split('|')
-                      name = normalize_name(name)
-
-                      if not name:
-                          continue
-
-                      if email not in contributors_dict:
-                          username = email.split('@')[0] if '@' in email else name.lower().replace(' ', '')
-                          contributors_dict[email] = {
-                              'name': name,
-                              'username': username
-                          }
-                  except ValueError as e:
-                      print(f"Error processing line '{line}': {e}")
+                  name = normalize_name(line)
+                  if not name:
                       continue
+
+                  username = name.lower().replace(' ', '')
+                  contributors_dict[name] = {
+                      'username': username
+                  }
 
               formatted_contributors = []
               seen_names = set()
 
               for info in contributors_dict.values():
-                  name = info['name']
+                  name = info['username']
                   if name in seen_names:
                       continue
                   seen_names.add(name)
-                  username = info['username']
                   formatted_contributors.append(f"- **{name}** - [@{username}](https://github.com/{username})")
 
               return sorted(formatted_contributors)
@@ -152,7 +143,6 @@ jobs:
       - name: Commit and push if changed
         run: |
           git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
           # Check if README.md has changed
           if git diff --quiet README.md; then
