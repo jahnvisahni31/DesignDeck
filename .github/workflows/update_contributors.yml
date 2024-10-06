@@ -1,0 +1,155 @@
+name: Update Contributors
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * 0" # Runs at 00:00 on Sunday
+
+jobs:
+  update-contributors:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Create and run update script
+        run: |
+          cat > update_contributors.py << 'EOF'
+          import subprocess
+          import re
+          import os
+
+          def normalize_name(name):
+              name = re.sub(r'\[bot\]$', '', name)
+              if name.lower() in ['github action', 'github actions', 'github-actions']:
+                  return None
+              return name.strip()
+
+          def get_contributors():
+              try:
+                  git_log = subprocess.check_output(
+                      ['git', 'log', '--format="%aN|%aE"'],
+                      universal_newlines=True,
+                      stderr=subprocess.STDOUT
+                  )
+              except subprocess.CalledProcessError as e:
+                  print(f"Error getting git log: {e.output}")
+                  return []
+
+              contributors_dict = {}
+              for line in git_log.replace('"', '').split('\n'):
+                  if not line:
+                      continue
+
+                  try:
+                      name, email = line.split('|')
+                      name = normalize_name(name)
+
+                      if not name:
+                          continue
+
+                      if email not in contributors_dict:
+                          username = email.split('@')[0] if '@' in email else name.lower().replace(' ', '')
+                          contributors_dict[email] = {
+                              'name': name,
+                              'username': username
+                          }
+                  except ValueError as e:
+                      print(f"Error processing line '{line}': {e}")
+                      continue
+
+              formatted_contributors = []
+              seen_names = set()
+
+              for info in contributors_dict.values():
+                  name = info['name']
+                  if name in seen_names:
+                      continue
+                  seen_names.add(name)
+                  username = info['username']
+                  formatted_contributors.append(f"- **{name}** - [@{username}](https://github.com/{username})")
+
+              return sorted(formatted_contributors)
+
+          def update_readme():
+              if not os.path.exists('README.md'):
+                  print("README.md not found!")
+                  return False
+
+              try:
+                  with open('README.md', 'r', encoding='utf-8') as f:
+                      content = f.read()
+
+                  # Get contributors list
+                  contributors = get_contributors()
+                  if not contributors:
+                      print("No contributors found!")
+                      return False
+
+                  # Create the new contributors section
+                  contributors_section = "## Contributors\n\n"
+                  contributors_section += '\n'.join(contributors)
+                  contributors_section += "\n"
+
+                  # Find the contributors section using a more flexible pattern
+                  pattern = r'## Contributors\s*\n\s*(?:\[.*?\]|\n|.)*?(?=\n##|\Z)'
+                  
+                  if re.search(pattern, content, re.DOTALL):
+                      # Replace existing section
+                      new_content = re.sub(pattern, contributors_section, content, flags=re.DOTALL)
+                  else:
+                      # Add new section before Contributing section
+                      new_content = re.sub(
+                          r'(## Contributing)',
+                          f'{contributors_section}\n\\1',
+                          content
+                      )
+
+                  with open('README.md', 'w', encoding='utf-8') as f:
+                      f.write(new_content)
+
+                  return True
+
+              except Exception as e:
+                  print(f"Error updating README.md: {e}")
+                  return False
+
+          if __name__ == "__main__":
+              print("Starting contributors update...")
+              success = update_readme()
+              if not success:
+                  print("Failed to update README.md!")
+                  exit(1)
+              
+              print("Successfully updated contributors!")
+          EOF
+
+          # Run the Python script
+          python update_contributors.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Check if README.md has changed
+          if git diff --quiet README.md; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add README.md
+          git commit -m "docs: update contributors list"
+          git push
