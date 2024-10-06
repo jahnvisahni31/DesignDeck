@@ -104,17 +104,27 @@ jobs:
                   contributors_section += "\n"
 
                   # Find the contributors section using a more flexible pattern
-                  pattern = r'## Contributors\s*\n\s*(?:\[.*?\]|\n|.)*?(?=\n##|\Z)'
-                  
-                  if re.search(pattern, content, re.DOTALL):
-                      # Replace existing section
-                      new_content = re.sub(pattern, contributors_section, content, flags=re.DOTALL)
+                  contributors_pattern = r'## Contributors\s*\n(?:.*\n)*?(?=\n##|\Z)'
+                  contributing_people_pattern = r'## Contributing People\s*\n(?:.*\n)*?(?=\n##|\Z)'
+
+                  # Replace existing Contributors section if it exists
+                  if re.search(contributors_pattern, content, re.DOTALL):
+                      new_content = re.sub(contributors_pattern, contributors_section, content, flags=re.DOTALL)
                   else:
-                      # Add new section before Contributing section
+                      new_content = content
+
+                  # Check if Contributing People section exists and preserve it
+                  if re.search(contributing_people_pattern, content, re.DOTALL):
+                      # Preserve the Contributing People section
+                      contributing_people_section = re.search(contributing_people_pattern, content, re.DOTALL).group(0)
+                      new_content = re.sub(contributing_people_pattern, contributing_people_section, new_content, flags=re.DOTALL)
+
+                  # Add the Contributors section before the Contributing section if it doesn't exist
+                  if not re.search(contributors_pattern, new_content, re.DOTALL):
                       new_content = re.sub(
                           r'(## Contributing)',
                           f'{contributors_section}\n\\1',
-                          content
+                          new_content
                       )
 
                   with open('README.md', 'w', encoding='utf-8') as f:
