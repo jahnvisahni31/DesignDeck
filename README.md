@@ -120,8 +120,11 @@ Specially thanks ❤️ for contributors bellow:
 
 ## Contributors
 
----
-
-## Contact 📬
-
-For any questions or support, please reach out to [Jahnvisahni98@gmail.com](mailto:jahnvisahni98@gmail.com).
+- **abhi** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+- **deveshkumararya** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+- **jahnvisahni** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+- **jahnvisahni31** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+- **mighty1o1** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+- **priyanshuverma** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+- **srirambharadwaj** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+- **unknown91tech** - [@jahnvisahni31](https://github.com/jahnvisahni31)
