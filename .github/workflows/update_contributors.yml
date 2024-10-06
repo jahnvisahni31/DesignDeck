@@ -57,20 +57,13 @@ jobs:
                   if not name:
                       continue
 
-                  username = name.lower().replace(' ', '')
-                  contributors_dict[name] = {
-                      'username': username
-                  }
+                  contributors_dict[name] = True
 
               formatted_contributors = []
-              seen_names = set()
+              seen_names = set(contributors_dict.keys())
 
-              for info in contributors_dict.values():
-                  name = info['username']
-                  if name in seen_names:
-                      continue
-                  seen_names.add(name)
-                  formatted_contributors.append(f"- **{name}** - [@{username}](https://github.com/{username})")
+              for name in seen_names:
+                  formatted_contributors.append(f"- **{name}**")
 
               return sorted(formatted_contributors)
 

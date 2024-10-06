@@ -108,6 +108,10 @@ We welcome contributions to DesignDeck! To contribute:
 4. Commit and push your changes 🚀
 5. Create a pull request 🔄
 
+## Contact 📬
+
+For any questions or support, please reach out to [Jahnvisahni98@gmail.com](mailto:jahnvisahni98@gmail.com).
+
 ## Contributing People List
 
 > Contributions are welcome!
@@ -120,11 +124,4 @@ Specially thanks ❤️ for contributors bellow:
 
 ## Contributors
 
-- **abhi** - [@jahnvisahni31](https://github.com/jahnvisahni31)
-- **deveshkumararya** - [@jahnvisahni31](https://github.com/jahnvisahni31)
-- **jahnvisahni** - [@jahnvisahni31](https://github.com/jahnvisahni31)
-- **jahnvisahni31** - [@jahnvisahni31](https://github.com/jahnvisahni31)
-- **mighty1o1** - [@jahnvisahni31](https://github.com/jahnvisahni31)
-- **priyanshuverma** - [@jahnvisahni31](https://github.com/jahnvisahni31)
-- **srirambharadwaj** - [@jahnvisahni31](https://github.com/jahnvisahni31)
-- **unknown91tech** - [@jahnvisahni31](https://github.com/jahnvisahni31)
+---
