@@ -1,12 +1,9 @@
 DesignDeck
 DesignDeck is a web-based collaborative design tool similar to Figma, built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API, Fabric.js. With Designdeck, teams can seamlessly collaborate on designing interfaces in real-time with a plethora of features.
 
-<img width="912" alt="image" src="https://github.com/user-attachments/assets/e565ce14-9949-4d36-9855-d6f7b3105ded">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/e565ce14-9949-4d36-9855-d6f7b3105ded">
 
-Table of Contents
-![image](https://github.com/user-attachments/assets/c7eabdb4-c8d7-45db-a87e-542f1b1b01f5)
-
-
+Table of Contents:
 - [Demo](#demo)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -15,7 +12,6 @@ Table of Contents
 - [Contribution](#contributing)
 
 Demo
-
 You can see a live demo of the portfolio website at [https://design-deck.vercel.app/]
 
 Features
