@@ -77,6 +77,28 @@ npm run dev
 
 Open your web browser and visit http://localhost:3000 to see the website in action during development.
 
+## Running the Project Locally Using Docker
+
+You can also run DesignDeck locally using Docker by following these steps:
+
+1. Make sure you have Docker installed on your machine.
+
+2. Go to the `docker-compose.yml` file in the root of your project and put your api key in this section:
+
+```bash
+  environment:
+      NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY: your_api_key_goes_here
+```
+
+3. To start the application using Docker, run the following command in your terminal:
+
+```bash
+docker-compose up --build
+```
+
+This command builds the image and starts the container. You can then access the application at `http://localhost:3000`. 
+
+
 ## CONTRIBUTING 
 
 We welcome contributions to DesignDeck! To contribute:

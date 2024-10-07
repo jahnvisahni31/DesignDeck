@@ -1,18 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   experimental: {
     appDir: true,
     esmExternals: "loose",
   },
-  webpack: (config) => {
+  webpack: (config, context ) => {
     config.externals.push({
       "utf-8-validate": "commonjs utf-8-validate",
       bufferutil: "commonjs bufferutil",
       canvas: "canvas",
     });
-
-    return config;
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    }
+    return config
   },
   images: {
     remotePatterns: [
