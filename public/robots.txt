@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /api/
+Disallow: /private/
+Allow: /
+Sitemap: https://design-deck.vercel.app/sitemap.xml
