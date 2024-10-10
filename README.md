@@ -64,15 +64,18 @@ You can see a live demo of the portfolio website at [https://design-deck.vercel.
 
 # Environment Variables
 
-The project relies on environment variables stored in a `.env.local` file located at the root of the `Designdeck` directory to manage configurations. Ensure that essential variables such as database connection strings, API keys, or any other sensitive information are properly set up.
+The project relies on environment variables stored in a `.env.exapmle` file located at the root of the `Designdeck` directory to manage configurations. Ensure that essential variables such as database connection strings, API keys, or any other sensitive information are properly set up.
 
 ```bash
-NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY = "*YOUR LIVEBLOCKS API PUBLIC KEY*"
+NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY="<YOUR_LIVEBLOCKS_API_PUBLIC_KEY>"
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="<YOUR_CLERK_PUBLISHABLE_KEY>"
+CLERK_SECRET_KEY="<YOUR_CLERK_SECRET_KEY>"
+NEXT_PUBLIC_CLERK_SIGN_IN_URL="/sign-in"
+NEXT_PUBLIC_CLERK_SIGN_UP_URL="/sign-up"
 ```
 
-Be sure to replace `*YOUR LIVEBLOCKS API PUBLIC KEY*` with your actual LiveBlocks API public key to enable proper integration.
 
-**Note**: Note: Replace `YOUR LIVEBLOCKS API PUBLIC KEY` with your actual key. Sensitive information should not be committed to version control; include the .env files in your project's `gitignore.`
+**Note**: Note: Replace `YOUR LIVEBLOCKS API PUBLIC KEY`,  `<YOUR_CLERK_PUBLISHABLE_KEY>`, and `<YOUR_CLERK_SECRET_KEY>` with your actual key. Sensitive information should not be committed to version control; include the .env files in your project's `gitignore.`
 
 ### Getting started
 
