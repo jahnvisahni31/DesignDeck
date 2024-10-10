@@ -13,6 +13,8 @@ import { Button } from "./ui/button";
 import ShapesMenu from "./ShapesMenu";
 import ThemeSwitcher from "./ui/ThemeSwitcher";
 import { useTheme } from "next-themes";
+import { useAuth } from '@clerk/nextjs'
+import { UserButton } from "@clerk/nextjs";
 
 function Navbar({
   activeElement,
@@ -28,6 +30,8 @@ function Navbar({
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "dark" ? systemTheme : theme;
   const [darkMode, setDarkMode] = useState(false);
+  const { userId} = useAuth()
+
 
   useEffect(() => {
     if (currentTheme === "dark") {
@@ -120,7 +124,8 @@ function Navbar({
           <ThemeSwitcher />
         </div>
 
-        <ActiveUsers />
+        
+        { userId ? <UserButton/> :<ActiveUsers/> }
       </nav>
     </div>
   );

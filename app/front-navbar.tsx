@@ -19,6 +19,8 @@ import { ChevronDown } from "@/public/assets/ChevronDown";
 import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im";
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
+
 
 // Define props interface
 interface NavbarComponentProps {
@@ -108,14 +110,16 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                 <NavbarContent justify="end">
                     {!isLoggedIn && (
                         <>
-                            <NavbarItem>
-                                <Link href="#">Login</Link>
-                            </NavbarItem>
-                            <NavbarItem>
-                                <Button as={Link} href="#">
-                                    Sign Up
-                                </Button>
-                            </NavbarItem>
+                        <NavbarItem>
+                            <Button>
+                                <SignInButton></SignInButton>
+                            </Button>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Button>
+                                <SignUpButton></SignUpButton>
+                            </Button>
+                        </NavbarItem>
                         </>
                     )}
                     <NavbarItem>
