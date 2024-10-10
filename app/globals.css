@@ -89,6 +89,11 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 
-input:checked + .slider {
-  background-color: skyblue; /* Change background for dark mode */
+
+.filter-white {
+  filter: brightness(0) invert(1);
+}
+
+.filter-black {
+  filter: brightness(0); 
 }

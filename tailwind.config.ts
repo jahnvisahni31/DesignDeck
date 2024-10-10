@@ -22,6 +22,7 @@ const config = {
       colors: {
         primary: {
           black: "#14181F",
+          customGray: 'rgb(106, 123, 130)',
           green: "#56FFA6",
           grey: {
             100: "#2B303B",
