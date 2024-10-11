@@ -8,7 +8,6 @@ import {
     NavbarMenu,
     NavbarContent,
     NavbarItem,
-    Link,
     Button,
     Dropdown,
     DropdownTrigger,
@@ -19,6 +18,7 @@ import { ChevronDown } from "@/public/assets/ChevronDown";
 import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im";
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import Link from "next/link";
 
 // Define props interface
 interface NavbarComponentProps {
@@ -36,13 +36,13 @@ const icons = {
 };
 
 const menuItems = [
-    "Profile",
-    "Dashboard",
-    "WorkSpace",
-    "System",
-    "My Settings",
-    "Help & Feedback",
-    "Log Out",
+    { name: "Profile", href: "/profile" },
+    { name: "Dashboard", href: "/dashboard" },
+    { name: "WorkSpace", href: "/workspace" },
+    { name: "System", href: "/system" },
+    { name: "My Settings", href: "/settings" },
+    { name: "Help & Feedback", href: "/help" },
+    { name: "Log Out", href: "/logout" },
 ];
 
 const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenuOpen, isMenuOpen }) => {
@@ -80,7 +80,9 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
 
                 <NavbarContent justify="center">
                     <NavbarItem>
-                        <Link href="/">Home</Link>
+                        <Link href="/" passHref>
+                            Home
+                        </Link>
                     </NavbarItem>
                     <NavbarItem>
                         <Dropdown backdrop="blur">
@@ -90,18 +92,38 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Static Actions">
-                                <DropdownItem key="new" startContent={icons.hammer}>DesignDesk Jam</DropdownItem>
-                                <DropdownItem key="copy" startContent={icons.dev}>Dev Mode</DropdownItem>
-                                <DropdownItem key="edit" startContent={icons.slide}>DesignDesk Slides</DropdownItem>
-                                <DropdownItem key="delete" className="text-warning" startContent={icons.download}>Download</DropdownItem>
+                                <DropdownItem key="new" startContent={icons.hammer}>
+                                    <Link href="/design-desk-jam" passHref>
+                                        DesignDesk Jam
+                                    </Link>
+                                </DropdownItem>
+                                <DropdownItem key="copy" startContent={icons.dev}>
+                                    <Link href="/dev-mode" passHref>
+                                        Dev Mode
+                                    </Link>
+                                </DropdownItem>
+                                <DropdownItem key="edit" startContent={icons.slide}>
+                                    <Link href="/design-desk-slides" passHref>
+                                        DesignDesk Slides
+                                    </Link>
+                                </DropdownItem>
+                                <DropdownItem key="delete" className="text-warning" startContent={icons.download}>
+                                    <Link href="/download" passHref>
+                                        Download
+                                    </Link>
+                                </DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </NavbarItem>
                     <NavbarItem>
-                        <Link href="/">Contact</Link>
+                        <Link href="/contact" passHref>
+                            Contact
+                        </Link>
                     </NavbarItem>
                     <NavbarItem>
-                        <Link href="/faq">FAQ</Link>
+                        <Link href="/faq" passHref>
+                            FAQ
+                        </Link>
                     </NavbarItem>
                 </NavbarContent>
 
@@ -109,10 +131,12 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                     {!isLoggedIn && (
                         <>
                             <NavbarItem>
-                                <Link href="#">Login</Link>
+                                <Link href="/login" passHref>
+                                    Login
+                                </Link>
                             </NavbarItem>
                             <NavbarItem>
-                                <Button as={Link} href="#">
+                                <Button as={Link} href="/signup">
                                     Sign Up
                                 </Button>
                             </NavbarItem>
@@ -132,14 +156,9 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                     {isMenuOpen && (
                         <div className="absolute top-3 right-0 left-0 bg-white shadow-lg z-50">
                             {menuItems.map((item, index) => (
-                                <NavbarMenuItem key={`${item}-${index}`} onClick={() => setIsMenuOpen(false)}>
-                                    <Link
-                                        className="w-full p-4 block text-center"
-                                        color={index === menuItems.length - 1 ? "danger" : "foreground"}
-                                        href="#"
-                                        size="lg"
-                                    >
-                                        {item}
+                                <NavbarMenuItem key={`${item.name}-${index}`} onClick={() => setIsMenuOpen(false)}>
+                                    <Link href={item.href} passHref>
+                                        {item.name}
                                     </Link>
                                 </NavbarMenuItem>
                             ))}
