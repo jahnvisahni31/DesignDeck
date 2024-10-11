@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { MdQuestionAnswer, MdEmail } from 'react-icons/md';
 import { GiPriceTag } from 'react-icons/gi';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
@@ -21,7 +22,7 @@ const Footer = () => {
           <div className="flex space-x-4">
             <Link href="https://twitter.com/figmak" target="_blank" rel="noopener noreferrer">
               <div className="text-gray-400 hover:text-white">
-                <FaTwitter size={24} />
+                <FaSquareXTwitter size={24} />
               </div>
             </Link>
             <Link href="https://www.instagram.com/figma/" target="_blank" rel="noopener noreferrer">
