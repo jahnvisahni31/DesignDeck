@@ -1,47 +1,51 @@
 "use client";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 const ThemeSwitcher = () => {
-  const [mount, setMount] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [darkMode, setDarkMode] = useState(currentTheme === "dark");
 
   useEffect(() => {
-    setMount(true);
+    setMounted(true);
     setDarkMode(currentTheme === "dark");
   }, [currentTheme]);
 
   const toggleTheme = () => {
-    setTheme(darkMode ? "light" : "dark");
+    const newTheme = darkMode ? "light" : "dark";
+    setTheme(newTheme);
     setDarkMode(!darkMode);
   };
 
+  if (!mounted) return null;
+
   return (
-    <div className="z-50 flex items-center">
-      {mount && (
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={toggleTheme}
-            aria-label="Toggle dark mode"
-          />
-          <span className={`slider round ${darkMode ? "bg-light-blue-300" : "bg-white"}`}>
-            {darkMode ? (
-              <i className="fas fa-sun icon transition-opacity duration-300 opacity-0" /> 
-            ) : (
-              <i className="fas fa-sun icon transition-opacity duration-300 opacity-100" /> 
-            )}
-            {darkMode ? (
-              <i className="fas fa-moon icon transition-opacity duration-300 opacity-100" /> 
-            ) : (
-              <i className="fas fa-moon icon transition-opacity duration-300 opacity-0" /> 
-            )}
-          </span>
-        </label>
-      )}
+    <div className="flex items-center justify-center h-full">
+      <div
+        className={`relative w-16 h-8 rounded-full p-1 cursor-pointer transition-colors duration-300 ${
+          darkMode ? "bg-gray-500" : "bg-yellow-400"
+        }`}
+        onClick={toggleTheme}
+        aria-label="Toggle dark mode"
+      >
+        {/* Toggle Thumb */}
+        <div
+          className={`absolute top-0.5 left-0.5 w-7 h-7 rounded-full transition-all duration-300 flex items-center justify-center ${
+            darkMode ? "translate-x-8 bg-gray-100" : "translate-x-0 bg-white"
+          }`}
+        >
+          {/* Icons */}
+          {darkMode ? (
+            <FontAwesomeIcon icon={faMoon} className="text-gray-700" />
+          ) : (
+            <FontAwesomeIcon icon={faSun} className="text-yellow-500" />
+          )}
+        </div>
+      </div>
     </div>
   );
 };
