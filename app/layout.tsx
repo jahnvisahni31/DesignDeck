@@ -24,12 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${workSans.className} bg-dark`}>
-      <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
+          disableTransitionOnChange
         >
-        <Room>{children}</Room>
+          <Room>{children}</Room>
         </ThemeProvider>
       </body>
     </html>

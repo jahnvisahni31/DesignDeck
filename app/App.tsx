@@ -6,6 +6,7 @@ import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im"
 import Footer from "@/components/ui/footer";
 import { useTheme } from "next-themes";
 import NavbarComponent from "./front-navbar";
+import ThemeProvider from "./provider";
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,6 +40,7 @@ export default function App() {
 
   return (
     <>
+    <ThemeProvider>
       <NavbarComponent isLoggedIn={isLoggedIn} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
       <div className={`min-h-screen ${darkMode ? "bg-black text-white" : "bg-gradient-to-r from-gray-300 via-white to-gray-200 text-black"} font-sans`}>
         <div className={`py-4 ${darkMode ? "bg-black" : "bg-gradient-to-r from-gray-300 via-white to-gray-200 text-black"}`}>
@@ -192,6 +194,7 @@ export default function App() {
         </div>
         <Footer />
       </div>
+    </ThemeProvider>
     </>
   );
 }
