@@ -24,7 +24,6 @@ const ThemeSwitcher = () => {
   if (!mounted) return null;
 
   return (
-    <div className="flex items-center justify-center h-full">
       <div
         className={`relative w-16 h-8 rounded-full p-1 cursor-pointer transition-colors duration-300 ${
           darkMode ? "bg-gray-500" : "bg-yellow-400"
@@ -32,13 +31,11 @@ const ThemeSwitcher = () => {
         onClick={toggleTheme}
         aria-label="Toggle dark mode"
       >
-        {/* Toggle Thumb */}
         <div
           className={`absolute top-0.5 left-0.5 w-7 h-7 rounded-full transition-all duration-300 flex items-center justify-center ${
             darkMode ? "translate-x-8 bg-gray-100" : "translate-x-0 bg-white"
           }`}
         >
-          {/* Icons */}
           {darkMode ? (
             <FontAwesomeIcon icon={faMoon} className="text-gray-700" />
           ) : (
@@ -46,7 +43,6 @@ const ThemeSwitcher = () => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 

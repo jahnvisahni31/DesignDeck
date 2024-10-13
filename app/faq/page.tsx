@@ -76,7 +76,7 @@ const FAQ = () => {
       {/* Home Button */}
       <div className="text-left mb-4">
         <Link href="/">
-          <button className={`px-4 py-2 rounded ${darkMode ? "bg-blue-500 text-white  hover:bg-blue-600 " : "bg-blue-500 text-black  hover:bg-blue-600" }transition duration-300`}>
+          <button className={`px-4 py-2 rounded ${darkMode ? "bg-blue-900 text-white  hover:bg-blue-800 " : "bg-blue-200 text-black  hover:bg-blue-300" }transition duration-300`}>
             Home
           </button>
         </Link>
@@ -92,13 +92,12 @@ const FAQ = () => {
             onClick={() => toggleFAQ(index)}
           >
             <div className="flex justify-between items-center">
-              <h2
-                className={`font-semibold text-lg ${
-                  activeIndex === index ? darkMode ? "text-white" : "text-black" :"text-white"
-                }`}
-              >
-                {faq.question}
-              </h2>
+                <h2
+                  className={`font-semibold text-lg ${
+                    activeIndex === index? darkMode ? "text-white" : "text-black" 
+                      : darkMode ? "text-gray-400" : "text-black"}`}>
+                  {faq.question}
+                </h2>
               <span className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
                 {activeIndex === index ? "-" : "+"}
               </span>

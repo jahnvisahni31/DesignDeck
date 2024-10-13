@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import Footer from "@/components/ui/footer";
 import NavbarComponent from "../front-navbar";
+import { useTheme } from "next-themes";
 
 const ContactUs = () => {
   const [name, setName] = useState("");
@@ -11,6 +12,14 @@ const ContactUs = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [buttonText, setButtonText] = useState("Send Message");
+
+  const { systemTheme, theme } = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    setDarkMode(currentTheme === "dark");
+  }, [currentTheme]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +55,7 @@ const ContactUs = () => {
   return (
     <>
       <NavbarComponent />
-      <div className="min-h-screen bg-gradient-to-r from-gray-300 via-white to-gray-200 text-black font-sans flex flex-col items-center justify-center px-8 py-20">
+      <div className={`${darkMode ? "bg-black text-white" : "bg-white text-black"} min-h-screen bg-gradient-to-r text-black font-sans flex flex-col items-center justify-center px-8 py-20`}>
         <h1 className="text-5xl font-bold mb-8 text-center">Contact Us</h1>
         <p className="text-xl mb-6 max-w-3xl text-center font-light leading-relaxed">
           We value your feedback and inquiries. Please fill out the form below
@@ -55,9 +64,9 @@ const ContactUs = () => {
         </p>
 
         {/* Contact Form */}
-        <form 
-          onSubmit={handleSubmit} 
-          className="flex flex-col w-full max-w-md gap-6 mb-12 p-6 bg-white shadow-lg rounded-lg"
+        <form
+          onSubmit={handleSubmit}
+          className={`${darkMode ? "bg-neutral-900 text-white" : "bg-white text-black"} flex flex-col w-full max-w-md gap-6 mb-12 p-6 shadow-lg rounded-lg`}
           style={{
             borderRadius: "1rem",
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
@@ -70,7 +79,7 @@ const ContactUs = () => {
             placeholder="Your Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="transition-all duration-300 ease-in-out border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="transition-all duration-300 ease-in-out rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-lg"
             required
           />
           <Input
@@ -80,7 +89,7 @@ const ContactUs = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="transition-all duration-300 ease-in-out border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="transition-all duration-300 ease-in-out rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-lg"
             required
           />
           <Textarea
@@ -89,7 +98,7 @@ const ContactUs = () => {
             placeholder="Your Message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="transition-all duration-300 ease-in-out border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="transition-all duration-300 ease-in-out rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-lg"
             required
             rows={4}
           />
@@ -105,7 +114,6 @@ const ContactUs = () => {
             <p className="text-green-500 mt-4">Your message has been sent successfully!</p>
           )} */}
         </form>
-
       </div>
 
       {/* Footer */}
