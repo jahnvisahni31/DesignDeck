@@ -28,17 +28,10 @@ const ThemeSwitcher = () => {
             onChange={toggleTheme}
             aria-label="Toggle dark mode"
           />
-          <span className={`slider round ${darkMode ? "bg-light-blue-300" : "bg-white"}`}>
-            {darkMode ? (
-              <i className="fas fa-sun icon transition-opacity duration-300 opacity-0" /> 
-            ) : (
-              <i className="fas fa-sun icon transition-opacity duration-300 opacity-100" /> 
-            )}
-            {darkMode ? (
-              <i className="fas fa-moon icon transition-opacity duration-300 opacity-100" /> 
-            ) : (
-              <i className="fas fa-moon icon transition-opacity duration-300 opacity-0" /> 
-            )}
+          {/* <span className={`slider round ${darkMode ? "bg-light-blue-300" : "bg-white"}`}> */}
+          <span className={`slider round ${darkMode ? "bg-light-blue-900" : "bg-white"}`}>
+            <i className={`fas fa-sun icon transition-opacity duration-300 ${darkMode ? "opacity-0" : "opacity-100"}`} />
+            <i className={`fas fa-moon icon transition-opacity duration-300 ${darkMode ? "opacity-100" : "opacity-0"}`} />
           </span>
         </label>
       )}
