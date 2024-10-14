@@ -196,33 +196,57 @@ export const shortcuts = [
 
 export const faq = [
   {
-    key:1,
-    question: "What is XyzAi?",
+    key: 1,
+    question: "What is DesignDeck?",
     answer:
-      "XyzAi is a social media automation tool that helps you create and schedule posts for your social media accounts.",
+      "DesignDeck is a web-based collaborative design tool, similar to Figma, built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API. It allows teams to seamlessly collaborate on designing interfaces in real-time.",
   },
   {
-    key:2,
-    question: "How does XyzAi work?",
+    key: 2,
+    question: "How do I get started with DesignDeck?",
     answer:
-      "XyzAi uses AI to generate posts for your social media accounts. You can then customize the posts and schedule them to be published at a later time.",
+      "To get started, clone the repository from GitHub, install the dependencies, and run the project locally using npm. The full guide is available in the README.md file.",
   },
   {
-    key:3,
-    question: "What social media platforms does XyzAi support?",
+    key: 3,
+    question: "What features does DesignDeck offer?",
     answer:
-      "XyzAi supports all major social media platforms, including Facebook, Twitter, LinkedIn, and Instagram.",
+      "DesignDeck offers live collaboration, shape manipulation, free drawing, text addition, export to PDF, and many more features to help you design interfaces collaboratively.",
   },
   {
-    key:4,
-    question: "How much does XyzAi cost?",
+    key: 4,
+    question: "How can I contribute to DesignDeck?",
     answer:
-      "XyzAi offers a free plan with limited features. Paid plans start at $10 per month.",
+      "You can contribute by forking the repository, creating a new branch, making your changes, and submitting a pull request. Contributions are always welcome!",
   },
   {
-    key:5,
-    question: "Is XyzAi easy to use?",
+    key: 5,
+    question: "Is DesignDeck open source?",
     answer:
-      "Yes, XyzAi is designed to be user-friendly and intuitive. You don't need any technical skills to use XyzAi.",
+      "Yes, DesignDeck is an open-source project, and we encourage contributions from the community.",
+  },
+  {
+    key: 6,
+    question: "Does DesignDeck support real-time collaboration?",
+    answer:
+      "Yes, with the LiveBlocks API integrated into DesignDeck, multiple users can collaborate in real-time. You can see live updates of cursor positions and design changes as they happen.",
+  },
+  {
+    key: 7,
+    question: "What technologies power DesignDeck?",
+    answer:
+      "DesignDeck is built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API for real-time collaboration, along with Fabric.js for manipulating graphics and interactive content.",
+  },
+  {
+    key: 8,
+    question: "How can I export my designs in DesignDeck?",
+    answer:
+      "DesignDeck allows you to export designs to PDF format. Simply select the elements you want to export and use the export option to generate a downloadable PDF.",
+  },
+  {
+    key: 9,
+    question: "Are there keyboard shortcuts available in DesignDeck?",
+    answer:
+      "Currently, DesignDeck does not supports keyboard shortcuts,the feature is under development, once prepare user will be abel to do faster design operations, such as Undo (Ctrl+Z), Redo (Ctrl+Y), and copy-pasting elements.",
   },
 ];
