@@ -5,7 +5,8 @@ import { ReactionEvent } from "./types/type";
 const client = createClient({
   throttle: 16,
   // authEndpoint: "/api/liveblocks-auth",
-  publicApiKey: process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY!,
+  publicApiKey: "pk_your_public_key",
+  //publicApiKey: process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY!,
   resolveUsers: async ({ userIds }) => {
     // Used only for Comments. Return a list of user information retrieved
     // from `userIds`. This info is used in comments, mentions etc.

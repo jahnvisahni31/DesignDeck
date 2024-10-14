@@ -193,3 +193,36 @@ export const shortcuts = [
     shortcut: "E",
   },
 ];
+
+export const faq = [
+  {
+    key:1,
+    question: "What is XyzAi?",
+    answer:
+      "XyzAi is a social media automation tool that helps you create and schedule posts for your social media accounts.",
+  },
+  {
+    key:2,
+    question: "How does XyzAi work?",
+    answer:
+      "XyzAi uses AI to generate posts for your social media accounts. You can then customize the posts and schedule them to be published at a later time.",
+  },
+  {
+    key:3,
+    question: "What social media platforms does XyzAi support?",
+    answer:
+      "XyzAi supports all major social media platforms, including Facebook, Twitter, LinkedIn, and Instagram.",
+  },
+  {
+    key:4,
+    question: "How much does XyzAi cost?",
+    answer:
+      "XyzAi offers a free plan with limited features. Paid plans start at $10 per month.",
+  },
+  {
+    key:5,
+    question: "Is XyzAi easy to use?",
+    answer:
+      "Yes, XyzAi is designed to be user-friendly and intuitive. You don't need any technical skills to use XyzAi.",
+  },
+];
