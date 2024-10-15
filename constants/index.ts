@@ -193,3 +193,16 @@ export const shortcuts = [
     shortcut: "E",
   },
 ];
+
+export const contactus = [
+  {
+    value: "contactus-dark",
+    label: "contact-dark",
+    icon: "/assets/contact-us-dark.svg"
+  },
+  {
+    value: "contactus-light",
+    label: "contact-light",
+    icon: "/assets/contact-us-light.svg"
+  }
+]

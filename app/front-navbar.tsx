@@ -87,7 +87,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                     <NavbarItem>
                         <Dropdown backdrop="blur">
                             <DropdownTrigger>
-                                <Button disableRipple endContent={icons.chevron} radius="sm" variant="light">
+                                <Button disableRipple endContent={icons.chevron} radius="sm" variant="light" style={{fontSize: '16px'}}>
                                     <p className="text-white">Open Menu</p>
                                 </Button>
                             </DropdownTrigger>

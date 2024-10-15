@@ -4,6 +4,8 @@ import { Button, Input, Textarea } from "@nextui-org/react";
 import Footer from "@/components/ui/footer";
 import NavbarComponent from "../front-navbar";
 import { useTheme } from "next-themes";
+import Image from "next/image";
+import { FaUser, FaEnvelope } from "react-icons/fa";
 
 const ContactUs = () => {
   const [name, setName] = useState("");
@@ -26,7 +28,6 @@ const ContactUs = () => {
     setSuccess(false);
     setError("");
 
-    // Simple form validation
     if (!name || !email || !message) {
       setError("Please fill in all fields.");
       return;
@@ -38,14 +39,12 @@ const ContactUs = () => {
       return;
     }
 
-    // Simulate successful form submission without sending data to backend
     setSuccess(true);
-    setButtonText("Message Sent!"); // Change button text on success
+    setButtonText("Message Sent!");
     setName("");
     setEmail("");
     setMessage("");
 
-    // Reset the button text after 3 seconds
     setTimeout(() => {
       setButtonText("Send Message");
       setSuccess(false);
@@ -55,68 +54,84 @@ const ContactUs = () => {
   return (
     <>
       <NavbarComponent />
-      <div className={`${darkMode ? "bg-black text-white" : "bg-white text-black"} min-h-screen bg-gradient-to-r text-black font-sans flex flex-col items-center justify-center px-8 py-20`}>
-        <h1 className="text-5xl font-bold mb-8 text-center">Contact Us</h1>
-        <p className="text-xl mb-6 max-w-3xl text-center font-light leading-relaxed">
-          We value your feedback and inquiries. Please fill out the form below
-          to get in touch with our team, and we will get back to you as soon as
-          possible!
+      <div
+        className={`${
+          darkMode ? "bg-black text-white" : "bg-gray-50 text-gray-800"
+        } min-h-screen flex flex-col items-center justify-center px-8 py-20`}
+      >
+        <h1 className="text-5xl font-semibold mb-6 text-center tracking-tight">
+          Get in Touch
+        </h1>
+        <p className="text-lg mb-10 max-w-2xl text-center font-light leading-relaxed">
+          We’d love to hear from you! Fill out the form below, and we’ll get
+          back to you shortly.
         </p>
 
-        {/* Contact Form */}
-        <form
-          onSubmit={handleSubmit}
-          className={`${darkMode ? "bg-neutral-900 text-white" : "bg-white text-black"} flex flex-col w-full max-w-md gap-6 mb-12 p-6 shadow-lg rounded-lg`}
-          style={{
-            borderRadius: "1rem",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-            padding: "2rem",
-          }}
-        >
-          <Input
-            clearable
-            label="Name"
-            placeholder="Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="transition-all duration-300 ease-in-out rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-lg"
-            required
-          />
-          <Input
-            clearable
-            label="Email"
-            placeholder="Your Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="transition-all duration-300 ease-in-out rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-lg"
-            required
-          />
-          <Textarea
-            clearable
-            label="Message"
-            placeholder="Your Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="transition-all duration-300 ease-in-out rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-lg"
-            required
-            rows={4}
-          />
-          {error && <p className="text-red-500">{error}</p>}
-          <Button
-            type="submit"
-            color="primary"
-            className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white rounded-lg px-6 py-3 hover:scale-105 transition-all duration-300 ease-in-out"
+        <div className="flex flex-col md:flex-row items-center gap-8 w-full max-w-6xl">
+          {/* Illustration */}
+          <div
+            className="w-full md:w-1/2 flex justify-center"
+            style={{ marginTop: "-20px" }}
           >
-            {buttonText} {/* Display dynamic button text */}
-          </Button>
-          {/* {success && (
-            <p className="text-green-500 mt-4">Your message has been sent successfully!</p>
-          )} */}
-        </form>
-      </div>
+            <Image
+              src={"/assets/contact-us-light.svg"}
+              alt="Contact Us Illustration"
+              width={400}
+              height={400}
+            />
+          </div>
 
-      {/* Footer */}
+          {/* Contact Form */}
+          <form
+            onSubmit={handleSubmit}
+            className={`${
+              darkMode ? "bg-neutral-900 text-white" : "bg-white text-gray-800"
+            } flex flex-col w-full md:w-1/2 gap-5 p-8 shadow-xl rounded-xl`}
+            style={{
+              boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
+            }}
+          >
+            <Input
+              clearable
+              label="Name"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              contentLeft={<FaUser className="text-gray-100" />}
+              className="rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+              required
+            />
+            <Input
+              clearable
+              label="Email"
+              placeholder="Enter your email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              contentLeft={<FaEnvelope className="text-gray-500" />}
+              className="rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+              required
+            />
+            <Textarea
+              clearable
+              label="Message"
+              placeholder="Write your message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+              required
+              rows={4}
+            />
+            {error && <p className="text-red-500">{error}</p>}
+            <Button
+              type="submit"
+              className="bg-[#b089ee] hover:bg-indigo-700 text-white rounded-lg py-3 px-6 transition-transform transform hover:scale-105"
+            >
+              {buttonText}
+            </Button>
+          </form>
+        </div>
+      </div>
       <Footer />
     </>
   );
