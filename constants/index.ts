@@ -193,3 +193,60 @@ export const shortcuts = [
     shortcut: "E",
   },
 ];
+
+export const faq = [
+  {
+    key: 1,
+    question: "What is DesignDeck?",
+    answer:
+      "DesignDeck is a web-based collaborative design tool, similar to Figma, built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API. It allows teams to seamlessly collaborate on designing interfaces in real-time.",
+  },
+  {
+    key: 2,
+    question: "How do I get started with DesignDeck?",
+    answer:
+      "To get started, clone the repository from GitHub, install the dependencies, and run the project locally using npm. The full guide is available in the README.md file.",
+  },
+  {
+    key: 3,
+    question: "What features does DesignDeck offer?",
+    answer:
+      "DesignDeck offers live collaboration, shape manipulation, free drawing, text addition, export to PDF, and many more features to help you design interfaces collaboratively.",
+  },
+  {
+    key: 4,
+    question: "How can I contribute to DesignDeck?",
+    answer:
+      "You can contribute by forking the repository, creating a new branch, making your changes, and submitting a pull request. Contributions are always welcome!",
+  },
+  {
+    key: 5,
+    question: "Is DesignDeck open source?",
+    answer:
+      "Yes, DesignDeck is an open-source project, and we encourage contributions from the community.",
+  },
+  {
+    key: 6,
+    question: "Does DesignDeck support real-time collaboration?",
+    answer:
+      "Yes, with the LiveBlocks API integrated into DesignDeck, multiple users can collaborate in real-time. You can see live updates of cursor positions and design changes as they happen.",
+  },
+  {
+    key: 7,
+    question: "What technologies power DesignDeck?",
+    answer:
+      "DesignDeck is built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API for real-time collaboration, along with Fabric.js for manipulating graphics and interactive content.",
+  },
+  {
+    key: 8,
+    question: "How can I export my designs in DesignDeck?",
+    answer:
+      "DesignDeck allows you to export designs to PDF format. Simply select the elements you want to export and use the export option to generate a downloadable PDF.",
+  },
+  {
+    key: 9,
+    question: "Are there keyboard shortcuts available in DesignDeck?",
+    answer:
+      "Currently, DesignDeck does not supports keyboard shortcuts,the feature is under development, once prepare user will be abel to do faster design operations, such as Undo (Ctrl+Z), Redo (Ctrl+Y), and copy-pasting elements.",
+  },
+];
