@@ -72,19 +72,27 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
 
                 <NavbarContent justify="start">
                     {!isMobile && (
-                        <NavbarBrand>
-                            <p><b>DesignDesk</b></p>
+                        <NavbarBrand className="-ml-14">
+                             <p className="text-xl font-bold hover:text-gray-300 transition duration-300 left-7 
+                                 transform hover:scale-110 hover:shadow-lg hover:text-blue-400">
+                              <b className="transition duration-300 ease-in-out">DesignDesk</b>
+                              </p>
+
                         </NavbarBrand>
                     )}
                 </NavbarContent>
 
-                <NavbarContent justify="center">
-                    <NavbarItem>
-                        <Link href="/" passHref>
-                            Home
+                <NavbarContent justify="center" className="space-x-10">
+                    <NavbarItem  className="flex items-center ">
+                        <Link href="/"  legacyBehavior passHref>
+
+                        <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                Home
+                <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+            </a>
                         </Link>
                     </NavbarItem>
-                    <NavbarItem>
+                    <NavbarItem  className="flex items-center">
                         <Dropdown backdrop="blur">
                             <DropdownTrigger>
                                 <Button disableRipple endContent={icons.chevron} radius="sm" variant="light" style={{fontSize: '16px'}}>
@@ -93,36 +101,54 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Static Actions">
                                 <DropdownItem key="new" startContent={icons.hammer}>
-                                    <Link href="/design-desk-jam" passHref>
-                                        DesignDesk Jam
+                                    <Link href="/design-desk-jam"  legacyBehavior passHref>
+                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                            DesignDesk Jam
+                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                        </a>
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="copy" startContent={icons.dev}>
-                                    <Link href="/dev-mode" passHref>
-                                        Dev Mode
+                                    <Link href="/dev-mode"  legacyBehavior passHref>
+                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                            Dev Mode
+                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                        </a>
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="edit" startContent={icons.slide}>
-                                    <Link href="/design-desk-slides" passHref>
-                                        DesignDesk Slides
+                                    <Link href="/design-desk-slides"  legacyBehavior passHref>
+                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                            DesignDesk Slides
+                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                        </a>
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="delete" className="text-warning" startContent={icons.download}>
-                                    <Link href="/download" passHref>
-                                        Download
+                                    <Link href="/download" legacyBehavior passHref>
+                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                            Download
+                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                        </a>
                                     </Link>
                                 </DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </NavbarItem>
                     <NavbarItem>
-                        <Link href="/contact" passHref>
-                            Contact
+                        <Link href="/contact"  legacyBehavior passHref>
+                        <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                Contact
+                <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+            </a>
                         </Link>
                     </NavbarItem>
                     <NavbarItem>
-                        <Link href="/faq" passHref>
-                            FAQ
+                        <Link href="/faq"  legacyBehavior passHref>
+                        <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                FAQ
+                <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+            </a>
                         </Link>
                     </NavbarItem>
                 </NavbarContent>
@@ -131,14 +157,32 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                     {!isLoggedIn && (
                         <>
                             <NavbarItem>
-                                <Link href="/login" passHref>
+                                <Link href="/login"  legacyBehavior passHref>
+                                <a className="hover:text-gray-300 transition duration-300">
                                     Login
+                                    <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                                </a>
                                 </Link>
                             </NavbarItem>
                             <NavbarItem>
-                                <Button as={Link} href="/signup">
-                                    Sign Up
-                                </Button>
+                                {/* <Button as={Link} href="/signup" className="bg-blue-500 text-white hover:bg-blue-600 transition duration-300">
+                                     Sign Up
+                                </Button> */}
+                                 <Button 
+        as={Link} 
+        href="/signup" 
+        className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-lg font-medium text-white bg-gradient-to-r from-blue-400 to-purple-600 rounded-lg shadow-lg group">
+        <span className="absolute inset-0 w-full h-full transition-transform duration-300 transform scale-x-0 bg-white group-hover:scale-x-100"></span>
+        <span className="relative z-10">Sign Up</span>
+        <svg 
+            className="absolute w-5 h-5 transition-transform duration-300 transform -translate-x-10 group-hover:translate-x-0" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12H8m0 0l4 4m-4-4l4-4" />
+        </svg>
+    </Button>
                             </NavbarItem>
                         </>
                     )}
@@ -157,8 +201,8 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                         <div className="absolute top-3 right-0 left-0 bg-white shadow-lg z-50">
                             {menuItems.map((item, index) => (
                                 <NavbarMenuItem key={`${item.name}-${index}`} onClick={() => setIsMenuOpen(false)}>
-                                    <Link href={item.href} passHref>
-                                        {item.name}
+                                    <Link href={item.href}  legacyBehavior passHref>
+                                    <a className="block py-2 text-gray-800 hover:bg-gray-200 transition duration-300">{item.name}</a>
                                     </Link>
                                 </NavbarMenuItem>
                             ))}
