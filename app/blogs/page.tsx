@@ -2,6 +2,7 @@
 import Link  from 'next/link';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
+import { Button } from '@nextui-org/react';
 
 const BlogPage = () => {
     const {systemTheme, theme, setTheme} = useTheme();
@@ -27,11 +28,11 @@ const BlogPage = () => {
   return (
     <div className="p-6 mt-[4rem]">
          <Link href="/">
-           <button className={`px-4 py-2 ml-4 rounded ${darkMode ? "bg-blue-900 text-white  hover:bg-blue-800 " : "bg-blue-200 text-black  hover:bg-blue-300" } transition duration-300`}>
-           home</button>
-           </Link>
-       
-      <h1 className="text-4xl font-bold mb-8 text-center">Blogs</h1>
+        <Button className='ml-[2.5rem] sm:mb-[0rem] mb-[2rem]' color="secondary">
+           Home
+            </Button>
+            </Link>
+      <h1 className="text-4xl font-bold mb-4 sm:mb-8 text-center">Blogs</h1>
     <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {blogs.map((blog, index) => (
         <div key={index} className=" p-4 shadow-lg shadow-[#3b0a45] rounded-md ">

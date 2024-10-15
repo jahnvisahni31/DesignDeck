@@ -104,7 +104,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/blog">
+              <Link href="/blogs">
                 <div className="flex items-center text-gray-400 hover:text-white">
                   <LuBookMinus  className="mr-2" size={20} />
                   Blog
