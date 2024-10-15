@@ -100,30 +100,6 @@ input[type="color"]::-webkit-color-swatch {
  
 
 
-.hover-underline-animation {
-  position: relative;
-  cursor: pointer;
-}
-
-.hover-underline-animation::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: currentColor;
-  transition: width 0.3s ease;
-}
-
-.hover-underline-animation:hover::after {
-  width: 100%;
-}
-
-
-
-
-
 
 .hover-underline-animation {
   position: relative;
