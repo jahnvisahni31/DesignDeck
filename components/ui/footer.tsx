@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaFileAlt, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { MdQuestionAnswer, MdEmail } from 'react-icons/md';
+import { MdQuestionAnswer, MdEmail, MdArticle } from 'react-icons/md';
 import { GiPriceTag } from 'react-icons/gi';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { LuBookMinus } from 'react-icons/lu';
@@ -113,7 +113,31 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+      {/* Legal */}
+      <div>
+          <h2 className="text-xl font-semibold mb-4">Legal</h2>
+          <ul className="space-y-2">
+            <li>
+            <Link href="/terms_of_use">
+                <div className="flex items-center text-gray-400 hover:text-white">
+                <FaFileAlt className="mr-2" size={20} />
+                  Terms of Use
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy-policy">
+                <div className="flex items-center text-gray-400 hover:text-white">
+                <MdArticle className="mr-2" size={20} />
+                  Privacy Policy
+                </div>
+              </Link>
+            </li>
+
+          </ul>
+        </div>
       </div>
+
 
       <div className="mt-4 mb-1 border-t start-0 z-21 border-gray-700 pt-3 text-center text-gray-500">
         <div>&copy; {new Date().getFullYear()} DesignDesk. All rights reserved.</div>
