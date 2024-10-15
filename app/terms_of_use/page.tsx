@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 
 export default function TermsOfUse() {
   return (
-    
     <RootLayout>
       <div style={{
         padding: "2rem",
@@ -29,7 +28,6 @@ export default function TermsOfUse() {
           textAlign : "center"
         }}>
           Terms of Use
-          
         </h1>
         
         <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
@@ -57,7 +55,7 @@ export default function TermsOfUse() {
           2. User Responsibilities
         </h2>
         <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          You are responsible for your use of the services and for any content you create or share while using our services. You agree to use the services only for lawful purposes and in a manner that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the services. This includes not engaging in any conduct that is unlawful, harmful, or objectionable.
+          You are responsible for your use of the services and for any content you create or share while using our services. You agree to use the services only for lawful purposes and in a manner that does not infringe the rights of, restrict, or inhibit anyone else&apos;s use and enjoyment of the services. This includes not engaging in any conduct that is unlawful, harmful, or objectionable.
         </p>
 
         <h2 style={{
@@ -123,12 +121,13 @@ export default function TermsOfUse() {
         <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
           Thank you for using DesignDeck! We appreciate your trust and commitment to our services.
         </p>
+
         <br></br>
         <Link href="/" >
-            <button className="ml-4 px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition duration-300">
-              Home
-            </button>
-          </Link>
+          <button className="ml-4 px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition duration-300">
+            Home
+          </button>
+        </Link>
       </div>
     </RootLayout>
   );
