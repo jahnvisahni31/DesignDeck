@@ -136,3 +136,23 @@ input:checked+.slider:before {
   transform: translateX(26px);
   /* Move circle on toggle */
 }
+
+.back-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #29d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.back-to-top-button:hover {
+  background-color: #0077cc;
+  /* Optional: hover effect */
+}
