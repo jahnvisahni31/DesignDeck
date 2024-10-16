@@ -4,7 +4,7 @@ import "./globals.css";
 import { Room } from "./Room";
 import ThemeProvider from "./provider";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
-
+import AnimatedCursor from "react-animated-cursor";
 const workSans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-work-sans",
@@ -30,6 +30,20 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AnimatedCursor
+            innerSize={8}
+            outerSize={35}
+            innerScale={1}
+            outerScale={2}
+            outerAlpha={0}
+            hasBlendMode={true}
+            innerStyle={{
+              backgroundColor: "var(--cursor-color)",
+            }}
+            outerStyle={{
+              border: "3px solid var(--cursor-color)",
+            }}
+          />
           <Room>{children}</Room>
         </ThemeProvider>
       </body>
