@@ -1,4 +1,5 @@
 // NavbarComponent.tsx
+"use client"
 import React, { useEffect, useState } from "react";
 import {
     Navbar,
@@ -67,7 +68,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
     }, [currentTheme]);
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 text-white">
+        <div className={`fixed top-0 left-0 right-0 z-50 ${darkMode ? "text-white" : "text-black"}`}>
             <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className="bg-neutral-900 text-white">
 
                 <NavbarContent justify="start">
@@ -102,33 +103,33 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                             <DropdownMenu aria-label="Static Actions">
                                 <DropdownItem key="new" startContent={icons.hammer}>
                                     <Link href="/design-desk-jam"  legacyBehavior passHref>
-                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                                    <a className="relative inline-block text-md text-neutral-600 dark:text-white transition-all duration-300 hover:text-neutral-900 group transform hover:scale-105">
                             DesignDesk Jam
-                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                            <span className="absolute block h-[2px] w-full bg-neutral-600 dark:text-white bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                         </a>
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="copy" startContent={icons.dev}>
                                     <Link href="/dev-mode"  legacyBehavior passHref>
-                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                                    <a className="relative inline-block text-md text-neutral-600 dark:text-white transition-all duration-300 hover:text-neutral-900 group transform hover:scale-105">
                             Dev Mode
-                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                            <span className="absolute block h-[2px] w-full bg-neutral-600 dark:text-white bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                         </a>
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="edit" startContent={icons.slide}>
                                     <Link href="/design-desk-slides"  legacyBehavior passHref>
-                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                                    <a className="relative inline-block text-md text-neutral-600 dark:text-white transition-all duration-300 hover:text-neutral-900 group transform hover:scale-105">
                             DesignDesk Slides
-                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                            <span className="absolute block h-[2px] w-full bg-neutral-600 dark:text-white bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                         </a>
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="delete" className="text-warning" startContent={icons.download}>
                                     <Link href="/download" legacyBehavior passHref>
-                                    <a className="relative inline-block text-lg text-white transition-all duration-300 hover:text-gray-300 group transform hover:scale-105">
+                                    <a className="relative inline-block text-md text-neutral-600 dark:text-white transition-all duration-300 hover:text-neutral-900 group transform hover:scale-105">
                             Download
-                            <span className="absolute block h-[2px] w-full bg-gray-300 bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                            <span className="absolute block h-[2px] w-full bg-neutral-600 dark:text-white bottom-0 left-0 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                         </a>
                                     </Link>
                                 </DropdownItem>
