@@ -1,22 +1,21 @@
-version: '3.8'  
+version: "3.8"
 
 services:
   web:
     image: nextapp
     build:
-      context: .  # Use the current directory
+      context: . # Use the current directory
       dockerfile: Dockerfile
     command: sh -c "npm i && npm run dev"
-    restart: always  # Specify the Dockerfile
+    restart: always # Specify the Dockerfile
     ports:
-      - "3000:3000"  # Map port 3000 
+      - "3000:3000" # Map port 3000
     volumes:
-      - ./app:/nextapp/app 
+      - ./app:/nextapp/app
       - ./components:/nextapp/components
       - ./constants:/nextapp/constants
       - ./hooks:/nextapp/hooks
       - ./lib:/nextapp/lib
       - ./public:/nextapp/public
       - ./types:/nextapp/types # Bind mount the current directory to /nextapp in the container
-    environment:
-      NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY: your_api_key_goes_here
+    environment: NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY:pk_prod_vIHPs3G4fYV2P4iIUGs_hRA1D1uDJFbDCU7gy9mrImhx7CR_8prGsN-kdp8gMZq-

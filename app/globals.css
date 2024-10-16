@@ -2,15 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  --cursor-color: #333
+}
+
+html.dark-mode {
+  --cursor-color: #fff
+}
+
 @import "@liveblocks/react-comments/styles.css";
 
 * {
   font-family: work sans, sans-serif;
 }
+
 html {
   overflow: auto;
   height: auto;
 }
+
 body {
   overflow: hidden;
 }
@@ -21,7 +31,7 @@ body {
   }
 
   .input-ring {
-    @apply h-8 rounded-none border-none  bg-transparent outline-none ring-offset-0 focus:ring-1  focus:ring-primary-green focus:ring-offset-0 focus-visible:ring-offset-0 !important;
+    @apply h-8 rounded-none border-none bg-transparent outline-none ring-offset-0 focus:ring-1 focus:ring-primary-green focus:ring-offset-0 focus-visible:ring-offset-0 !important;
   }
 
   .right-menu-content {
@@ -43,9 +53,11 @@ input[type="color"] {
   overflow: hidden;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 1px;
 }
+
 input[type="color"]::-webkit-color-swatch {
   border: none;
 }
@@ -70,7 +82,7 @@ input[type="color"]::-webkit-color-swatch {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc; 
+  background-color: #ccc;
   transition: .4s;
   border-radius: 24px;
 }
@@ -84,8 +96,8 @@ input[type="color"]::-webkit-color-swatch {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 16px; 
-  transition: opacity 0.4s ease-in-out; 
+  font-size: 16px;
+  transition: opacity 0.4s ease-in-out;
 }
 
 
@@ -95,30 +107,32 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .filter-black {
-  filter: brightness(0); 
+  filter: brightness(0);
 }
 
 
 .slider.round {
-  border-radius: 34px; /* Match with the switch */
+  border-radius: 34px;
+  /* Match with the switch */
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 20px; 
-  width: 20px; 
-  left: 2px; 
-  bottom: 2px; 
-  background-color: white; 
-  transition: .4s; 
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
   border-radius: 50%;
 }
 
-input:checked + .slider {
-  background-color: light-blue; 
+input:checked+.slider {
+  background-color: light-blue;
 }
 
-input:checked + .slider:before {
-  transform: translateX(26px); /* Move circle on toggle */
+input:checked+.slider:before {
+  transform: translateX(26px);
+  /* Move circle on toggle */
 }
