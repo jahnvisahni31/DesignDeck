@@ -22,6 +22,7 @@ import ThemeProvider from "./provider";
 import Progressbar from "../components/progressbar/progressbar"
 import { AnimatePresence, motion } from "framer-motion";
 import Preloader from "../components/Preloader";
+import BackToTop from "../components/BackToTop/BackToTop"
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -316,6 +317,7 @@ export default function App() {
           </div>
           <Footer />
         </div>
+        <BackToTop/>
       </ThemeProvider>
     </>
   );
