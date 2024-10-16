@@ -137,6 +137,16 @@ input:checked+.slider:before {
   /* Move circle on toggle */
 }
 
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background-color: #29d;
+  z-index: 9999;
+  transition: width 0.25s ease-out;
+}
+
 .back-to-top-button {
   position: fixed;
   bottom: 20px;
