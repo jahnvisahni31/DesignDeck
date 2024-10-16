@@ -1,7 +1,8 @@
 {
-  "name": "figpro",
+  "name": "DesignDeck",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.7.3",
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@liveblocks/client": "^1.11.0",
     "@liveblocks/node": "^1.11.0",
