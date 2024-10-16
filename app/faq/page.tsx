@@ -146,12 +146,11 @@ const FAQ = () => {
       <div className="right mb-36 w-2/3 mx-auto select-none space-y-10">
         {faq.map((faq, i) => (
           <div key={i}>
-            <div className="bg-gradient-to-r from-purple-800 shadow-lg shadow-[#3b0a45] p-4 mx-3 md:p-7 md:m-5 rounded-xl">
+            <div className="dm-bg-gradient-to-r from-purple-800 shadow-lg shadow-[#3b0a45] p-4 mx-3 md:p-7 md:m-5 rounded-xl">
               <div className="flex justify-between">
                 <h1 className="md:text-2xl text-lg dm-sans-font w-[87%]">
                   {faq.question}
                 </h1>
-
                 {show===i ? (
                   <IoIosArrowUp
                     className="text-2xl cursor-pointer"
@@ -166,7 +165,7 @@ const FAQ = () => {
               </div>
 
               {showAnswer === i && (
-                <p className="mt-5 text-lg text-gray-300 w-[95%] md:w-5/6">
+                <p className="mt-5 text-lg  dm-sans-font w-[95%] md:w-5/6">
                   {faq.answer}
                 </p>
               )}
