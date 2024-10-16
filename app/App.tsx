@@ -19,6 +19,7 @@ import Footer from "@/components/ui/footer";
 import { useTheme } from "next-themes";
 import NavbarComponent from "./front-navbar";
 import ThemeProvider from "./provider";
+import { motion } from "framer-motion";
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,27 +96,74 @@ export default function App() {
 
           <div className="flex flex-col lg:flex-row items-center justify-between px-20 py-2 my-40">
             <div className="max-w-xl mb-10 lg:mb-0">
-              <h1 className="text-7xl font-medium leading-tight mb-6">
-                Think bigger.
+              {/* Animated Text */}
+              <motion.h1
+                className="text-7xl font-medium leading-tight mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <span>Think bigger.</span>
                 <br />
-                Build faster.
-              </h1>
-              <p className="text-xl mb-8 font-light">
+                <span>Build faster.</span>
+              </motion.h1>
+
+              {/* Animated Subtext */}
+              <motion.p
+                className="text-xl mb-8 font-light"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+              >
                 DesignDesk helps design and development teams build great
                 products, together.
-              </p>
-              <Button color="secondary">
-                <Link href="/workspace">Get started for free</Link>
-              </Button>
+              </motion.p>
+
+              {/* Animated Button */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+              >
+                <Button color="secondary">
+                  <Link href="/workspace">Get started for free</Link>
+                </Button>
+              </motion.div>
             </div>
 
+            {/* Animated Colored Boxes */}
             <div className="relative h-64 lg:h-auto w-full lg:w-1/2">
-              <div className="absolute inset-0 flex justify-center items-center">
-                <div className="bg-yellow-300 w-72 h-48 transform rotate-6"></div>
-                <div className="bg-purple-400 w-52 h-52 absolute top-4 right-4"></div>
-                <div className="bg-red-500 w-32 h-32 absolute bottom-4 left-4"></div>
-                <div className="bg-green-500 w-40 h-40 absolute bottom-0 right-8"></div>
-              </div>
+              <motion.div
+                className="absolute inset-0 flex justify-center items-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+              >
+                <motion.div
+                  className="bg-yellow-300 w-72 h-48 transform rotate-6"
+                  initial={{ opacity: 0, rotate: 0 }}
+                  animate={{ opacity: 1, rotate: 6 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="bg-purple-400 w-52 h-52 absolute top-4 right-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 1, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="bg-red-500 w-32 h-32 absolute bottom-4 left-4"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 1, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="bg-green-500 w-40 h-40 absolute bottom-0 right-8"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 1, ease: "easeInOut" }}
+                />
+              </motion.div>
             </div>
           </div>
 
