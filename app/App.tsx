@@ -19,6 +19,7 @@ import Footer from "@/components/ui/footer";
 import { useTheme } from "next-themes";
 import NavbarComponent from "./front-navbar";
 import ThemeProvider from "./provider";
+import Progressbar from "../components/progressbar/progressbar"
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,6 +62,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider>
+        <Progressbar/>
         <NavbarComponent
           isLoggedIn={isLoggedIn}
           setIsMenuOpen={setIsMenuOpen}

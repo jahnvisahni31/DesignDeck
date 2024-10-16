@@ -136,3 +136,13 @@ input:checked+.slider:before {
   transform: translateX(26px);
   /* Move circle on toggle */
 }
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background-color: #29d;
+  z-index: 9999;
+  transition: width 0.25s ease-out;
+}
