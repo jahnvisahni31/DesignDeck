@@ -12,6 +12,9 @@
   "dependencies": {
     "@clerk/nextjs": "^5.7.3",
     "@fortawesome/fontawesome-free": "^6.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@liveblocks/client": "^1.11.0",
     "@liveblocks/node": "^1.11.0",
     "@liveblocks/react": "^1.11.0",
