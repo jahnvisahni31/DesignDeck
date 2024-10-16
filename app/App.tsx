@@ -19,8 +19,8 @@ import Footer from "@/components/ui/footer";
 import { useTheme } from "next-themes";
 import NavbarComponent from "./front-navbar";
 import ThemeProvider from "./provider";
-import { motion } from "framer-motion";
-
+import { AnimatePresence, motion } from "framer-motion";
+import Preloader from "../components/Preloader";
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -67,6 +67,8 @@ export default function App() {
           setIsMenuOpen={setIsMenuOpen}
           isMenuOpen={isMenuOpen}
         />
+        <Preloader />
+
         <div
           className={`min-h-screen ${
             darkMode
