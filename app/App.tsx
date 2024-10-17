@@ -74,7 +74,7 @@ export default function App() {
           } font-sans`}
         >
           <div
-            className={`py-4 ${
+            className={`py-0 hidden md:block md:py-4 ${
               darkMode
                 ? "bg-black"
                 : "bg-gradient-to-r from-gray-300 via-white to-gray-200 text-black"
@@ -93,7 +93,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-between px-20 py-2 my-40">
+          <div className="flex flex-col lg:flex-row items-center justify-between px-20 py-0 md:my-40 my-0">
             <div className="max-w-xl mb-10 lg:mb-0">
               <h1 className="text-7xl font-medium leading-tight mb-6">
                 Think bigger.
@@ -200,8 +200,6 @@ export default function App() {
                     <p className="text-white text-md font-sans">
                       Text Addition
                     </p>
-                    {/* <p className="text-black text-tiny">Add text to designs and adjust font size, weight, and style.</p> */}
-
                     <Button
                       color="default"
                       className="  text-tiny font-sans text-white bg-black/60"
@@ -212,14 +210,6 @@ export default function App() {
                       Notify Me
                     </Button>
                   </CardFooter>
-                  {/* <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-                <div>
-                  <p className="text-black">Text Addition</p>
-                </div>
-                <Button radius="full" color="default" className=" shadow-lg text-tiny text-white bg-black/60">
-                  Notify Me
-                </Button>
-              </CardFooter> */}
                 </Card>
               </div>
             </div>
