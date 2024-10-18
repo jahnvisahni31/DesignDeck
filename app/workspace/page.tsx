@@ -173,6 +173,7 @@ function Workspace() {
   // Canvas initialization and event handlers
   useEffect(() => {
     const canvas = initializeFabric({ canvasRef, fabricRef });
+    const currentFabricRef = fabricRef.current;
 
     canvas.on("mouse:down", (options) => {
       handleCanvasMouseDown({
@@ -232,10 +233,11 @@ function Workspace() {
       });
     });
 
-    window.addEventListener("resize", () => {
-      handleResize({ canvas: fabricRef.current });
-    });
+   const handleResize = () => {
+      handleResize(); // This line should not pass any arguments
+    };
 
+    window.addEventListener("resize", handleResize);
     window.addEventListener("keydown", (e) => {
       handleKeyDown({
         e,
@@ -249,15 +251,11 @@ function Workspace() {
 
     return () => {
       canvas.dispose();
-      window.removeEventListener("resize", () => {
-        handleResize({
-          canvas: null,
-        });
-      });
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("keydown", (e) =>
         handleKeyDown({
           e,
-          canvas: fabricRef.current,
+          canvas: currentFabricRef, // Use the stored variable here
           undo,
           redo,
           syncShapeInStorage,
@@ -265,7 +263,7 @@ function Workspace() {
         })
       );
     };
-  }, [canvasRef]);
+  }, [deleteShapeFromStorage, redo, syncShapeInStorage, undo]);
 
   useEffect(() => {
     renderCanvas({ fabricRef, canvasObjects, activeObjectRef });

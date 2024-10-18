@@ -3,6 +3,7 @@ import Link  from 'next/link';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
 import { Button } from '@nextui-org/react';
+import Image from 'next/image';
 
 const BlogPage = () => {
     const {systemTheme, theme, setTheme} = useTheme();
@@ -36,7 +37,7 @@ const BlogPage = () => {
     <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {blogs.map((blog, index) => (
         <div key={index} className=" p-4 shadow-lg shadow-[#3b0a45] rounded-md ">
-          <img src="five.webp" className="w-[30rem] rounded mb-4"></img>
+         <Image src="five.webp" alt="Description of the image" className="w-[30rem] rounded mb-4" />
           <h2 className="text-xl font-bold mb-2">{blog.title}</h2>
           <p>{blog.content}</p>
         </div>
