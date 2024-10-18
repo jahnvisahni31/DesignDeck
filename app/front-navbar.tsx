@@ -75,7 +75,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                     {!isMobile && (
                         <NavbarBrand className="-ml-14">
                              <p className="text-xl font-bold hover:text-gray-300 transition duration-300 left-7 
-                                 transform hover:scale-110 hover:shadow-lg hover:text-blue-400">
+                                 transform hover:scale-110 hover:shadow-lg">
                               <b className="transition duration-300 ease-in-out">DesignDesk</b>
                               </p>
 
@@ -170,12 +170,12 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                                      Sign Up
                                 </Button> */}
                                  <Button 
-        as={Link} 
-        href="/signup" 
-        className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-lg font-medium text-white bg-gradient-to-r from-blue-400 to-purple-600 rounded-lg shadow-lg group">
-        <span className="absolute inset-0 w-full h-full transition-transform duration-300 transform scale-x-0 bg-white group-hover:scale-x-100"></span>
-        <span className="relative z-10">Sign Up</span>
-        <svg 
+                                    as={Link} 
+                                    href="/signup" 
+                                    className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-lg font-medium text-white bg-gradient-to-r from-blue-400 to-purple-600 rounded-lg shadow-lg group">
+                                    <span className="absolute inset-0 w-full h-full transition-transform duration-300 transform scale-x-0 bg-white group-hover:scale-x-100"></span>
+                                    <span className="relative z-10">Sign Up</span>
+            <svg 
             className="absolute w-5 h-5 transition-transform duration-300 transform -translate-x-10 group-hover:translate-x-0" 
             fill="none" 
             viewBox="0 0 24 24" 
