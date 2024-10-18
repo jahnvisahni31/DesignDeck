@@ -126,7 +126,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/privacy-policy">
+              <Link href="/privacy_policy">
                 <div className="flex items-center text-gray-400 hover:text-white">
                 <MdArticle className="mr-2" size={20} />
                   Privacy Policy
