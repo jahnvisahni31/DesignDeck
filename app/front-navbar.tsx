@@ -18,6 +18,8 @@ import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im"
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import Link from "next/link";
+import Logo from "@/public/assets/design-deck-logo.png";
+import Image from 'next/image';
 
 // Define props interface
 interface NavbarComponentProps {
@@ -69,16 +71,18 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
         <div className="fixed top-0 left-0 right-0 z-50 text-white">
             <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className="bg-neutral-900 text-white">
 
-                <NavbarContent justify="start">
+            <NavbarContent justify="start">
                     {!isMobile && (
-                        <NavbarBrand className="-ml-14">
-                            <p className="text-xl font-bold hover:text-gray-300 transition duration-300 left-7 
-                                 transform hover:scale-110 hover:shadow-lg hover:text-blue-400">
-                                <b className="transition duration-300 ease-in-out">DesignDesk</b>
-                            </p>
-                        </NavbarBrand>
+                         <NavbarBrand className="flex basis-0 flex-row flex-grow flex-nowrap justify-start bg-transparent" style={{ marginLeft: '-50px' }}>
+                            <Image className="transition duration-300 ease-in-out" 
+                            src={Logo.src} 
+                            alt="DesignDeck Logo"  
+                            style={{ width: '276px', height: '64px', marginLeft: '0', marginRight: '10px', background: 'none' }}  /> 
+                            {/* Increased height and removed background */}
+                         </NavbarBrand>
                     )}
                 </NavbarContent>
+
 
                 <NavbarContent justify="center" className="space-x-4"> {/* Adjusted spacing here */}
                     <NavbarItem className="flex items-center">

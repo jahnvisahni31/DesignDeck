@@ -48,7 +48,7 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
       `https://liveblocks.io/avatars/avatar-${Math.floor(
         Math.random() * 30
       )}.png`,
-    [thread.comments.length]
+    []
   );
 
   const memoizedContent = useMemo(
@@ -97,7 +97,7 @@ function PinnedThread({ thread, onFocus, ...props }: Props) {
         ) : null}
       </div>
     ),
-    [thread.comments.length, minimized]
+    [darkMode, minimized, onFocus, props, thread, randomAvatar] // Include randomAvatar in the dependencies
   );
 
   return <div>{memoizedContent}</div>;
