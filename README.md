@@ -1,22 +1,34 @@
 
-# DesignDeck:
-
-
-
-![6dcd94c7c4bf4800648ef7cbe0113c33](https://github.com/user-attachments/assets/310410c6-b621-4720-8b3d-5d54af6d15b2)
-
-
-
-
+# Welcome To DesignDeck:
 
 DesignDeck is a web-based collaborative design tool similar to Figma, built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API, Fabric.js. With Designdeck, teams can seamlessly collaborate on designing interfaces in real-time with a plethora of features.
 
-<img width="700" alt="image" src="https://github.com/user-attachments/assets/e565ce14-9949-4d36-9855-d6f7b3105ded">
+## 🚀Featured In
+
+<table>
+
+   <tr>
+      <th>Event Logo</th>
+      <th>Event Name</th>
+      <th>Event Description</th>
+   </tr>
+   <tr>
+      <td><img src="gssoc.jpg" width="200" height="auto" loading="lazy" alt="GSSoC 24"/></td>
+      <td>GirlScript Summer of Code 2024</td>
+      <td>GirlScript Summer of Code is a three-month-long Open Source Program conducted every summer by GirlScript Foundation. It is an initiative to bring more beginners to Open-Source Software Development.</td>
+   </tr>
+    <tr>
+      <td><img src="hack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2024"/></td>
+      <td>Hacktoberfest 2024</td>
+      <td>Hacktoberfest is a month-long celebration of open source software run by DigitalOcean, GitHub, and Twilio. It encourages contributions to open source projects and promotes a global community of developers.</td>
+   </tr>
+
+</table>
+
+<br />
 
 # Table of Contents:
 
-
-<img width="622" alt="image" src="https://github.com/user-attachments/assets/5b950dc1-40ad-4f54-904c-55499202233b">
 
 - [Demo](#demo)
 - [Features](#features)
@@ -129,17 +141,39 @@ We welcome contributions to DesignDeck! To contribute:
 4. Commit and push your changes 🚀
 5. Create a pull request 🔄
 
- # CONTRIBUTORS
-![a29b365eb885f9b07c6fbc8b193d4a74](https://github.com/user-attachments/assets/bf620ecc-bd2c-48db-bf85-c7526449bed8)
-> Contributions are welcome!
+### Note: Use npm run build and check for conflicts before submitting a pull request, as conflicts can delay merging pull requests.
 
-Specially thanks ❤️ for contributors bellow:
+## Contributors
 
-<a href="https://github.com/jahnvisahni31/github-readme-profile/graphs/contributors">
+A heartfelt thank you to the following individuals for their valuable contributions to this project. Your support and dedication are greatly appreciated:
+
+<a href="https://github.com/jahnvisahni31/DesignDeck/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jahnvisahni31/DesignDeck" />
 </a>
 
+<br>
 
- # Contact 📬
+## Stargazers
+
+<div align='center'>
+
+[![Stargazers repo roster for @jahnvisahni31/DesignDeck](https://reporoster.com/stars/jahnvisahni31/DesignDeck)](https://github.com/jahnvisahni31/DesignDeck/stargazers)
+
+</div>
+
+## Forkers
+<div align='center'>
+
+[![Forkers repo roster for @jahnvisahni31/DesignDeck](https://reporoster.com/forks/jahnvisahni31/DesignDeck)](https://github.com/jahnvisahni31/DesignDeck/network/members)
+
+## Contact 📬
 
 For any questions or support, please reach out to [Jahnvisahni98@gmail.com](mailto:jahnvisahni98@gmail.com).
+<img width="622" alt="image" src="https://github.com/user-attachments/assets/5b950dc1-40ad-4f54-904c-55499202233b">
+
+</div>
+<div align="center">
+    <a href="#top">
+        <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
+    </a>
+</div>

@@ -1,7 +1,8 @@
 {
-  "name": "figpro",
+  "name": "DesignDeck",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +10,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.7.3",
     "@fortawesome/fontawesome-free": "^6.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@liveblocks/client": "^1.11.0",
     "@liveblocks/node": "^1.11.0",
     "@liveblocks/react": "^1.11.0",
@@ -28,12 +33,13 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "fabric": "^5.3.0",
-    "framer-motion": "^11.11.0",
+    "framer-motion": "^11.11.9",
     "jspdf": "^2.5.1",
     "lucide-react": "^0.321.0",
-    "next": "14.1.0",
+    "next": "^14.2.15",
     "next-themes": "^0.3.0",
     "react": "^18",
+    "react-animated-cursor": "^2.11.2",
     "react-color": "^2.19.3",
     "react-dom": "^18",
     "react-error-boundary": "^4.0.13",

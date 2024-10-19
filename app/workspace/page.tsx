@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { LiveMap } from "@liveblocks/client";
 import { fabric } from "fabric";
 import {
   handleCanvasMouseDown,
@@ -54,42 +55,44 @@ function Workspace() {
     fill: "#aabbcc",
     stroke: "#000000",
   });
-  
 
-  const {systemTheme, theme, setTheme} = useTheme();
+  const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "dark" ? systemTheme : theme;
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
-    if(currentTheme==='dark'){
+    if (currentTheme === "dark") {
       setDarkMode(true);
-    }
-    else{
+    } else {
       setDarkMode(false);
     }
-  },[currentTheme])
-
-  // console.log(themeCheck)
-  console.log(darkMode)
+  }, [currentTheme]);
 
   const syncShapeInStorage = useMutation(({ storage }, object) => {
     if (!object) return;
 
-    const { objectId } = object;
+    const objectId = object.objectId || Date.now().toString(); // Ensure objectId is defined
     const shapeData = object.toJSON();
     shapeData.objectId = objectId;
 
-    const canvasObjects = storage.get("canvasObjects");
+    // Get canvasObjects from storage; if undefined, initialize it as a new LiveMap
+    let canvasObjects = storage.get("canvasObjects") as LiveMap<string, any>;
+    if (!canvasObjects) {
+      // Initialize LiveMap and store it in Liveblocks storage
+      canvasObjects = new LiveMap<string, any>();
+      storage.set("canvasObjects", canvasObjects);
+    }
+
+    // Set shape data in LiveMap
     canvasObjects.set(objectId, shapeData);
   }, []);
 
   const deleteAllShapes = useMutation(({ storage }) => {
-    const canvasObjects = storage.get("canvasObjects");
+    const canvasObjects = storage.get("canvasObjects") as LiveMap<string, any>;
     if (!canvasObjects || canvasObjects.size === 0) return;
 
-    // Convert canvasObjects.entries() to an array before iterating
     const entriesArray = Array.from(canvasObjects.entries());
 
-    for (const [key, value] of entriesArray) {
+    for (const [key] of entriesArray) {
       canvasObjects.delete(key);
     }
 
@@ -98,9 +101,10 @@ function Workspace() {
 
   const deleteShapeFromStorage = useMutation(
     ({ storage }, objectId: string) => {
-      const canvasObjects = storage.get("canvasObjects");
+      const canvasObjects = storage.get("canvasObjects") as LiveMap<string, any>;
       if (!canvasObjects || canvasObjects.size === 0) return;
 
+      // Delete object from LiveMap
       canvasObjects.delete(objectId);
     },
     []
@@ -109,23 +113,54 @@ function Workspace() {
   const handleActiveElement = (element: ActiveElement) => {
     setActiveElement(element);
 
+    // Ensure that fabricRef.current exists and is of the correct type
+    if (!fabricRef.current || !(fabricRef.current instanceof fabric.Canvas)) {
+      console.error("Canvas is not initialized or not of the correct type");
+      return;
+    }
+
     switch (element?.value) {
       case "reset":
         deleteAllShapes();
-        fabricRef.current?.clear();
+        fabricRef.current.clear();
         setActiveElement(defaultNavElement);
         break;
+
       case "delete":
-        handleDelete(fabricRef.current as any, deleteShapeFromStorage);
+        handleDelete(fabricRef.current, deleteShapeFromStorage);
         setActiveElement(defaultNavElement);
         break;
+
       case "image":
         imageInputRef.current?.click();
         isDrawing.current = false;
+        fabricRef.current.isDrawingMode = false;
+        break;
 
+      case "text":
+        // Enable text input mode
         if (fabricRef.current) {
-          fabricRef.current.isDrawingMode = false;
+          const text = new fabric.Textbox("Enter text", {
+            left: 100,
+            top: 100,
+            fontSize: parseInt(elementAttributes.fontSize) || 20,
+            fill: elementAttributes.fill || "#000",
+            fontFamily: elementAttributes.fontFamily || "Arial",
+            fontWeight: elementAttributes.fontWeight || "normal",
+          });
+
+          // Add the new text object and set it as active
+          fabricRef.current.add(text);
+
+          if ("setActiveObject" in fabricRef.current) {
+            fabricRef.current.setActiveObject(text);
+          }
+
+          syncShapeInStorage(text);
         }
+
+        isDrawing.current = false;
+        fabricRef.current.isDrawingMode = false;
         break;
 
       default:
@@ -135,6 +170,7 @@ function Workspace() {
     selectedShapeRef.current = element?.value as string;
   };
 
+  // Canvas initialization and event handlers
   useEffect(() => {
     const canvas = initializeFabric({ canvasRef, fabricRef });
 
@@ -212,22 +248,12 @@ function Workspace() {
     });
 
     return () => {
-      /**
-       * dispose is a method provided by Fabric that allows you to dispose
-       * the canvas. It clears the canvas and removes all the event
-       * listeners
-       *
-       * dispose: http://fabricjs.com/docs/fabric.Canvas.html#dispose
-       */
       canvas.dispose();
-
-      // remove the event listeners
       window.removeEventListener("resize", () => {
         handleResize({
           canvas: null,
         });
       });
-
       window.removeEventListener("keydown", (e) =>
         handleKeyDown({
           e,
@@ -239,44 +265,47 @@ function Workspace() {
         })
       );
     };
-  }, [canvasRef]); // run this effect only once when the component mounts and the canvasRef changes
+  }, [canvasRef]);
 
   useEffect(() => {
     renderCanvas({ fabricRef, canvasObjects, activeObjectRef });
   }, [canvasObjects]);
 
   return (
-    <div className={`${darkMode ? "bg-primary-grey-200 text-white " : " bg-slate-200 text-black" }`}>
-    
-    <main className="h-[100dvh] overflow-hidden">
-      <Navbar
-        activeElement={activeElement}
-        handleActiveElement={handleActiveElement}
-        imageInputRef={imageInputRef}
-        handleImageUpload={(e: any) => {
-          e.stopPropagation();
-          handleImageUpload({
-            file: e.target.files[0],
-            canvas: fabricRef as any,
-            shapeRef,
-            syncShapeInStorage,
-          });
-        }}
-      />
-
-      <section className="flex h-full flex-row">
-        <LeftSideBar allShapes={Array.from(canvasObjects)} />
-        <Live canvasRef={canvasRef} undo={undo} redo={redo} />
-        <RightSideBar
-          elementAttributes={elementAttributes}
-          setElementAttributes={setElementAttributes}
-          fabricRef={fabricRef}
-          isEditingRef={isEditingRef}
-          activeObjectRef={activeObjectRef}
-          syncShapeInStorage={syncShapeInStorage}
+    <div
+      className={`${
+        darkMode ? "bg-primary-grey-200 text-white " : " bg-slate-200 text-black"
+      }`}
+    >
+      <main className="h-[100dvh] overflow-hidden">
+        <Navbar
+          activeElement={activeElement}
+          handleActiveElement={handleActiveElement}
+          imageInputRef={imageInputRef}
+          handleImageUpload={(e: any) => {
+            e.stopPropagation();
+            handleImageUpload({
+              file: e.target.files[0],
+              canvas: fabricRef as any,
+              shapeRef,
+              syncShapeInStorage,
+            });
+          }}
         />
-      </section>
-    </main>
+
+        <section className="flex h-full flex-row">
+          <LeftSideBar allShapes={Array.from(canvasObjects)} />
+          <Live canvasRef={canvasRef} undo={undo} redo={redo} />
+          <RightSideBar
+            elementAttributes={elementAttributes}
+            setElementAttributes={setElementAttributes}
+            fabricRef={fabricRef}
+            isEditingRef={isEditingRef}
+            activeObjectRef={activeObjectRef}
+            syncShapeInStorage={syncShapeInStorage}
+          />
+        </section>
+      </main>
     </div>
   );
 }
