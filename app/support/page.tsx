@@ -54,7 +54,7 @@ export default function SupportUs() {
           </h1>
 
           <p className="text-2xl mb-8 max-w-3xl text-center font-light leading-relaxed tracking-wide">
-            Your support is essential to helping us enhance and expand DesignDesk, the ultimate platform for collaborative interface design. Whether it is through donations, sharing our project, or providing valuable feedback, your involvement enables us to create a better experience for designers and teams worldwide.
+            Your support is essential to helping us enhance and expand DesignDesk, the ultimate platform for collaborative interface design. Whether it's through donations, sharing our project, or providing valuable feedback, your involvement enables us to create a better experience for designers and teams worldwide.
           </p>
 
 
@@ -99,7 +99,7 @@ export default function SupportUs() {
           <div className="text-center mt-24">
             <h2 className="text-4xl font-semibold mb-6">Other Ways to Get Involved</h2>
             <p className="text-2xl mb-8 max-w-3xl text-center font-light leading-relaxed tracking-wide">
-              If you are not in a position to donate, you can still help! Share your feedback, spread the word about our platform, or volunteer to help us improve. Every small action makes a huge impact.
+              If you're not in a position to donate, you can still help! Share your feedback, spread the word about our platform, or volunteer to help us improve. Every small action makes a huge impact.
             </p>
             <Button
 
