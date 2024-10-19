@@ -109,10 +109,10 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                     {!isLoggedIn && (
                         <>
                             <NavbarItem>
-                                <Link href="#">Login</Link>
+                                <Link href="/login">Login</Link>
                             </NavbarItem>
                             <NavbarItem>
-                                <Button as={Link} href="#">
+                                <Button as={Link} href="/signup">
                                     Sign Up
                                 </Button>
                             </NavbarItem>
