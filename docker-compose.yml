@@ -18,4 +18,4 @@ services:
       - ./lib:/nextapp/lib
       - ./public:/nextapp/public
       - ./types:/nextapp/types # Bind mount the current directory to /nextapp in the container
-    environment: NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY:pk_prod_vIHPs3G4fYV2P4iIUGs_hRA1D1uDJFbDCU7gy9mrImhx7CR_8prGsN-kdp8gMZq-
+    environment: pk_dev_a2dfePJpR38agCwN3onDSzLADWtRVRixe4m0gWxzd4ieEVEOmvCIrNYcYQT_26pC
