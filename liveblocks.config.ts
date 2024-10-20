@@ -2,82 +2,53 @@ import { LiveMap, createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 import { ReactionEvent } from "./types/type";
 
+// Ensure publicApiKey is properly retrieved from the environment
+// ex, NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=your_api_key
+//No need to name the env file (in the root directory) just .env will work
+if (!process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY) {
+  throw new Error("NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY is not defined.");
+}
+
 const client = createClient({
-  throttle: 16,
+  throttle: 16, // Keep this setting to control the frequency of updates.
+  publicApiKey: "pk_dev_a2dfePJpR38agCwN3onDSzLADWtRVRixe4m0gWxzd4ieEVEOmvCIrNYcYQT_26pC", // Public key must be used here.
+  
+  // Uncomment if using a custom auth backend
   // authEndpoint: "/api/liveblocks-auth",
- 
 
-  publicApiKey: process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY!,
   resolveUsers: async ({ userIds }) => {
-    // Used only for Comments. Return a list of user information retrieved
-    // from `userIds`. This info is used in comments, mentions etc.
-
-    // const usersData = await __fetchUsersFromDB__(userIds);
-    //
-    // return usersData.map((userData) => ({
-    //   name: userData.name,
-    //   avatar: userData.avatar.src,
-    // }));
-
+    // For Comments feature, return user data like name and avatar
+    // Implement this with your own backend or leave it as is if not used
     return [];
   },
   resolveMentionSuggestions: async ({ text, roomId }) => {
-    // Used only for Comments. Return a list of userIds that match `text`.
-    // These userIds are used to create a mention list when typing in the
-    // composer.
-    //
-    // For example when you type "@jo", `text` will be `"jo"`, and
-    // you should to return an array with John and Joanna's userIds:
-    // ["john@example.com", "joanna@example.com"]
-
-    // const userIds = await __fetchAllUserIdsFromDB__(roomId);
-    //
-    // Return all userIds if no `text`
-    // if (!text) {
-    //   return userIds;
-    // }
-    //
-    // Otherwise, filter userIds for the search `text` and return
-    // return userIds.filter((userId) =>
-    //   userId.toLowerCase().includes(text.toLowerCase())
-    // );
-
+    // For Comments feature: Suggest userIds when mentioning users by filtering their names
     return [];
   },
 });
 
-// Presence represents the properties that exist on every user in the Room
-// and that will automatically be kept in sync. Accessible through the
-// `user.presence` property. Must be JSON-serializable.
+// Presence: Properties that are synced for each user
 export type Presence = {
   cursor: { x: number; y: number } | null;
   message: string | null;
 };
 
-// Optionally, Storage represents the shared document that persists in the
-// Room, even after all users leave. Fields under Storage typically are
-// LiveList, LiveMap, LiveObject instances, for which updates are
-// automatically persisted and synced to all connected clients.
+// Storage: Shared objects across users that persist in the Room
 type Storage = {
-  // author: LiveObject<{ firstName: string, lastName: string }>,
-  // ...
-  canvasObjects: LiveMap<string, any>;
+  canvasObjects: LiveMap<string, any>; // Example of shared canvas objects
 };
 
-// Optionally, UserMeta represents static/readonly metadata on each user, as
-// provided by your own custom auth back end (if used). Useful for data that
-// will not change during a session, like a user's name or avatar.
+// UserMeta: Optional static metadata for users
 type UserMeta = {
-  // id?: string,  // Accessible through `user.id`
-  // info?: Json,  // Accessible through `user.info`
+  // Example: id, name, avatar fetched from your custom auth backend
+  // id?: string;
+  // info?: Json;
 };
 
-// Optionally, the type of custom events broadcast and listened to in this
-// room. Use a union for multiple events. Must be JSON-serializable.
+// RoomEvent: Custom events broadcast and listened to within the room
 type RoomEvent = ReactionEvent;
 
-// Optionally, when using Comments, ThreadMetadata represents metadata on
-// each thread. Can only contain booleans, strings, and numbers.
+// ThreadMetadata: Metadata for Comments threads (for example, in collaborative comments feature)
 export type ThreadMetadata = {
   resolved: boolean;
   zIndex: number;

@@ -141,6 +141,7 @@ We welcome contributions to DesignDeck! To contribute:
 4. Commit and push your changes 🚀
 5. Create a pull request 🔄
 
+### Note: Use npm run build and check for conflicts before submitting a pull request, as conflicts can delay merging pull requests.
 
 ## Contributors
 
