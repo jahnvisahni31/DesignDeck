@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import NavbarComponent from "../front-navbar";
 
 const faqs = [
   {
@@ -47,67 +48,99 @@ const faqs = [
   {
     question: "Are there keyboard shortcuts available in DesignDeck?",
     answer:
-      "Currently, DesignDeck does not supports keyboard shortcuts,the feature is under development, once prepare user will be abel to do faster design operations, such as Undo (Ctrl+Z), Redo (Ctrl+Y), and copy-pasting elements.",
+      "Currently, DesignDeck does not support keyboard shortcuts. The feature is under development. Once prepared, users will be able to perform faster design operations, such as Undo (Ctrl+Z), Redo (Ctrl+Y), and copy-pasting elements.",
   },
 ];
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { systemTheme, theme } = useTheme();
+  const currentTheme = theme === "dark" ? systemTheme : theme;
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    setDarkMode(currentTheme === 'dark');
+  }, [currentTheme]);
 
   const toggleFAQ = (index: number) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
-  const {systemTheme, theme, setTheme} = useTheme();
-  const currentTheme = theme === "dark" ? systemTheme : theme;
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    if(currentTheme==='dark'){
-      setDarkMode(true);
-    }
-    else{
-      setDarkMode(false);
-    }
-  },[currentTheme])
-  // console.log(themeCheck)
-  // console.log(darkMode)
 
   return (
-    <div className="container mx-auto p-6 min-h-screen h-screen overflow-y-auto">
-      {/* Home Button */}
-      <div className="text-left mb-4">
-        <Link href="/">
-          <button className={`px-4 py-2 rounded ${darkMode ? "bg-blue-500 text-white  hover:bg-blue-600 " : "bg-blue-500 text-black  hover:bg-blue-600" }transition duration-300`}>
-            Home
-          </button>
-        </Link>
-      </div>
-      <h1 className={`text-4xl font-bold mb-6 text-center ${darkMode ? "text-white " : "text-black"}`}>
-        Frequently Asked Questions
-      </h1>
-      <div className="space-y-4 max-w-2xl mx-auto">
-        {faqs.map((faq, index) => (
-          <div
-            key={index}
-            className="border-b border-gray-700 py-4 cursor-pointer"
-            onClick={() => toggleFAQ(index)}
-          >
-            <div className="flex justify-between items-center">
-              <h2
-                className={`font-semibold text-lg ${
-                  activeIndex === index ? darkMode ? "text-white" : "text-black" :"text-white"
-                }`}
-              >
-                {faq.question}
-              </h2>
-              <span className={` ${darkMode ? "text-gray-400" : "text-black"}`}>
-                {activeIndex === index ? "-" : "+"}
-              </span>
+    <div
+      className={`min-h-screen ${
+        darkMode
+          ? "bg-black text-white"
+          : "bg-gradient-to-r from-gray-300 via-white to-gray-200 text-black"
+      } font-sans`}
+    >
+      <NavbarComponent />
+      <div className="container mx-auto p-6">
+        <div className="text-left mb-6">
+          <Link href="/">
+            <button
+              className={`px-4 py-2 rounded transition duration-300 ${
+                darkMode
+                  ? "bg-blue-900 text-white hover:bg-blue-800"
+                  : "bg-blue-200 text-black hover:bg-blue-300"
+              }`}
+            >
+              Home
+            </button>
+          </Link>
+        </div>
+        <h1
+          className={`text-4xl font-bold mb-8 text-center transition-colors duration-300 ${
+            darkMode ? "text-white" : "text-gray-800"
+          }`}
+        >
+          Frequently Asked Questions
+        </h1>
+        <div className="space-y-6 max-w-3xl mx-auto">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className={`p-4 rounded-lg transition duration-300 cursor-pointer shadow-md ${
+                darkMode
+                  ? "bg-gray-800 hover:bg-gray-700"
+                  : "bg-gray-100 hover:bg-gray-200"
+              }`}
+              onClick={() => toggleFAQ(index)}
+            >
+              <div className="flex justify-between items-center">
+                <h2
+                  className={`font-semibold text-lg transition-colors duration-300 ${
+                    activeIndex === index
+                      ? darkMode
+                        ? "text-white"
+                        : "text-gray-800"
+                      : darkMode
+                      ? "text-gray-400"
+                      : "text-gray-600"
+                  }`}
+                >
+                  {faq.question}
+                </h2>
+                <span
+                  className={`transition-transform duration-300 ${
+                    darkMode ? "text-gray-400" : "text-gray-600"
+                  } ${activeIndex === index ? "rotate-180" : "rotate-0"}`}
+                >
+                  ▼
+                </span>
+              </div>
+              {activeIndex === index && (
+                <p
+                  className={`mt-4 transition-all duration-300 ${
+                    darkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  {faq.answer}
+                </p>
+              )}
             </div>
-            {activeIndex === index && (
-              <p className={`mt-2  ${darkMode ? "text-gray-400" : "text-black"}`}>{faq.answer}</p>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
