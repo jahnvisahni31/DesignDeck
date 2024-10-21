@@ -70,9 +70,9 @@ input[type="color"]::-webkit-color-swatch {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: blue; 
-  transition: background-color 0.4s; 
-  border-radius: 34px; 
+  background-color: blue;
+  transition: background-color 0.4s;
+  border-radius: 34px;
 }
 
 .round {
@@ -84,21 +84,17 @@ input[type="color"]::-webkit-color-swatch {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 16px; 
-  transition: opacity 0.4s ease-in-out; 
+  font-size: 16px;
+  transition: opacity 0.4s ease-in-out;
 }
-
-
 
 .filter-white {
   filter: brightness(0) invert(1);
 }
 
 .filter-black {
-  filter: brightness(0); 
+  filter: brightness(0);
 }
- 
-
 
 .hover-underline-animation {
   position: relative;
@@ -119,11 +115,6 @@ input[type="color"]::-webkit-color-swatch {
 .hover-underline-animation:hover::after {
   width: 100%;
 }
-
-
-
-
-
 
 .hover-underline-animation {
   position: relative;
@@ -152,17 +143,17 @@ input[type="color"]::-webkit-color-swatch {
 .slider:before {
   position: absolute;
   content: "";
-  height: 20px; 
-  width: 20px; 
-  left: 2px; 
-  bottom: 2px; 
-  background-color: white; 
-  transition: .4s; 
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: light-blue; 
+  background-color: light-blue;
 }
 
 input:checked + .slider:before {
