@@ -1,5 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  
+
 import {
   Navbar,
   Link,
@@ -27,6 +31,11 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const y=()=>toast("Text addition notify me  ")
+    
+    const p=()=>toast("Live Collaboration  notify me  ")
+    
+    const a=()=>toast("Real-Time updates notify me  ")
   const icons = {
     chevron: (
       <ChevronDown
@@ -198,7 +207,7 @@ export default function App() {
                     <p className="font-medium text-justify text-black ">
                       Live Collaboration
                     </p>
-                    <Button
+                    <Button onClick={p}
                       className="text-tiny text-white bg-black/60"
                       variant="flat"
                       color="default"
@@ -208,6 +217,7 @@ export default function App() {
                       Notify me
                     </Button>
                   </CardFooter>
+                  <ToastContainer/>
                 </Card>
               </div>
               <div className={`  bg-none shadow-2xl rounded-lg  text-center`}>
@@ -223,7 +233,7 @@ export default function App() {
                     <p className=" font-light text-white text-justify">
                       Real-Time Updates
                     </p>
-                    <Button
+                    <Button onClick={a}
                       className="text-tiny text-white bg-black/20"
                       variant="flat"
                       color="default"
@@ -233,6 +243,7 @@ export default function App() {
                       <a href="/workspace">Notify me</a>
                     </Button>
                   </CardFooter>
+                  <ToastContainer/>
                 </Card>
               </div>
 
@@ -253,9 +264,9 @@ export default function App() {
                     <p className="text-white text-md font-sans">
                       Text Addition
                     </p>
-                    {/* <p className="text-black text-tiny">Add text to designs and adjust font size, weight, and style.</p> */}
-
-                    <Button
+                                        {/* <p className="text-black text-tiny">Add text to designs and adjust font size, weight, and style.</p> */}
+                   
+                    <Button onClick={y}
                       color="default"
                       className="  text-tiny font-sans text-white bg-black/60"
                       variant="flat"
@@ -265,6 +276,8 @@ export default function App() {
                       Notify Me
                     </Button>
                   </CardFooter>
+                  
+                  <ToastContainer/>
                   {/* <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
                 <div>
                   <p className="text-black">Text Addition</p>
