@@ -82,6 +82,9 @@ input[type="color"]::-webkit-color-swatch {
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: blue;
+  transition: background-color 0.4s;
+  border-radius: 34px;
   background-color: #ccc;
   transition: .4s;
   border-radius: 24px;
@@ -100,8 +103,6 @@ input[type="color"]::-webkit-color-swatch {
   transition: opacity 0.4s ease-in-out;
 }
 
-
-
 .filter-white {
   filter: brightness(0) invert(1);
 }
@@ -109,8 +110,48 @@ input[type="color"]::-webkit-color-swatch {
 .filter-black {
   filter: brightness(0);
 }
+.hover-underline-animation {
+  position: relative;
+  cursor: pointer;
+}
 
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
 
+.hover-underline-animation:hover::after {
+  width: 100%;
+}
+
+.hover-underline-animation {
+  position: relative;
+  cursor: pointer;
+}
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.hover-underline-animation:hover::after {
+  width: 100%;
+}
+
+.slider.round {
+  border-radius: 34px; /* Match with the switch */
 .slider.round {
   border-radius: 34px;
   /* Match with the switch */
@@ -124,6 +165,16 @@ input[type="color"]::-webkit-color-swatch {
   left: 2px;
   bottom: 2px;
   background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: light-blue;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px); /* Move circle on toggle */
   transition: .4s;
   border-radius: 50%;
 }
