@@ -187,3 +187,13 @@ input:checked+.slider:before {
 html {
   scrollbar-width: thin;
 }
+
+.flex-col:hover{
+transform: scale(1.045);
+}
+
+.text-2xl{
+
+    font-weight: bold;
+    font-size: 3rem;
+}
