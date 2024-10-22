@@ -31,21 +31,40 @@ const NotFound = () => {
       >
         <div className="max-w-4xl w-full flex flex-col md:flex-row items-center text-center md:text-left">
           {/* Left side image */}
-          <motion.div
-            className="md:w-1/2 mb-8 md:mb-0 md:mr-8"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ type: 'spring', stiffness: 120, delay: 0.2 }}
-          >
-            <img
-              src="https://picsum.photos/200/200"
-              alt="Not Found Illustration"
-              width={400}
-              height={400}
-              className="rounded-lg"
-            />
-          </motion.div>
-
+          <div className="relative h-64 lg:h-auto w-full lg:w-1/2">
+              <motion.div
+                className="absolute inset-0 flex justify-center items-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+              >
+                <motion.div
+                  className="bg-yellow-300 w-72 h-48 transform rotate-6"
+                  initial={{ opacity: 0, rotate: 0 }}
+                  animate={{ opacity: 1, rotate: 6 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="bg-purple-400 w-52 h-52 absolute top-1 right-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 1, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="bg-red-500 w-32 h-32 absolute bottom-4 left-4"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 1, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="bg-green-500 w-40 h-40 absolute bottom-0 right-9"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 1, ease: "easeInOut" }}
+                />
+              </motion.div>
+            </div>
+          
           {/* Right side content */}
           <div className="md:w-1/2">
             <motion.h1
