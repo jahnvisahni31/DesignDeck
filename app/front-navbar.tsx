@@ -15,7 +15,7 @@ import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im"
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import Link from "next/link";
-import Logo from "@/public/assets/design-deck-logo.png";
+import Logo from "@/app/images/design-deck-logo.png";
 import Image from 'next/image';
 
 interface NavbarComponentProps {
@@ -207,14 +207,15 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
     return (
         <div className={`fixed top-0 left-0 right-0 z-50 ${darkMode ? "text-white" : "text-black"}`}>
             <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className="bg-neutral-900 text-white">
-
             <NavbarContent justify="start">
                     {!isMobile && (
                          <NavbarBrand className="flex basis-0 flex-row flex-grow flex-nowrap justify-start bg-transparent" style={{ marginLeft: '-50px' }}>
                             <Image className="transition duration-300 ease-in-out" 
                             src={Logo.src} 
                             alt="DesignDeck Logo"  
-                            style={{ width: '276px', height: '64px', marginLeft: '0', marginRight: '10px', background: 'none' }}  /> 
+                            width={276}
+                            height={64}
+                            style={{ marginLeft: '0', marginRight: '10px', background: 'none' }}  /> 
                             {/* Increased height and removed background */}
                          </NavbarBrand>
                     )}
