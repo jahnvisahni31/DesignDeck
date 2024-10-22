@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { useTheme } from "next-themes";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import NavbarComponent from "../front-navbar";
 
 const faqs = [
@@ -57,6 +57,7 @@ const FAQ = () => {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === "dark" ? systemTheme : theme;
   const [darkMode, setDarkMode] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     setDarkMode(currentTheme === 'dark');
@@ -65,6 +66,12 @@ const FAQ = () => {
   const toggleFAQ = (index: number) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
+
+  // Filter FAQs based on search term
+  const filteredFaqs = faqs.filter((faq) =>
+    faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div
@@ -96,50 +103,70 @@ const FAQ = () => {
         >
           Frequently Asked Questions
         </h1>
+
+        {/* Search Bar */}
+        <div className="mb-8 text-center">
+          <input
+            type="text"
+            placeholder="Search FAQs..."
+            className={`w-full max-w-lg p-3 rounded-md transition-colors duration-300 ${
+              darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"
+            }`}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         <div className="space-y-6 max-w-3xl mx-auto">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`p-4 rounded-lg transition duration-300 cursor-pointer shadow-md ${
-                darkMode
-                  ? "bg-gray-800 hover:bg-gray-700"
-                  : "bg-gray-100 hover:bg-gray-200"
-              }`}
-              onClick={() => toggleFAQ(index)}
-            >
-              <div className="flex justify-between items-center">
-                <h2
-                  className={`font-semibold text-lg transition-colors duration-300 ${
-                    activeIndex === index
-                      ? darkMode
-                        ? "text-white"
-                        : "text-gray-800"
-                      : darkMode
-                      ? "text-gray-400"
-                      : "text-gray-600"
-                  }`}
-                >
-                  {faq.question}
-                </h2>
-                <span
-                  className={`transition-transform duration-300 ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
-                  } ${activeIndex === index ? "rotate-180" : "rotate-0"}`}
-                >
-                  ▼
-                </span>
+          {filteredFaqs.length > 0 ? (
+            filteredFaqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`p-4 rounded-lg transition duration-300 cursor-pointer shadow-md ${
+                  darkMode
+                    ? "bg-gray-800 hover:bg-gray-700"
+                    : "bg-gray-100 hover:bg-gray-200"
+                }`}
+                onClick={() => toggleFAQ(index)}
+              >
+                <div className="flex justify-between items-center">
+                  <h2
+                    className={`font-semibold text-lg transition-colors duration-300 ${
+                      activeIndex === index
+                        ? darkMode
+                          ? "text-white"
+                          : "text-gray-800"
+                        : darkMode
+                        ? "text-gray-400"
+                        : "text-gray-600"
+                    }`}
+                  >
+                    {faq.question}
+                  </h2>
+                  <span
+                    className={`transition-transform duration-300 ${
+                      darkMode ? "text-gray-400" : "text-gray-600"
+                    } ${activeIndex === index ? "rotate-180" : "rotate-0"}`}
+                  >
+                    ▼
+                  </span>
+                </div>
+                {activeIndex === index && (
+                  <p
+                    className={`mt-4 transition-all duration-300 ${
+                      darkMode ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {faq.answer}
+                  </p>
+                )}
               </div>
-              {activeIndex === index && (
-                <p
-                  className={`mt-4 transition-all duration-300 ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  {faq.answer}
-                </p>
-              )}
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className={`text-center ${darkMode ? "text-white" : "text-black"}`}>
+              No FAQs match your search.
+            </p>
+          )}
         </div>
       </div>
     </div>
