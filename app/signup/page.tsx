@@ -1,6 +1,8 @@
 "use client"
+import { User, useUser } from '@/context/UserContext';
 import { Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FC, useState, FormEvent } from 'react';
 
 const SignupPage: FC = () => {
@@ -11,9 +13,38 @@ const SignupPage: FC = () => {
   const [hidden, setHidden] = useState(true);
   const [confHidden, setConfHidden] = useState(true);
 
-  const handleSubmit = (e: FormEvent) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     // Handle form submission logic here
+    const data = {
+      username: username,
+      email: email,
+      password: password
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/signup", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+  
+      const result = await response.json();
+
+      console.log('Success:', result);
+      router.push("/login");
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (

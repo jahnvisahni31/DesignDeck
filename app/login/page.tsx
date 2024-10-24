@@ -1,7 +1,10 @@
 "use client"
+import { useUser } from '@/context/UserContext';
 import { Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
-import { FC, useState, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { FC, useState, FormEvent, useEffect } from 'react';
+import { User } from '@/context/UserContext';
 
 const LoginPage: FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -9,9 +12,47 @@ const LoginPage: FC = () => {
   const [password, setPassword] = useState<string>('');
   const [hidden, setHidden] = useState(true);
 
-  const handleSubmit = (e: FormEvent) => {
+  const { user, setUser, loggedIn, setLoggedIn } = useUser();
+
+  const router = useRouter()
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
+    const data = {
+      username: username,
+      email: email,
+      password: password
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/signin", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      const userData: User = {
+        id: result.data.id,
+        username: result.data.username
+      }
+
+      setUser(userData);
+      setLoggedIn(true);
+      console.log('Success:', result);
+      router.push("/");
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
   };
 
   return (

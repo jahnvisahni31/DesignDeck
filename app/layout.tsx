@@ -4,6 +4,7 @@ import "./globals.css";
 import { Room } from "./Room";
 import ThemeProvider from "./provider";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import { UserProvider } from "@/context/UserContext";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -29,7 +30,9 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
         >
-        <Room>{children}</Room>
+          <UserProvider>
+            <Room>{children}</Room>
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>

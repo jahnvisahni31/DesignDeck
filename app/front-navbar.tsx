@@ -19,6 +19,7 @@ import { ChevronDown } from "@/public/assets/ChevronDown";
 import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im";
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import { useUser } from "@/context/UserContext";
 
 // Define props interface
 interface NavbarComponentProps {
@@ -50,6 +51,20 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
     const currentTheme = theme === "dark" ? systemTheme : theme;
     const [darkMode, setDarkMode] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const { user, setUser, loggedIn, setLoggedIn } = useUser();
+
+    const logout = async()=>{
+        const response = await fetch("http://localhost:3000/api/logout", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+        });
+
+        setUser(null);
+        setLoggedIn(false);
+    }
+    
 
     useEffect(() => {
         setDarkMode(currentTheme === 'dark');
@@ -106,7 +121,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                 </NavbarContent>
 
                 <NavbarContent justify="end">
-                    {!isLoggedIn && (
+                    {!loggedIn ? (
                         <>
                             <NavbarItem>
                                 <Link href="/login">Login</Link>
@@ -115,6 +130,15 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                                 <Button as={Link} href="/signup">
                                     Sign Up
                                 </Button>
+                            </NavbarItem>
+                        </>
+                    ) : (
+                        <>
+                            {user?.username}
+                            <NavbarItem>
+                                <button onClick={logout} className="px-2 py-1 bg-red-500 text-white rounded-lg">
+                                    logout
+                                </button>
                             </NavbarItem>
                         </>
                     )}
