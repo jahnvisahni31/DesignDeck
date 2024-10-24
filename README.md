@@ -180,4 +180,4 @@ For any questions or support, please reach out to [Jahnvisahni98@gmail.com](mail
 
 ## Licence 💵
 
-This repository is protected under MIT refer to [MIT License](https://github.com/jahnvisahni31/DesignDeck/blob/main/LICENSE) for more details.
+This repository is protected under MIT License for more deatils refer to [MIT License](https://github.com/jahnvisahni31/DesignDeck/blob/main/LICENSE) for more details.
