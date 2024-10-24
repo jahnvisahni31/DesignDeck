@@ -5,7 +5,7 @@ import { Room } from "./Room";
 import ThemeProvider from "./provider";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import { UserProvider } from "@/context/UserContext";
-
+import AnimatedCursor from "react-animated-cursor";
 const workSans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-work-sans",
@@ -25,14 +25,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${workSans.className} bg-dark`}>
-      <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
+          disableTransitionOnChange
         >
           <UserProvider>
-            <Room>{children}</Room>
-          </UserProvider>
+          <AnimatedCursor
+            innerSize={8}
+            outerSize={35}
+            innerScale={1}
+            outerScale={2}
+            outerAlpha={0}
+            hasBlendMode={true}
+            innerStyle={{
+              backgroundColor: "var(--cursor-color)",
+            }}
+            outerStyle={{
+              border: "3px solid var(--cursor-color)",
+            }}
+          />
+          <Room>{children}</Room>
+            </UserProvider>
         </ThemeProvider>
       </body>
     </html>
