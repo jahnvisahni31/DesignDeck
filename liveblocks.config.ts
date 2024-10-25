@@ -3,13 +3,15 @@ import { createRoomContext } from "@liveblocks/react";
 import { ReactionEvent } from "./types/type";
 
 // Ensure publicApiKey is properly retrieved from the environment
+// ex, NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=your_api_key
+//No need to name the env file (in the root directory) just .env will work
 if (!process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY) {
   throw new Error("NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY is not defined.");
 }
 
 const client = createClient({
   throttle: 16, // Keep this setting to control the frequency of updates.
-  publicApiKey: process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY, // Public key must be used here.
+  publicApiKey: "pk_dev_a2dfePJpR38agCwN3onDSzLADWtRVRixe4m0gWxzd4ieEVEOmvCIrNYcYQT_26pC", // Public key must be used here.
   
   // Uncomment if using a custom auth backend
   // authEndpoint: "/api/liveblocks-auth",

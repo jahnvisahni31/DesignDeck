@@ -177,3 +177,7 @@ For any questions or support, please reach out to [Jahnvisahni98@gmail.com](mail
         <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
     </a>
 </div>
+
+## Licence 💵
+
+This repository is protected under MIT License for more deatils refer to [MIT License](https://github.com/jahnvisahni31/DesignDeck/blob/main/LICENSE) for more details.
