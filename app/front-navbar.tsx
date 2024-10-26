@@ -82,6 +82,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                         </NavbarBrand>
                     )}
                 </NavbarContent>
+                <Navbar/>
 
                 <NavbarContent justify="center" className="space-x-10">
                     <NavbarItem  className="flex items-center ">
