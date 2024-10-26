@@ -54,8 +54,9 @@ const menuItems = [
     { name: "Help & Feedback", href: "/help" },
     { name: "Log Out", href: "/logout" },
 ];
-
+ 
 const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenuOpen, isMenuOpen }) => {
+
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === "dark" ? systemTheme : theme;
   const [darkMode, setDarkMode] = useState(false);
@@ -222,6 +223,8 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
           </Navbar>
       </div>
   );
+
 };
 
 export default NavbarComponent;
+ 
