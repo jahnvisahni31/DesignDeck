@@ -1,3 +1,5 @@
+// NavbarComponent.tsx
+"use client"
 import React, { useEffect, useState } from "react";
 import {
   Navbar,
@@ -24,13 +26,14 @@ import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import { useUser } from "@/context/UserContext";
 import Link from "next/link";
-import Logo from "@/app/images/design-deck-logo.png";
-import Image from "next/image";
+import Logo from "@/public/assets/design-deck-logo.png";
+import Image from 'next/image';
 
+// Define props interface
 interface NavbarComponentProps {
-  isLoggedIn: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isMenuOpen: boolean;
+    isLoggedIn: boolean;
+    setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isMenuOpen: boolean;
 }
 
 const icons = {
@@ -39,19 +42,17 @@ const icons = {
   dev: <ImDeviantart />,
   slide: <ImNewspaper />,
   download: <ImDownload />,
+
 };
 
 const menuItems = [
-  { name: "Home", href: "/" },
-  { name: "Contact", href: "/contact" },
-  { name: "FAQ", href: "/faq" },
-  { name: "Profile", href: "/profile" },
-  { name: "Dashboard", href: "/dashboard" },
-  { name: "WorkSpace", href: "/workspace" },
-  { name: "System", href: "/system" },
-  { name: "My Settings", href: "/settings" },
-  { name: "Help & Feedback", href: "/help" },
-  { name: "Log Out", href: "/logout" },
+    { name: "Profile", href: "/profile" },
+    { name: "Dashboard", href: "/dashboard" },
+    { name: "WorkSpace", href: "/workspace" },
+    { name: "System", href: "/system" },
+    { name: "My Settings", href: "/settings" },
+    { name: "Help & Feedback", href: "/help" },
+    { name: "Log Out", href: "/logout" },
 ];
 
 const NavbarComponent: React.FC<NavbarComponentProps> = ({
