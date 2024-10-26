@@ -11,10 +11,10 @@ const workSans = Work_Sans({
   weight: ["400", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "DesignDeck",
-  description: "A DesignDeck built with Liveblocks and Next.js",
-};
+// export const metadata: Metadata = {
+//   title: "DesignDeck",
+//   description: "A DesignDeck built with Liveblocks and Next.js",
+// };
 
 export default function RootLayout({
   children,
