@@ -68,7 +68,8 @@ export default function App() {
 
   useEffect(() => {
     setDarkMode(currentTheme === "dark");
-  }, [currentTheme]);
+}, [currentTheme]);
+
 
   return (
     <>

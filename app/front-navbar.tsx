@@ -55,7 +55,7 @@ export default function NavbarComponent({ isLoggedIn, setIsMenuOpen, isMenuOpen 
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }  )};
 
   return (
     <Navbar isBordered className="bg-background">
