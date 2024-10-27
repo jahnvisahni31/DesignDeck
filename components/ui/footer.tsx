@@ -7,7 +7,7 @@ import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { LuBookMinus } from 'react-icons/lu';
 import { GrBusinessService } from "react-icons/gr";
 import { FaBusinessTime } from "react-icons/fa";
-
+import GoogleTranslator from './GoogleTranslator'
 
 
 const Footer = () => {
@@ -17,8 +17,8 @@ const Footer = () => {
         <div>
           <h2 className="text-xl font-semibold mb-4">DesignDesk</h2>
           <p className="text-gray-400 mb-4">
-  DesignDesk is a collaborative web application for <span className="hidden md:inline">interface design,</span> <span className="md:hidden">interface</span> design, with real-time collaboration features.
-</p>
+            DesignDesk is a collaborative web application for <span className="hidden md:inline">interface design,</span> <span className="md:hidden">interface</span> design, with real-time collaboration features.
+          </p>
           <div className="flex space-x-4">
             <Link href="https://twitter.com/figmak" target="_blank" rel="noopener noreferrer">
               <div className="text-gray-400 hover:text-white">
@@ -35,6 +35,9 @@ const Footer = () => {
                 <FaLinkedin size={24} />
               </div>
             </Link>
+            <div>
+              <GoogleTranslator />
+            </div>
           </div>
         </div>
 
@@ -106,21 +109,21 @@ const Footer = () => {
             <li>
               <Link href="/blogs">
                 <div className="flex items-center text-gray-400 hover:text-white">
-                  <LuBookMinus  className="mr-2" size={20} />
+                  <LuBookMinus className="mr-2" size={20} />
                   Blog
                 </div>
               </Link>
             </li>
           </ul>
         </div>
-      {/* Legal */}
-      <div>
+        {/* Legal */}
+        <div>
           <h2 className="text-xl font-semibold mb-4">Legal</h2>
           <ul className="space-y-2">
             <li>
-            <Link href="/terms_of_use">
+              <Link href="/terms_of_use">
                 <div className="flex items-center text-gray-400 hover:text-white">
-                <FaFileAlt className="mr-2" size={20} />
+                  <FaFileAlt className="mr-2" size={20} />
                   Terms of Use
                 </div>
               </Link>
@@ -128,7 +131,7 @@ const Footer = () => {
             <li>
               <Link href="/privacy_policy">
                 <div className="flex items-center text-gray-400 hover:text-white">
-                <MdArticle className="mr-2" size={20} />
+                  <MdArticle className="mr-2" size={20} />
                   Privacy Policy
                 </div>
               </Link>
