@@ -1,149 +1,133 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import NavbarComponent from "../front-navbar";
+'use client'
+import React, { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import { ChevronDown, ChevronRight, Mail, Palette, Users, Zap, MousePointer2 } from 'lucide-react';
+import NavbarComponent from '../front-navbar';
 
-const faqs = [
+interface FAQ {
+  question: string;
+  answer: string;
+  icon: React.ReactNode;
+}
+
+const faqs: FAQ[] = [
   {
-    question: "What is DesignDeck?",
-    answer:
-      "DesignDeck is a web-based collaborative design tool, similar to Figma, built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API. It allows teams to seamlessly collaborate on designing interfaces in real-time.",
+    question: "What makes DesignDeck different from other design tools?",
+    answer: "DesignDeck combines the power of real-time collaboration with advanced design capabilities. Using LiveBlocks API and Fabric.js, multiple team members can work simultaneously on the same canvas, seeing changes instantly while maintaining smooth performance.",
+    icon: <Users className="w-5 h-5 text-blue-500" />
   },
   {
-    question: "How do I get started with DesignDeck?",
-    answer:
-      "To get started, clone the repository from GitHub, install the dependencies, and run the project locally using npm. The full guide is available in the README.md file.",
+    question: "How does the real-time collaboration work?",
+    answer: "Our platform utilizes LiveBlocks API to enable seamless real-time collaboration. Team members can see each other's cursor movements, changes, and annotations instantly, making remote design work feel like you're in the same room.",
+    icon: <MousePointer2 className="w-5 h-5 text-green-500" />
   },
   {
-    question: "What features does DesignDeck offer?",
-    answer:
-      "DesignDeck offers live collaboration, shape manipulation, free drawing, text addition, export to PDF, and many more features to help you design interfaces collaboratively.",
+    question: "What kind of design tools and features are available?",
+    answer: "DesignDeck offers a comprehensive suite of design tools including vector editing, component libraries, responsive design testing, and custom asset management. With Fabric.js integration, you get powerful canvas manipulation capabilities.",
+    icon: <Palette className="w-5 h-5 text-purple-500" />
   },
   {
-    question: "How can I contribute to DesignDeck?",
-    answer:
-      "You can contribute by forking the repository, creating a new branch, making your changes, and submitting a pull request. Contributions are always welcome!",
-  },
-  {
-    question: "Is DesignDeck open source?",
-    answer:
-      "Yes, DesignDeck is an open-source project, and we encourage contributions from the community.",
-  },
-  {
-    question: "Does DesignDeck support real-time collaboration?",
-    answer:
-      "Yes, with the LiveBlocks API integrated into DesignDeck, multiple users can collaborate in real-time. You can see live updates of cursor positions and design changes as they happen.",
-  },
-  {
-    question: "What technologies power DesignDeck?",
-    answer:
-      "DesignDeck is built using Next.js, TypeScript, Tailwind CSS, and LiveBlocks API for real-time collaboration, along with Fabric.js for manipulating graphics and interactive content.",
-  },
-  {
-    question: "How can I export my designs in DesignDeck?",
-    answer:
-      "DesignDeck allows you to export designs to PDF format. Simply select the elements you want to export and use the export option to generate a downloadable PDF.",
-  },
-  {
-    question: "Are there keyboard shortcuts available in DesignDeck?",
-    answer:
-      "Currently, DesignDeck does not support keyboard shortcuts. The feature is under development. Once prepared, users will be able to perform faster design operations, such as Undo (Ctrl+Z), Redo (Ctrl+Y), and copy-pasting elements.",
-  },
+    question: "How does the performance handle complex designs?",
+    answer: "Built with Next.js and optimized rendering techniques, DesignDeck maintains smooth performance even with complex designs and multiple collaborators. Our architecture ensures minimal latency and maximum responsiveness.",
+    icon: <Zap className="w-5 h-5 text-yellow-500" />
+  }
 ];
 
-const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const { systemTheme, theme } = useTheme();
-  const currentTheme = theme === "dark" ? systemTheme : theme;
-  const [darkMode, setDarkMode] = useState(false);
+const FAQSection: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { theme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    setDarkMode(currentTheme === 'dark');
-  }, [currentTheme]);
-
-  const toggleFAQ = (index: number) => {
-    setActiveIndex(index === activeIndex ? null : index);
+  const toggleFAQ = (index: number): void => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div
-      className={`min-h-screen ${
-        darkMode
-          ? "bg-black text-white"
-          : "bg-gradient-to-r from-gray-300 via-white to-gray-200 text-black"
-      } font-sans`}
-    >
-      <NavbarComponent />
-      <div className="container mx-auto p-6">
-        <div className="text-left mb-6">
-          <Link href="/">
-            <button
-              className={`px-4 py-2 rounded transition duration-300 ${
-                darkMode
-                  ? "bg-blue-900 text-white hover:bg-blue-800"
-                  : "bg-blue-200 text-black hover:bg-blue-300"
-              }`}
-            >
-              Home
-            </button>
-          </Link>
-        </div>
-        <h1
-          className={`text-4xl font-bold mb-8 text-center transition-colors duration-300 ${
-            darkMode ? "text-white" : "text-gray-800"
-          }`}
-        >
-          Frequently Asked Questions
-        </h1>
-        <div className="space-y-6 max-w-3xl mx-auto">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`p-4 rounded-lg transition duration-300 cursor-pointer shadow-md ${
-                darkMode
-                  ? "bg-gray-800 hover:bg-gray-700"
-                  : "bg-gray-100 hover:bg-gray-200"
-              }`}
-              onClick={() => toggleFAQ(index)}
-            >
-              <div className="flex justify-between items-center">
-                <h2
-                  className={`font-semibold text-lg transition-colors duration-300 ${
-                    activeIndex === index
-                      ? darkMode
-                        ? "text-white"
-                        : "text-gray-800"
-                      : darkMode
-                      ? "text-gray-400"
-                      : "text-gray-600"
-                  }`}
-                >
-                  {faq.question}
-                </h2>
-                <span
-                  className={`transition-transform duration-300 ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
-                  } ${activeIndex === index ? "rotate-180" : "rotate-0"}`}
-                >
-                  ▼
-                </span>
+    <>
+      <NavbarComponent
+        isLoggedIn={isLoggedIn}
+        setIsMenuOpen={setIsMenuOpen}
+        isMenuOpen={isMenuOpen}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header Section */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
+              Frequently Asked Questions
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Everything you need to know about DesignDeck's collaborative design platform
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Section - Contact Info */}
+            <div className="lg:col-span-1">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105">
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    Need More Help?
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Our team is here to help you get the most out of DesignDeck's collaborative design features.
+                  </p>
+                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center space-x-3">
+                      <Mail className="w-5 h-5 text-blue-500" />
+                      <a href="mailto:support@designdeck.com" 
+                         className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
+                        support@designdeck.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              {activeIndex === index && (
-                <p
-                  className={`mt-4 transition-all duration-300 ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  {faq.answer}
-                </p>
-              )}
             </div>
-          ))}
+
+            {/* Right Section - FAQs */}
+            <div className="lg:col-span-2 space-y-4">
+              {faqs.map((faq: FAQ, index: number) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl"
+                >
+                  <button
+                    className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                    onClick={() => toggleFAQ(index)}
+                    type="button"
+                  >
+                    <div className="flex items-center space-x-3">
+                      {faq.icon}
+                      <span className="font-semibold text-gray-900 dark:text-white">
+                        {faq.question}
+                      </span>
+                    </div>
+                    <div className="transform transition-transform duration-200">
+                      {openIndex === index ? 
+                        <ChevronDown className="w-5 h-5 text-gray-500 dark:text-gray-400" /> : 
+                        <ChevronRight className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                      }
+                    </div>
+                  </button>
+                  <div
+                    className={`transition-all duration-300 ease-in-out ${
+                      openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    } overflow-hidden`}
+                  >
+                    <div className="px-6 py-4 bg-gray-50 dark:bg-gray-700">
+                      <p className="text-gray-600 dark:text-gray-300">{faq.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default FAQ;
+export default FAQSection;
