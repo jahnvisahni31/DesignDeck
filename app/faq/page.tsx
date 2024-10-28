@@ -100,7 +100,7 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`p-4 rounded-lg transition duration-300 cursor-pointer shadow-md ${
+              className={`p-4 rounded-lg transition duration-300 cursor-pointer shadow-md transform hover:scale-105 ${
                 darkMode
                   ? "bg-gray-800 hover:bg-gray-700"
                   : "bg-gray-100 hover:bg-gray-200"
