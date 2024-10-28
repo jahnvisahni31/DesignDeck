@@ -51,7 +51,7 @@ function RightSideBar({
 
   return (
     <div className={`${darkMode ? "border-primary-grey-200 bg-primary-black text-primary-grey-300" : " bg-white text-black"}`}>
-      <section className="flex flex-col border-t  min-w-[227px] sticky right-0 h-full max-sm:hidden select-none">
+      <section className="flex flex-col border-t  min-w-[227px] sticky right-0 h-full max-sm:hidden select-none overflow-y-auto pb-24 will-change-scroll">
       <h3 className="px-5 pt-4 text-xs uppercase">Design</h3>
       <span className={`text-xs mt-3 px-5 border-b  pb-4 ${darkMode ? "text-primary-grey-300 border-primary-grey-200" : "text-black bg-white"}`}>
         Makes changes to canvas as you like
