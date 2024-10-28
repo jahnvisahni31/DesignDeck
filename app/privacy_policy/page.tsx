@@ -1,210 +1,161 @@
-import Link from 'next/link';
-import React from "react";
+"use client";
 
-const PrivacyPolicy: React.FC = () => {
+import React, { useEffect, useState } from "react";
+import RootLayout from "@/app/layout";
+import NavbarComponent from "../front-navbar";
+import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
+
+const PrivacyPolicy = () => {
+  const { systemTheme, theme } = useTheme();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const currentTheme = theme === "system" ? systemTheme : theme;
+    setDarkMode(currentTheme === "dark");
+  }, [theme, systemTheme]);
+
   return (
-    <div style={{
-      minHeight: "100vh",
-      backgroundColor: "#f0f0f0",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "2rem",
-    }}>
-      <div style={{
-        backgroundColor: "#fff",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-        maxWidth: "800px",
-        width: "100%",
-        padding: "2rem",
-      }}>
-        <h1 style={{
-          fontSize: "2rem",
-          fontWeight: "700",
-          marginBottom: "1rem",
-          borderBottom: "2px solid #4CAF50",
-          paddingBottom: "0.5rem",
-          textAlign: "center",
-          color: "black"
-        }}>
-          Privacy Policy
-        </h1>
-        <p style={{
-          lineHeight: "1.6",
-          marginBottom: "1rem",
-          textAlign: "center",
-          color: "black",
-        }}>
-          Effective Date: [Insert Date]
-        </p>
+    <RootLayout>
+      <NavbarComponent />
+      <div
+        style={{ marginTop: "2rem" }}
+        className={`min-h-screen ${
+          darkMode
+            ? "bg-black text-white"
+            : "bg-gradient-to-r from-gray-100 via-white to-gray-300 text-black"
+        } py-8`}
+      >
+        <div
+          style={{
+            marginTop: "2rem",
+            padding: "2rem",
+            maxWidth: "800px",
+            margin: "2rem auto",
+            borderRadius: "8px",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+            backgroundColor: darkMode ? "#2E3440" : "#F9FAFB",
+            color: darkMode ? "#D8DEE9" : "#111827",
+            backdropFilter: "blur(10px)",
+          }}
+        >
+          <motion.h1
+            style={{
+              fontSize: "2.5rem",
+              fontWeight: "700",
+              marginBottom: "1.5rem",
+              borderBottom: `2px solid ${darkMode ? "#88C0D0" : "#3B82F6"}`,
+              paddingBottom: "0.5rem",
+              textAlign: "center",
+              color: darkMode ? "#88C0D0" : "#3B82F6",
+            }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Privacy Policy
+          </motion.h1>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> Information We Collect</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            We collect different types of information to improve our services and provide a better user experience.
-          </p>
-          <ul style={{ listStyleType: "disc", paddingLeft: "1.5rem", color: "black" }}>
-            <li style={{ color: "black" }}>Personal Information: name, email address, username, IP address</li>
-            <li style={{ color: "black" }}>Usage Data: browser type, pages viewed, time spent on pages, etc.</li>
-            <li style={{ color: "black" }}>Cookies and Tracking Technologies: We use cookies to monitor activity and improve functionality.</li>
-          </ul>
-        </section>
+          <motion.p
+            style={{ lineHeight: "1.8", marginBottom: "1.5rem" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            Effective Date: [Insert Date]
+          </motion.p>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> How We Use Your Information</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            The information we collect is used in various ways to enhance our services, including:
-          </p>
-          <ul style={{ listStyleType: "disc", paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
-            <li style={{ color: "black" }}>Real-time collaboration using the LiveBlocks API</li>
-            <li style={{ color: "black" }}>Sending notifications and updates</li>
-            <li style={{ color: "black" }}>Monitoring website traffic and functionality</li>
-            <li style={{ color: "black" }}>Detecting and preventing security incidents</li>
-          </ul>
-        </section>
+          <Section title="Information We Collect" darkMode={darkMode}>
+            We collect various types of information to enhance your experience on our platform. The data we collect helps improve our services, provide personalized experiences, and ensure smooth functionality. The information includes:
+            <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
+              <li><strong>Personal Information:</strong> Your name, email address, username, and IP address.</li>
+              <li><strong>Usage Data:</strong> Information about your browser type, pages visited, time spent on pages, and other interactions.</li>
+              <li><strong>Cookies and Tracking Technologies:</strong> Used to track user behavior and improve performance.</li>
+            </ul>
+          </Section>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> Sharing Your Information</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            We do not sell or rent your personal information. However, we may share your data with third-party services like LiveBlocks API for real-time collaboration, or as required by law.
-          </p>
-        </section>
+          <Section title="How We Use Your Information" darkMode={darkMode}>
+            Your data is utilized to improve your experience, keep the site functional, and ensure smooth operation. Some of the ways we use your information are:
+            <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
+              <li>Providing real-time collaboration through LiveBlocks API.</li>
+              <li>Sending important notifications and updates to keep you informed.</li>
+              <li>Monitoring website traffic and overall site performance.</li>
+              <li>Ensuring the security and integrity of our platform by preventing and detecting potential security threats.</li>
+            </ul>
+          </Section>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> Cookies and Tracking Technologies</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            We use cookies to personalize your experience. You can disable cookies in your browser settings, but this may affect site functionality.
-          </p>
-        </section>
+          <Section title="Sharing Your Information" darkMode={darkMode}>
+            We do not sell or rent your personal data. However, we may share your information with trusted third parties, such as LiveBlocks API or legal authorities, if required by law.
+            <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
+              <li>Third-party services involved in the site's functionality may have limited access to your information.</li>
+              <li>Legal compliance requires us to disclose your data when necessary.</li>
+            </ul>
+          </Section>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> Data Security</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            We take appropriate measures to protect your personal data from unauthorized access and disclosure. However, no method of internet transmission is completely secure.
-          </p>
-        </section>
+          <Section title="Cookies and Tracking Technologies" darkMode={darkMode}>
+            Cookies are used to personalize your browsing experience. By using our services, you agree to the use of cookies, but you can manage or disable them in your browser settings:
+            <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
+              <li>Cookies help us understand how you interact with our services.</li>
+              <li>Disabling cookies may affect your experience on our platform.</li>
+            </ul>
+          </Section>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> External Links</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            Our website may contain links to third-party sites. We are not responsible for their privacy practices, so we encourage you to review their privacy policies.
-          </p>
-        </section>
+          <Section title="Data Security" darkMode={darkMode}>
+            We take extensive measures to secure your data, but no method of data transmission is entirely secure. We aim to protect your information from unauthorized access or breaches.
+            <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
+              <li>We use encryption and security protocols to safeguard your data.</li>
+              <li>Despite our efforts, there is no guaranteed method of ensuring absolute security.</li>
+            </ul>
+          </Section>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> User Rights</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            You may have rights regarding your personal data, including access, correction, and deletion. To exercise these rights, please contact us.
-          </p>
-        </section>
+          <Section title="External Links" darkMode={darkMode}>
+            Our site may include links to third-party websites. We are not responsible for the privacy practices of these external sites, and we encourage you to review their policies before providing personal data.
+          </Section>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> International Users</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            If you are accessing DesignDeck from outside our server’s location, your data may be transferred to countries with different data protection laws.
-          </p>
-        </section>
+          <Section title="User Rights" darkMode={darkMode}>
+            You have several rights regarding the personal data we collect. You can request access to, correction of, or deletion of your information. Contact us if you wish to exercise these rights.
+            <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
+              <li>Right to Access: Request a copy of your personal data.</li>
+              <li>Right to Correction: Update any incorrect or incomplete data.</li>
+              <li>Right to Deletion: Request the removal of your personal data from our systems.</li>
+            </ul>
+          </Section>
 
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> Children’s Privacy</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            We do not knowingly collect data from children under 13. If we become aware of such data being collected without parental consent, we will delete it promptly.
-          </p>
-        </section>
-
-        <section style={{ marginBottom: "1rem" }}>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> Changes to This Privacy Policy</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            We may update this policy from time to time. Any changes will be posted on this page with an updated effective date.
-          </p>
-        </section>
-
-        <section>
-          <h2 style={{
-            fontSize: "1.5rem",
-            fontWeight: "600",
-            marginBottom: "1rem",
-            color: "#4CAF50",
-          }}> Contact Us</h2>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            If you have any questions or concerns about this Privacy Policy, please contact us at:
-          </p>
-          <p style={{ lineHeight: "1.6", marginBottom: "1rem", color: "black" }}>
-            <strong>Email:</strong> Jahnvisahni98@gmail.com <br />
-            <strong>Contact Page:</strong> <Link href="/contact" style={{ color: "#4CAF50", textDecoration: "underline" }}>Contact us</Link>
-          </p>
-        </section>
-         <div style={{ textAlign: "left", marginTop: "2rem" }}>
-          <Link href="/">
-            <button style={{
-              padding: "0.5rem 1rem",
-              backgroundColor: "#4CAF50",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              transition: "background-color 0.3s ease",
-            }}>
-              Home
-            </button>
-          </Link>
+          <Section title="International Users" darkMode={darkMode}>
+            Our services are accessible globally, and by using them, you agree to the transfer and processing of your data internationally. Please ensure that you understand your local laws regarding data privacy.
+          </Section>
         </div>
       </div>
-      
-    </div>
+    </RootLayout>
   );
 };
+
+function Section({ title, children, darkMode }) {
+  return (
+    <>
+      <motion.h2
+        style={{
+          fontSize: "1.75rem",
+          fontWeight: "600",
+          marginBottom: "1rem",
+          color: darkMode ? "#88C0D0" : "#3B82F6",
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {title}
+      </motion.h2>
+      <motion.p
+        style={{ lineHeight: "1.8", marginBottom: "1.5rem" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.5 }}
+      >
+        {children}
+      </motion.p>
+    </>
+  );
+}
 
 export default PrivacyPolicy;
