@@ -67,7 +67,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center justify-between px-20 py-0 md:my-40 my-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between px-20 py-0 md:my-40 my-0 pt-[85px] lg:pt-0">
           <div className="max-w-xl mb-10 lg:mb-0">
             <motion.h1 className="text-7xl font-medium leading-tight mb-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
               <span>Think bigger.</span><br /><span>Build faster.</span>
