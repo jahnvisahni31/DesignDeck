@@ -26,7 +26,6 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
  
-
   const icons = {
     chevron: <ChevronDown fill="currentColor" size={16} className="some-class-name" height={undefined} width={undefined} />,
     hammer: <ImHammer />,

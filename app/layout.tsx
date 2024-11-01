@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
@@ -6,6 +8,7 @@ import ThemeProvider from "./provider";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import { UserProvider } from "@/context/UserContext";
 import AnimatedCursor from "react-animated-cursor";
+import { useEffect } from 'react';
 const workSans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-work-sans",
@@ -22,6 +25,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('ServiceWorker registration successful:', registration);
+          })
+          .catch((err) => {
+            console.log('ServiceWorker registration failed:', err);
+          });
+      });
+    }
+  }, []);
+
   return (
     <html lang="en">
       <body className={`${workSans.className} bg-dark`}>
