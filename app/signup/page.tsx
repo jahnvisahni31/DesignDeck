@@ -119,6 +119,8 @@ const SignupPage: FC = () => {
                 </button>
             </div>
           </div>
+          <button className='p-2 w-full bg-red-600 text-white rounded-lg 
+          hover:bg-red-900'>Continue with Google</button>
 
           <button
             type="submit"
