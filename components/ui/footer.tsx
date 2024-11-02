@@ -114,6 +114,14 @@ const Footer = () => {
                 </div>
               </Link>
             </li>
+            <li>
+              <Link href="/contributors">
+                <div className="flex items-center text-gray-400 hover:text-white">
+                  <MdQuestionAnswer className="mr-2" size={20} />
+                  Contributors
+                </div>
+              </Link>
+            </li>
           </ul>
         </div>
         {/* Legal */}
@@ -140,8 +148,6 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-
-
       <div className="mt-4 mb-1 border-t start-0 z-21 border-gray-700 pt-3 text-center text-gray-500">
         <div>&copy; {new Date().getFullYear()} DesignDesk. All rights reserved.</div>
       </div>
