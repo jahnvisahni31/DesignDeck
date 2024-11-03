@@ -20,6 +20,8 @@ import Progressbar from "../components/progressbar/progressbar";
 import { AnimatePresence, motion } from "framer-motion";
 import Preloader from "../components/Preloader";
 import BackToTop from "../components/BackToTop/BackToTop";
+import Review from '../components/ui/review'
+
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -134,7 +136,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        
+        <Review/>
         <Footer />
       </div>
       <BackToTop />
