@@ -20,13 +20,14 @@ import Progressbar from "../components/progressbar/progressbar";
 import { AnimatePresence, motion } from "framer-motion";
 import Preloader from "../components/Preloader";
 import BackToTop from "../components/BackToTop/BackToTop";
+import Review from '../components/ui/review'
+
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
  
-
   const icons = {
     chevron: <ChevronDown fill="currentColor" size={16} className="some-class-name" height={undefined} width={undefined} />,
     hammer: <ImHammer />,
@@ -135,7 +136,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        
+        <Review/>
         <Footer />
       </div>
       <BackToTop />

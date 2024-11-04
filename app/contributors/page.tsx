@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+
 
 // Define types for the props of ContributorCard
 interface ContributorCardProps {
@@ -21,7 +23,7 @@ const ContributorCard: React.FC<ContributorCardProps> = ({
   type,
 }) => (
   <motion.div
-    whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)" }}
+    whileHover={{ scale: 1.05, boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)" }}
     transition={{ type: "spring", stiffness: 300 }}
     className="bg-white text-black rounded-lg shadow-lg border border-gray-300 overflow-hidden"
   >
@@ -179,7 +181,7 @@ export default function Contributor() {
             Project Statistics
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <StatCard 
+            <StatCard 
               label="Contributors" 
               value={contributors.length} 
               icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" viewBox="0 0 20 20" fill="#fff">
@@ -236,6 +238,22 @@ export default function Contributor() {
         </div>
       </section>
 
+        {/* Stargazers Animation Section */}      
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white justify-center">
+            <h2 className="text-3xl font-bold flex justify-center text-black mb-6">Watch Our Journey</h2>
+            <div className="flex justify-center">
+                 <Image
+                    src="/assets/main.gif"
+                    alt="loader"
+                    width={500}
+                    height={500}
+                    className="rounded-lg shadow-lg"
+                    priority
+                    unoptimized
+                />
+            </div>
+    </section>
+    
       {/* Newsletter Section */}
       <section className="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">

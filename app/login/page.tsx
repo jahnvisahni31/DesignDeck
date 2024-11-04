@@ -11,19 +11,31 @@ const LoginPage: FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [hidden, setHidden] = useState(true);
+  const [emailError, setEmailError] = useState<string | null>(null);
 
   const { user, setUser, loggedIn, setLoggedIn } = useUser();
+  const router = useRouter();
 
-  const router = useRouter()
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
+    if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    }
+
+    setEmailError(null);
+
     const data = {
       username: username,
       email: email,
       password: password
-    }
+    };
 
     try {
       const response = await fetch("http://localhost:3000/api/signin", {
@@ -33,16 +45,16 @@ const LoginPage: FC = () => {
         },
         body: JSON.stringify(data),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
-  
+
       const result = await response.json();
       const userData: User = {
         id: result.data.id,
         username: result.data.username
-      }
+      };
 
       setUser(userData);
       setLoggedIn(true);
@@ -52,7 +64,6 @@ const LoginPage: FC = () => {
     } catch (error) {
       console.error('Error:', error);
     }
-
   };
 
   return (
@@ -63,34 +74,35 @@ const LoginPage: FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium">Email</label>
-                <input
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="mt-1 w-full p-2 rounded-md bg-gray-800 border border-gray-700 focus:ring-purple-500 focus:border-purple-500"
-                />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 w-full p-2 rounded-md bg-gray-800 border border-gray-700 focus:ring-purple-500 focus:border-purple-500"
+            />
+            {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
           </div>
 
           <div>
             <label htmlFor="username" className="block text-sm font-medium">Username</label>
-                <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                className="w-full h-full p-2 rounded-md bg-gray-800 border border-gray-700 focus:ring-purple-500 focus:border-purple-500"
-                />
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="w-full h-full p-2 rounded-md bg-gray-800 border border-gray-700 focus:ring-purple-500 focus:border-purple-500"
+            />
           </div>
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium">Password</label>
             <div className="relative">
-                <input
+              <input
                 type={hidden ? "password" : "text"}
                 id="password"
                 name="password"
@@ -98,12 +110,10 @@ const LoginPage: FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full h-full p-2 rounded-md bg-gray-800 border border-gray-700 focus:ring-purple-500 focus:border-purple-500"
-                />
-                <button className="absolute right-2 top-0 h-full p-2" onClick={()=>setHidden(!hidden)}>
-                    {
-                        hidden ? <EyeOff /> : <Eye />
-                    }
-                </button>
+              />
+              <button className="absolute right-2 top-0 h-full p-2" type="button" onClick={() => setHidden(!hidden)}>
+                {hidden ? <EyeOff /> : <Eye />}
+              </button>
             </div>
           </div>
 
