@@ -1,31 +1,31 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import Logo from "@/public/assets/design-deck-logo.png";
 import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
   NavbarMenu,
-  NavbarMenuToggle,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { useTheme } from "next-themes";
+import Image from 'next/image';
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import {
   ImDeviantart,
   ImDownload,
   ImHammer,
   ImNewspaper,
 } from "react-icons/im";
-import { useTheme } from "next-themes";
-import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
-import Link from "next/link";
-import Logo from "@/public/assets/design-deck-logo.png";
-import Image from 'next/image';
 
 interface NavbarComponentProps {
   isLoggedIn: boolean;
@@ -180,7 +180,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                   href="/signup"
                   className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-lg font-medium text-white bg-gradient-to-r from-blue-400 to-purple-600 rounded-lg shadow-lg group"
                 >
-                  <span className="absolute inset-0 w-full h-full transition-transform duration-300 transform scale-x-0 bg-white group-hover:scale-x-100"></span>
+                  <span className="absolute inset-0 w-full h-full transition-transform duration-300 transform scale-x-0 bg-gradient-to-r from-red-500 to-yellow-400 group-hover:scale-x-100"></span>
                   <span className="relative z-10">Sign Up</span>
                   <svg
                     className="absolute w-5 h-5 transition-transform duration-300 transform -translate-x-10 group-hover:translate-x-0"
