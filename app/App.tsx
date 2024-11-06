@@ -1,26 +1,25 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Footer from "@/components/ui/footer";
+import { ChevronDown } from "@/public/assets/ChevronDown";
 import {
-  Navbar,
-  Link,
   Button,
-  Image,
   Card,
   CardFooter,
+  Image,
+  Link
 } from "@nextui-org/react";
-import { ChevronDown } from "@/public/assets/ChevronDown";
-import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im";
-import Footer from "@/components/ui/footer";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { ImDeviantart, ImDownload, ImHammer, ImNewspaper } from "react-icons/im";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import BackToTop from "../components/BackToTop/BackToTop";
+import Preloader from "../components/Preloader";
+import Progressbar from "../components/progressbar/progressbar";
+import Review from '../components/ui/review';
 import NavbarComponent from "./front-navbar";
 import ThemeProvider from "./provider";
-import Progressbar from "../components/progressbar/progressbar";
-import { AnimatePresence, motion } from "framer-motion";
-import Preloader from "../components/Preloader";
-import BackToTop from "../components/BackToTop/BackToTop";
-import Review from '../components/ui/review'
 
 
 export default function App() {
@@ -94,8 +93,8 @@ export default function App() {
           </div>
         </div>
 
-        <div className={`${darkMode ? "text-white" : "text-black"} py-20 mx-10`}>
-          <div className="flex justify-center text-2xl m-4 pb-14">Features</div>
+        <div className="py-20 mx-10">
+          <div className="w-auto flex justify-center font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent text-6xl m-4 pb-14">Features</div>
           <div className="max-w-8xl max-h-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               { imgSrc: "five.webp", text: "Live Collaboration", onClick: () => toast("Live Collaboration notify me") },
@@ -136,6 +135,7 @@ export default function App() {
             </div>
           </div>
         </div>
+        <div className="w-auto flex justify-center font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent text-6xl m-4 pb-8">Testimonials</div>
         <Review/>
         <Footer />
       </div>
