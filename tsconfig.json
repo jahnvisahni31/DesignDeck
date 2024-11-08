@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "ES2015",
+    "downlevelIteration": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -33,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/liveblocks-auth/route.js"
-  ],
+, "app/front-navbar.tsx"  ],
   "exclude": [
     "node_modules"
   ]

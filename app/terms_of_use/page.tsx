@@ -1,134 +1,149 @@
-import { Metadata } from "next";
-import RootLayout from "@/app/layout"; 
-import Link from "next/link"; 
+"use client";
 
-export const metadata: Metadata = {
-  title: "Terms of Use - DesignDeck",
-  description: "Read the terms of use for DesignDeck.",
-};
+import React, { useEffect, useState } from "react";
+import RootLayout from "@/app/layout";
+import NavbarComponent from "../front-navbar";
+import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
 
 export default function TermsOfUse() {
+  const { systemTheme, theme } = useTheme();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const currentTheme = theme === "system" ? systemTheme : theme;
+    setDarkMode(currentTheme === "dark");
+  }, [theme, systemTheme]);
+
   return (
-    <RootLayout>
-      <div style={{
-        padding: "2rem",
-        maxWidth: "800px",
-        margin: "2rem auto",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-        backgroundColor: "#f9f9f9",
-      }}>
-        <h1 style={{
-          fontSize: "2rem",
-          fontWeight: "700",
-          marginBottom: "1rem",
-          borderBottom: "2px solid #4CAF50",
-          paddingBottom: "0.5rem",
-          textAlign : "center"
-        }}>
-          Terms of Use
-        </h1>
-        
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          Welcome to DesignDeck! These Terms of Use govern your use of our website and services. Please read these terms carefully before using our services. By accessing or using our services, you agree to comply with and be bound by these terms. If you do not agree with any part of these terms, you must not use our services.
-        </p>
+    <>
+      <RootLayout>
+        <NavbarComponent />
+        <div
+          style={{marginTop: "2rem"}}
+          className={`min-h-screen ${
+            darkMode
+              ? "bg-black text-white"
+              : "bg-gradient-to-r from-gray-100 via-white to-gray-300 text-black"
+          } py-8`}
+        >
+          <div
+            style={{
+              marginTop: "2rem",
+              padding: "2rem",
+              maxWidth: "800px",
+              margin: "2rem auto",
+              borderRadius: "8px",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+              backgroundColor: darkMode ? "#2E3440" : "#F9FAFB",
+              color: darkMode ? "#D8DEE9" : "#111827",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <motion.h1
+              style={{
+                fontSize: "2.5rem",
+                fontWeight: "700",
+                marginBottom: "1.5rem",
+                borderBottom: `2px solid ${darkMode ? "#88C0D0" : "#3B82F6"}`,
+                paddingBottom: "0.5rem",
+                textAlign: "center",
+                color: darkMode ? "#88C0D0" : "#3B82F6",
+              }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Terms of Use
+            </motion.h1>
 
-        <h2 style={{
-          fontSize: "1.5rem",
+            <motion.p
+              style={{ lineHeight: "1.8", marginBottom: "1.5rem" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              Welcome to DesignDeck! These Terms of Use govern your use of our
+              website and services. Please read these terms carefully before
+              using our services. By accessing or using our services, you agree
+              to comply with and be bound by these terms. If you do not agree
+              with any part of these terms, you must not use our services.
+            </motion.p>
+
+            <Section title="1. Acceptance of Terms" darkMode={darkMode}>
+              By accessing or using our services, you confirm that you accept
+              these Terms of Use and that you agree to comply with them. If you
+              do not agree to these terms, you must not access or use our
+              services.
+            </Section>
+
+            <Section title="2. User Responsibilities" darkMode={darkMode}>
+              You are responsible for your use of the services and for any
+              content you create or share while using our services. You agree to
+              use the services only for lawful purposes and in a manner that
+              does not infringe the rights of, restrict, or inhibit anyone
+              else&apos;s use and enjoyment of the services.
+            </Section>
+
+            <Section title="3. Intellectual Property" darkMode={darkMode}>
+              All content on DesignDeck, including text, graphics, logos, and
+              images, is the property of DesignDeck or its licensors and is
+              protected by copyright, trademark, and other intellectual property
+              laws.
+            </Section>
+
+            <Section title="4. Limitation of Liability" darkMode={darkMode}>
+              In no event shall DesignDeck be liable for any indirect,
+              incidental, special, consequential, or punitive damages arising
+              from your access to or use of our services.
+            </Section>
+
+            <Section title="5. Changes to Terms" darkMode={darkMode}>
+              We reserve the right to modify these Terms of Use at any time. Any
+              changes will be effective immediately upon posting.
+            </Section>
+
+            <Section title="6. Governing Law" darkMode={darkMode}>
+              These Terms of Use shall be governed by and construed in
+              accordance with the laws of [Your State/Country], without regard
+              to its conflict of law provisions.
+            </Section>
+
+            <Section title="7. Contact Information" darkMode={darkMode}>
+              For any questions about these Terms of Use, please contact us at
+              [Your Email Address].
+            </Section>
+          </div>
+        </div>
+      </RootLayout>
+    </>
+  );
+}
+
+function Section({ title, children, darkMode }) {
+  return (
+    <>
+      <motion.h2
+        style={{
+          fontSize: "1.75rem",
           fontWeight: "600",
           marginBottom: "1rem",
-          color: "#4CAF50",
-        }}>
-          1. Acceptance of Terms
-        </h2>
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          By accessing or using our services, you confirm that you accept these Terms of Use and that you agree to comply with them. If you do not agree to these terms, you must not access or use our services.
-        </p>
-
-        <h2 style={{
-          fontSize: "1.5rem",
-          fontWeight: "600",
-          marginBottom: "1rem",
-          color: "#4CAF50",
-        }}>
-          2. User Responsibilities
-        </h2>
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          You are responsible for your use of the services and for any content you create or share while using our services. You agree to use the services only for lawful purposes and in a manner that does not infringe the rights of, restrict, or inhibit anyone else&apos;s use and enjoyment of the services. This includes not engaging in any conduct that is unlawful, harmful, or objectionable.
-        </p>
-
-        <h2 style={{
-          fontSize: "1.5rem",
-          fontWeight: "600",
-          marginBottom: "1rem",
-          color: "#4CAF50",
-        }}>
-          3. Intellectual Property
-        </h2>
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          All content on DesignDeck, including text, graphics, logos, images, and software, is the property of DesignDeck or its licensors and is protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, modify, or create derivative works of any content without our express written permission. Any unauthorized use of the content may violate copyright, trademark, and other laws.
-        </p>
-
-        <h2 style={{
-          fontSize: "1.5rem",
-          fontWeight: "600",
-          marginBottom: "1rem",
-          color: "#4CAF50",
-        }}>
-          4. Limitation of Liability
-        </h2>
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          In no event shall DesignDeck be liable for any indirect, incidental, special, consequential, or punitive damages arising from your access to or use of our services. This includes any damages resulting from any errors or omissions in the content, loss of data, or any unauthorized access to or use of our servers and/or any personal information stored therein. Your use of our services is at your own risk.
-        </p>
-
-        <h2 style={{
-          fontSize: "1.5rem",
-          fontWeight: "600",
-          marginBottom: "1rem",
-          color: "#4CAF50",
-        }}>
-          5. Changes to Terms
-        </h2>
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          We reserve the right to modify these Terms of Use at any time. Any changes will be effective immediately upon posting the revised terms on our website. Your continued use of the services following any changes constitutes your acceptance of the new terms. We encourage you to review these terms periodically for updates.
-        </p>
-
-        <h2 style={{
-          fontSize: "1.5rem",
-          fontWeight: "600",
-          marginBottom: "1rem",
-          color: "#4CAF50",
-        }}>
-          6. Governing Law
-        </h2>
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          These Terms of Use shall be governed by and construed in accordance with the laws of [Your State/Country], without regard to its conflict of law provisions. Any legal action or proceeding arising out of or related to these terms shall be brought exclusively in the courts located within [Your Jurisdiction].
-        </p>
-
-        <h2 style={{
-          fontSize: "1.5rem",
-          fontWeight: "600",
-          marginBottom: "1rem",
-          color: "#4CAF50",
-        }}>
-          7. Contact Information
-        </h2>
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          For any questions about these Terms of Use, please contact us at [Your Email Address]. We value your feedback and are here to assist you with any concerns.
-        </p>
-
-        <p style={{ lineHeight: "1.6", marginBottom: "1rem" }}>
-          Thank you for using DesignDeck! We appreciate your trust and commitment to our services.
-        </p>
-
-        <br></br>
-        <Link href="/" >
-          <button className="ml-4 px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition duration-300">
-            Home
-          </button>
-        </Link>
-      </div>
-    </RootLayout>
+          color: darkMode ? "#88C0D0" : "#3B82F6",
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {title}
+      </motion.h2>
+      <motion.p
+        style={{ lineHeight: "1.8", marginBottom: "1.5rem" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.5 }}
+      >
+        {children}
+      </motion.p>
+    </>
   );
 }
