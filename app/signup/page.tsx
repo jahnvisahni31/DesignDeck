@@ -4,8 +4,11 @@ import { Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useState, FormEvent } from 'react';
+import NavbarComponent from '../front-navbar';
 
 const SignupPage: FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -49,6 +52,11 @@ const SignupPage: FC = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white">
+      <NavbarComponent
+        isLoggedIn={isLoggedIn}
+        setIsMenuOpen={setIsMenuOpen}
+        isMenuOpen={isMenuOpen}
+      />
       <div className="w-full max-w-md space-y-6 bg-gray-900 p-8 rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold mb-6 text-center">Sign Up</h2>
 
