@@ -6,6 +6,7 @@ import NavbarComponent from "../front-navbar";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { FaUser, FaEnvelope } from "react-icons/fa";
+import { useUser } from "@/context/UserContext";
 
 const ContactUs = () => {
   const [name, setName] = useState("");
@@ -14,6 +15,8 @@ const ContactUs = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [buttonText, setButtonText] = useState("Send Message");
+  const {loggedIn} = useUser();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === "dark" ? systemTheme : theme;
@@ -53,7 +56,11 @@ const ContactUs = () => {
 
   return (
     <>
-      <NavbarComponent />
+      <NavbarComponent
+        isLoggedIn={loggedIn}
+        setIsMenuOpen={setIsMenuOpen}
+        isMenuOpen={isMenuOpen}
+      />
       <div
         className={`${
           darkMode ? "bg-black text-white" : "bg-gray-50 text-gray-800"
@@ -92,7 +99,7 @@ const ContactUs = () => {
             }}
           >
             <Input
-              clearable
+              isClearable
               label="Name"
               placeholder="Enter your name"
               value={name}
@@ -102,7 +109,7 @@ const ContactUs = () => {
               required
             />
             <Input
-              clearable
+              isClearable
               label="Email"
               placeholder="Enter your email"
               type="email"
@@ -113,7 +120,6 @@ const ContactUs = () => {
               required
             />
             <Textarea
-              clearable
               label="Message"
               placeholder="Write your message"
               value={message}
