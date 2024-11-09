@@ -83,6 +83,7 @@ const LoginPage: FC = () => {
           <div>
             <label htmlFor="email" className="block text-sm font-medium">Email</label>
             <input
+             placeholder='Enter your email address'
               type="email"
               id="email"
               name="email"
@@ -97,6 +98,7 @@ const LoginPage: FC = () => {
           <div>
             <label htmlFor="username" className="block text-sm font-medium">Username</label>
             <input
+              placeholder='Enter your username'
               type="text"
               id="username"
               name="username"
@@ -111,6 +113,7 @@ const LoginPage: FC = () => {
             <label htmlFor="password" className="block text-sm font-medium">Password</label>
             <div className="relative">
               <input
+                placeholder='Enter your password'
                 type={hidden ? "password" : "text"}
                 id="password"
                 name="password"
