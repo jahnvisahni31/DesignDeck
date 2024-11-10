@@ -20,10 +20,12 @@ import Progressbar from "../components/progressbar/progressbar";
 import Review from '../components/ui/review';
 import NavbarComponent from "./front-navbar";
 import ThemeProvider from "./provider";
+import { useUser } from "@/context/UserContext";
 
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
  
