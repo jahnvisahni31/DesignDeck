@@ -1,8 +1,8 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { Sparkles, Zap, Stars, ArrowRight, ArrowLeft } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowLeft, ArrowRight, Sparkles, Stars, Zap } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 
 interface Testimonial {
   text: string;
@@ -90,11 +90,11 @@ const DesignDeckTestimonial: React.FC = () => {
 
   return (
     <div className={`${theme === 'dark' ? 'dark' : ''}`}>
-      <div className="min-h-screen transition-colors duration-300 p-8 bg-gradient-to-r from-gray-300 via-white to-gray-200 dark:bg-black text-black dark:text-white">
-        <div className="max-w-4xl mx-auto rounded-2xl p-8 bg-gradient-to-r from-gray-300 via-white to-gray-200 dark:bg-black transition-colors duration-300">
+      <div className="min-h-screen transition-colors duration-300 p-8 bg-inherit dark:bg-black text-black dark:text-white">
+        <div className="max-w-4xl mx-auto rounded-2xl p-8 bg-gradient-to-r from-gray-300 via-white to-gray-200 dark:bg-gradient-to-r dark:from-gray-900 dark:via-slate-600 dark:to-gray-950  transition-colors duration-300">
           <div className="flex items-center justify-center mb-8">
             <Sparkles className="w-8 h-8 mr-2 text-[#704EF8]" />
-            <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#704EF8] to-purple-400 dark:text-purple-200">
+            <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#704EF8] to-purple-400 dark:text-purple-400">
               DesignDeck Stories
             </h2>
           </div>
@@ -120,7 +120,7 @@ const DesignDeckTestimonial: React.FC = () => {
                     currentTestimonial.emotion
                   )} flex items-center justify-center`}
                 >
-                  <Stars className="w-4 h-4 text-white dark:text-black" />
+                  <Stars className="w-4 h-4 text-white" />
                 </div>
               </div>
 
@@ -137,7 +137,7 @@ const DesignDeckTestimonial: React.FC = () => {
                 {currentTestimonial.techStack.map((tech) => (
                   <div
                     key={tech}
-                    className="px-3 py-1 rounded-full bg-purple-400 border border-purple-600 cursor-pointer transition-all duration-300 hover:bg-purple-600 hover:scale-105"
+                    className="px-3 py-1 rounded-full bg-purple-800 border border-purple-800 cursor-pointer transition-all duration-300 hover:bg-purple-600 hover:scale-105"
                   >
                     <span className="text-sm text-white">{tech}</span>
                   </div>
@@ -154,14 +154,14 @@ const DesignDeckTestimonial: React.FC = () => {
           <div className="flex justify-center space-x-4 mt-8">
             <button
               onClick={() => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-              className="p-3 rounded-full bg-purple-400 hover:bg-purple-600 transition-colors duration-300"
+              className="p-3 rounded-full bg-purple-800 hover:bg-purple-600 transition-colors duration-300"
             >
               <ArrowLeft className="text-white" />
             </button>
 
             <button
               onClick={() => setCurrentIndex((prev) => (prev + 1) % testimonials.length)}
-              className="p-3 rounded-full bg-purple-400 hover:bg-purple-600 transition-colors duration-300"
+              className="p-3 rounded-full bg-purple-800 hover:bg-purple-600 transition-colors duration-300"
             >
               <ArrowRight className="text-white" />
             </button>
