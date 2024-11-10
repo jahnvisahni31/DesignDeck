@@ -1,0 +1,75 @@
+name: Auto Close All Open Issues and PRs with Message
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs at midnight UTC every day (adjust as needed)
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write  # Allows the action to close issues and PRs
+      pull-requests: write  # Allows the action to close PRs
+      discussions: write  # Allows the action to comment on issues and PRs
+
+    steps:
+      - name: Close all open issues with a message
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Closing all open issues..."
+          # Get all open issues in the repository
+          issues=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues?state=open")
+
+          # Check if there are any open issues, and if so, close them
+          echo "$issues" | jq -r '.[].number' | while read issue_number; do
+            echo "Closing issue #$issue_number"
+            
+            # Close the issue
+            curl -X PATCH \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -d '{"state": "closed"}' \
+              "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number"
+
+            # Add a comment with a custom message
+            curl -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -d '{"body": "Thank you for your contribution! However, the GSoC deadline has closed, and we are no longer accepting new submissions."}' \
+              "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/comments"
+          done
+
+      - name: Close all open pull requests with a message
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Closing all open pull requests..."
+          # Get all open pull requests in the repository
+          prs=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open")
+
+          # Check if there are any open PRs, and if so, close them
+          echo "$prs" | jq -r '.[].number' | while read pr_number; do
+            echo "Closing pull request #$pr_number"
+            
+            # Close the pull request
+            curl -X PATCH \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -d '{"state": "closed"}' \
+              "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number"
+
+            # Add a comment with a custom message
+            curl -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -d '{"body": "Thank you for your contribution! However, the GSoC deadline has closed, and we are no longer accepting new pull requests for this program."}' \
+              "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/comments"
+          done
