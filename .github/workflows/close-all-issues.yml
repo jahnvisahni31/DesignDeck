@@ -1,0 +1,32 @@
+name: Close All Open Issues
+
+on:
+  workflow_dispatch: # Trigger manually via GitHub Actions UI
+
+jobs:
+  close_issues:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Close all open issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get all open issues in the repository
+          issues=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues?state=open")
+
+          # Extract issue numbers and close them
+          echo "$issues" | jq '.[].number' | while read issue_number; do
+            echo "Closing issue #$issue_number"
+            curl -X PATCH \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -d '{"state": "closed"}' \
+              "https://api.github.com/repos/${{ github.repository }}/issues/$issue_number"
+          done
