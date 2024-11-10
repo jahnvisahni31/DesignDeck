@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { FiChevronDown, FiMail, FiMessageCircle, FiPhone } from 'react-icons/fi';
 import NavbarComponent from '../front-navbar';
+import Footer from '@/components/ui/footer';
 
 interface Faq {
   question: string;
@@ -266,6 +267,8 @@ const FaqPage: React.FC = () => {
           </section>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };

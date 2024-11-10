@@ -5,10 +5,14 @@ import RootLayout from "@/app/layout";
 import NavbarComponent from "../front-navbar";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
+import { useUser } from "@/context/UserContext";
+import Footer from "@/components/ui/footer";
 
 const PrivacyPolicy = () => {
   const { systemTheme, theme } = useTheme();
   const [darkMode, setDarkMode] = useState(false);
+  const {loggedIn} = useUser();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const currentTheme = theme === "system" ? systemTheme : theme;
@@ -17,7 +21,11 @@ const PrivacyPolicy = () => {
 
   return (
     <RootLayout>
-      <NavbarComponent />
+      <NavbarComponent 
+        isLoggedIn={loggedIn}
+        setIsMenuOpen={setIsMenuOpen}
+        isMenuOpen={isMenuOpen}
+      />
       <div
         style={{ marginTop: "2rem" }}
         className={`min-h-screen ${
@@ -126,11 +134,13 @@ const PrivacyPolicy = () => {
           </Section>
         </div>
       </div>
+
+      <Footer />
     </RootLayout>
   );
 };
 
-function Section({ title, children, darkMode }) {
+function Section({ title, children, darkMode }: {title: string, children: any, darkMode:boolean}) {
   return (
     <>
       <motion.h2

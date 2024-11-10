@@ -104,7 +104,6 @@ export default function SupportUs() {
           </div>
         </div>
 
-        {/* Footer */}
         <Footer />
       </div>
     </>
