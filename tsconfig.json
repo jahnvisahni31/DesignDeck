@@ -35,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/liveblocks-auth/route.js"
-, "app/front-navbar.tsx"  ],
+, "app/front-navbar.tsx", "app/api/verifyotp", "app/api/resetpassword"  ],
   "exclude": [
     "node_modules"
   ]

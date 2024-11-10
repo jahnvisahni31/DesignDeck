@@ -1,5 +1,6 @@
 "use client"
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import { useUser } from "@/context/UserContext";
 import Logo from "@/public/assets/design-deck-logo.png";
 import {
   Button,
@@ -56,6 +57,8 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
   const currentTheme = theme === "dark" ? systemTheme : theme;
   const [darkMode, setDarkMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const {loggedIn, setLoggedIn} = useUser();
 
   useEffect(() => {
     setDarkMode(currentTheme === 'dark');
@@ -164,7 +167,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
         </NavbarContent>
 
         <NavbarContent justify="end">
-          {!isLoggedIn && (
+          {(!isLoggedIn && !loggedIn) ? 
             <>
               <NavbarItem>
                 <Link href="/login" legacyBehavior passHref>
@@ -194,7 +197,14 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({ isLoggedIn, setIsMenu
                 </Button>
               </NavbarItem>
             </>
-          )}
+            : <>
+                <NavbarItem>
+                    <button onClick={()=>setLoggedIn(false)} className="hover:text-gray-300 px-4 rounded-lg py-2 text-white bg-red-500 transition duration-300">
+                      Logout
+                    </button>
+                </NavbarItem>
+            </>
+          }
           <NavbarItem>
             <ThemeSwitcher />
           </NavbarItem>
